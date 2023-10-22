@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --brownKupaa: #BC6C25;
+    --lightGreenKupaa: #8FB339;
+    --grayKupaa: #DADDD8;
+    --darkGrayKupaa: #717171;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Signika Negative', sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+h1{
+    font-size: 30px;
+}
+
+h2{
+    font-size: 26px;
+}
+
+h3{
+    font-size: 16px;
+}
+
+p{
+    color: var(--darkGrayKupaa);
+}
