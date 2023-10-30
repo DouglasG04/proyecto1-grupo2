@@ -1,16 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">\
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
-
-    <link rel="stylesheet" href="./styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kuppa</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+        <link rel="stylesheet" href="./styles.css">
+        
+    </head>
 <body>
-    <i class="fa-solid fa-person-hiking"></i>
+    <header class="nav-container">
+        <!-- Linkear -->
+        <div>
+            <img class="nav-container-logo" src="/src/public/assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
+        </div>
+        <nav class="nav-container-options-align">
+            <!-- Linkear -->
+            <ul class="nav-container-options">
+                <li><a href="">Mi negocio</a></li>
+                <li><a href="">Buscar y reservar</a></li>
+                <li><a href="">Contáctanos</a></li>
+            </ul>
+        </nav>
+        <button class="btn account-button">
+            <!-- Linkear -->
+            <div>
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div>
+                <i class="fa-solid fa-circle-user fa-xl"></i>
+            </div>
+        </button>
+    </header>
+    <main>
+        <section>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="/src/public/assets/img/Quetzal.jpg" class="slides-img" alt="Quetzal en una rama">
+                </div>
+                <div class="mySlides fade">
+                    <img src="/src/public/assets/img/laguna.jpg" class="slides-img" alt="Laguna y vegetación alrededor">
+                </div>
+                <div class="mySlides fade">
+                    <img src="/src/public/assets/img/volcano.jpg" class="slides-img" alt="Volcán Arenal desde el lago Arenal">
+                 </div>
+            </div>
+                <div class="search-bar-container">
+                    <input class="search-bar-input" type="text" placeholder="Buscar...">
+                    <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
+                    <button class="btn search-bar-filter-button">
+                        <div>
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <p>Filters</p>
+                        </div>
+                    </button>
+                </div>
+            <div class="categories-container-align">
+               <!-- Linkear -->
+                <div class="categories-container-options">
+                <p>Alimentación</p>
+                <p>Entretenimiento</p>
+                <p>Hospedaje</p> 
+                </div>
+            </div>
+        </section>
+        <section id="businessesList" class="businesses-container">
+        <!-- Linkear -->
+        </section>
+    </main>
+    <footer class="footer-container">
+        <div>
+            <img class="footer-container-ICT" src="/src/public/assets/img/logo-ict-2018.png" alt="Logo Instituto Costarricense de Turismo">
+        </div>
+        <div>
+            <img class="footer-container-esencial" src="/src/public/assets/img/esencial.png" alt="Logo marca Esencial Costa Rica">
+        </div>
+        <div >
+            <a class="footer-container-contact" href="/src/public/assets/img/Section-contactanos">Políticas de cancelación</a>
+            <!-- Linkear -->
+        </div>
+        <div class="footer-container-contact">
+            <div>
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+                <p>+506-22995800</p>
+            </div>
+        </div>
+        <div class="footer-container-contact">
+            <div> 
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+                <p>info@visitcostarica.com</p>
+            </div>
+        </div>
+        <div class="footer-container-contact">
+            <div>
+                <a class="footer-container-contact" href="https://www.instagram.com/oficial_ict/"><i class="fa-brands fa-instagram fa-lg"></i></a>  
+            </div>
+            <div>
+                <a class="footer-container-contact" href="https://www.facebook.com/InstitutoCostarricensedeTurismoOficial/"><i class="fa-brands fa-square-facebook fa-lg"></i></a>
+            </div>
+            <div>
+                <a class="footer-container-contact" href="https://www.youtube.com/channel/UCf4vVKxVaYpRtmFaStDfQTw"><i class="fa-brands fa-youtube fa-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./homepage.js"></script>
 </body>
 </html>
