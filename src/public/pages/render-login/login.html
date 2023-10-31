@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion | Kupaa</title>
+
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="shortcut icon" href="../../assets/img/isotipo-kupaa.png" type="image/x-icon">
+    <script src="./login.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <section class="login">
+        <div class="left-section">
+            <form id="form-login">
+                <img src="../../assets/img/logotipo-horizontal-kupaa.png" alt="logo-kupaa" style="width: 380px;">
+                <h1>Inicio de Sesión</h1>
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" name="username" id="username" placeholder="Ingrese su nombre de usuario"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" name="email" id="email" placeholder="Ingrese su correo electrónico" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
+                </div>
+
+                <button>Iniciar Sesión</button>
+
+                <p id="withoutAccount">¿No tienes una cuenta? <span>Regístrate</span></p>
+            </form>
+        </div>
+
+        <div class="right-section">
+            <!-- <img src="../../assets/img/login-photo.jpg" alt="login-photo"> -->
+        </div>
+    </section>
+
+
+    <section class="register hide-element">
+
+        <div class="left-section-register">
+            <!-- <img src="../../assets/img/photo-register.jpg" alt="register-photo"> -->
+        </div>
+
+        <div class="right-section-register">
+            <div class="headline-section">
+                <img src="../../assets/img/logotipo-horizontal-kupaa.png" alt="logo-kupaa" style="width: 380px;">
+                <h1>Registrar cuenta</h1>
+
+                <div class="register-photo">
+                    <div>
+
+                        <img id="preview" src="" class="photo-user">
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+                        <div>
+                            <input type="file" id="uploadPhoto" style="display: none;" accept="image/*">
+                            <label for="uploadPhoto">Subir foto</label>
+                        </div>
+                        <button id="removePhoto" class="custom-button">Eliminar foto</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <form id="form-register">
+                <div class="grid-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" name="name" id="name" placeholder="Ingrese su nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Apellido</label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Ingrese su apellido" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordreg">Nueva contraseña</label>
+                        <input type="password" name="passwordreg" id="passwordreg" placeholder="Ingrese su contraseña"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordverification">Ingrese de nuevo su contraseña</label>
+                        <input type="password" name="passwordverification" id="passwordverification"
+                            placeholder="Ingrese nuevamente su contraseña" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailreg">Correo electrónico</label>
+                        <input type="email" name="emailreg" id="emailreg" placeholder="Ingrese su correo electrónico"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate">Fecha de nacimiento</label>
+                        <input type="date" name="birthdate" id="birthdate" required>
+                    </div>
+
+                    <div class="form-select">
+                        <label for="country">País</label>
+                        <select name="country" id="country" required>
+                            <option value="CRI" selected>Costa Rica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-select">
+                        <label for="state">Provincia</label>
+                        <select name="state" id="state" required>
+                            <option value="S">San José</option>
+                            <option value="A">Alajuela</option>
+                            <option value="C">Cartago</option>
+                            <option value="H">Heredia</option>
+                            <option value="G">Guancaste</option>
+                            <option value="P">Puntarenas</option>
+                            <option value="L">Limon</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country" required>Otras señas</label>
+                        <textarea name="additionaladdress" id="additionaladdress" cols="30" rows="10"
+                            placeholder="200 metros Oeste..."></textarea>
+                    </div>
+                </div>
+
+
+
+
+                <div class="register-entitydocument-front">
+                    <div>
+
+                        <img class="entitydocument-user" id="entitydocFrontPreview" src="">
+                    </div>
+                    <div style="display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 20px 0px;">
+                        <div>
+                            <input type="file" id="entitydocFront" style="display: none;" accept="image/*">
+                            <label for="entitydocFront" class="labelFront">Subir foto delantera del documento</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="register-entitydocument-back">
+                    <div>
+
+                        <img class="entitydocument-user" id="entitydocBackPreview" src="">
+                    </div>
+                    <div style="display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 20px 0px;">
+                        <div>
+                            <input type="file" id="entitydocBack" style="display: none;" accept="image/*">
+                            <label for="entitydocBack" class="labelBack">Subir foto trasera del documento</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button>Registrar</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

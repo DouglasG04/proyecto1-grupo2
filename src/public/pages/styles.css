@@ -8,7 +8,7 @@
 }
 
 :root {
-    --brownKupaa: #BC6C25;
+    --darkGreenKupaa: #137547;
     --lightGreenKupaa: #8FB339;
     --grayKupaa: #DADDD8;
     --darkGrayKupaa: #717171;
@@ -21,18 +21,41 @@ body {
     color: #000;
 }
 
-h1{
+.show-element {
+    display: flex;
+}
+
+.hide-element {
+    display: none;
+}
+
+
+h1 {
     font-size: 30px;
+    color: #222222;
 }
 
-h2{
+h2 {
     font-size: 26px;
+    color: #222222;
 }
 
-h3{
+h3 {
     font-size: 16px;
+    font-weight: 600;
+    color: #222222;
 }
 
-p{
+p {
     color: var(--darkGrayKupaa);
+}
+
+.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content {
+    color: var(--darkGreenKupaa);
+    color: #fff;
+}
+
+.swal2-popup.swal2-toast .swal2-icon {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
 }

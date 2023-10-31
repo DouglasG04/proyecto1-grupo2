@@ -1,0 +1,311 @@
+.login {
+    display: flex;
+    align-items: center;
+}
+
+
+.left-section {
+    width: 25%;
+}
+
+.right-section {
+   background-image: url('../../assets/img/login-photo.jpg');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   width: 75%;
+   height: 100vh;
+}
+
+#form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-login h1 {
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+.login .form-group {
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+    padding: 15px 0;
+}
+
+.login .form-group label {
+    color: #222222;
+}
+
+.login .form-group input {
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--darkGrayKupaa);
+}
+
+.login .form-group input:focus {
+    outline: none;
+    border: 1px solid var(--darkGreenKupaa);
+}
+
+
+.right-section img {
+    width: 100%;
+    height: 100%;
+}
+
+#form-login button {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+
+    margin-top: 10px;
+    padding: 14px 26px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#form-login button:hover {
+    background-color: var(--lightGreenKupaa);
+    transition: 0.3s;
+}
+
+#form-login p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--darkGrayKupaa);
+}
+
+#form-login span {
+    color: var(--lightGreenKupaa);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .login {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .left-section {
+        width: 100%;
+    }
+
+    .right-section {
+        display: none;
+
+    }
+}
+
+/* ------------------------ REGISTER SECTION -----------------*/
+
+.register {
+    display: flex;
+}
+
+
+.register .left-section-register {
+    background-image: url('../../assets/img/register-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 157vh;
+}
+
+.register .right-section-register {
+    margin: 30px 0px;
+    width: 50%;
+}
+
+/* .left-section-register img {
+    width: 100%;
+    height: 100%;
+} */
+
+
+.register .form-group label {
+    color: #222222;
+}
+
+.register .form-select label {
+    color: #222222;
+}
+
+.register .form-group {
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+    padding: 15px 0;
+}
+
+.register .form-select {
+    padding: 10px 0;
+}
+
+.register select {
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+    padding: 12px 8px;
+    border-radius: 5px;
+}
+
+.register-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headline-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-user {
+    margin-top: 10px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: var(--darkGrayKupaa);
+}
+
+.register-photo label {
+    background-color: var(--lightGreenKupaa);
+    padding: 10px 32px;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+#removePhoto {
+    background-color: var(--darkGreenKupaa);
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+}
+
+#removePhoto:hover {
+    background-color: var(--darkGrayKupaa);
+    transition: 0.3s;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.register .form-group label {
+    color: #222222;
+}
+
+
+#form-register {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register .form-group input {
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--darkGrayKupaa);
+}
+
+.register .form-group input:focus {
+    outline: none;
+    border: 1px solid var(--darkGreenKupaa);
+}
+
+
+.entitydocument-user {
+    margin-top: 10px;
+    width: 400px;
+    height: 210px;
+    background-color: var(--darkGrayKupaa);
+}
+
+.register-entitydocument-front label {
+    background-color: #fff;
+    border: 1px solid var(--darkGreenKupaa);
+    padding: 10px 32px;
+    cursor: pointer;
+
+}
+
+.register-entitydocument-front label:hover, .register-entitydocument-back label:hover {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.register-entitydocument-back label {
+    background-color: #fff;
+    border: 1px solid var(--darkGreenKupaa);
+    padding: 10px 32px;
+    cursor: pointer;
+}
+
+#form-register button {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+
+    margin-top: 10px;
+    padding: 14px 26px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+textarea{
+    height: 45px;
+    padding: 12px 8px;
+}
+
+
+#form-register button:hover {
+    background-color: var(--lightGreenKupaa);
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 1024px) {
+    .register {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .register .left-section-register {
+        display: none;
+    }
+
+    .register .right-section-register {
+        width: 100%;
+    }
+
+    .grid-form {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
