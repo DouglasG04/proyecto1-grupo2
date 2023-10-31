@@ -24,13 +24,20 @@
                 <li><a href="">Contáctanos</a></li>
             </ul>
         </nav>
-        <button class="btn account-button">
+        
+        <button class="btn account-button dropbtn" onclick="myFunction()">
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="#Edit">Ver/editar perfil</a>
+                  <a href="#Reserv">Mis reservas</a>
+                  <a class="dropdown-content-visibility disabled-links" href="#Approvals" disabled>Aprobar negocios</a>
+                  <a class="dropdown-content-visibility disabled-links" href="#Reports">Reportes</a>
+                </div>
             <!-- Linkear -->
             <div>
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars dropbtn"></i>
             </div>
             <div>
-                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <i class="fa-solid fa-circle-user fa-xl dropbtn"></i>
             </div>
         </button>
     </header>
@@ -50,12 +57,17 @@
                 <div class="search-bar-container">
                     <input class="search-bar-input" type="text" placeholder="Buscar...">
                     <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
-                    <button class="btn search-bar-filter-button">
+                    <button class="btn search-bar-filter-button dropbtn2" onclick="myFunction2()">
+                        <div id="myDropdown2" class="dropdown-content2">
+                            <a href="#location">Ubicación</a>
+                            <a href="#type">Tipo de negocio</a>
+                            <a href="#price">Precios</a>
+                          </div>
                         <div>
-                            <i class="fa-solid fa-sliders"></i>
+                            <i class="fa-solid fa-sliders dropbtn2"></i>
                         </div>
                         <div>
-                            <p>Filters</p>
+                            <p class="dropbtn2">Filters</p>
                         </div>
                     </button>
                 </div>
