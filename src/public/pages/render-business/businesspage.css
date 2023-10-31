@@ -1,0 +1,304 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.max-width {
+    max-width: 1200px;
+    padding: 0 45px;
+    margin: auto;
+}
+
+/*Grid de Imágenes*/
+
+.images-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+    
+.img-1 {
+    grid-area: 1 / 1 / 3 / 2; 
+    height: 415px;
+    width: 500px;
+    border-radius: 10px;
+}
+
+.img-2 { 
+    grid-area: 1 / 2 / 2 / 3; 
+    height: 200px;
+    width: 335px;
+    border-radius: 10px;
+}
+
+.img-3 { 
+    grid-area: 2 / 2 / 3 / 3; 
+    height: 200px;
+    width: 335px;
+    border-radius: 10px;
+}
+
+.img-4 { 
+    grid-area: 2 / 3 / 3 / 4; 
+    height: 200px;
+    width: 335px;
+    border-radius: 10px;
+}
+
+.img-5 { 
+    grid-area: 1 / 3 / 2 / 4; 
+    height: 200px;
+    width: 335px;
+    border-radius: 10px;
+}
+
+/*Informacion del Negocio*/
+
+.information-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 50px;
+}
+
+.title-category {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: -25px;
+    color: #c4c4c4;
+}
+
+.business-name {
+    font-size: 30px;
+    margin-bottom: -15px;
+    color: #137547;
+}
+
+.title-location {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}
+
+.description h1 {
+    font-size: 15px;
+}
+
+.description p {
+    font-size: 15px;
+}
+
+.location h1 {
+    font-size: 20px;
+}
+
+.location p {
+    font-size: 15px;
+    margin-top: -10px;
+}
+
+
+.container-titles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.fa-regular{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.fa-solid{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.icon-1 {
+   background-color: #00A99BF2;
+   margin:0px auto;
+   display: grid;
+   place-content: center
+}
+
+.icon-2 {
+    background-color: #DADDD8;
+    width: 176px;
+    height: 160px;
+    border-radius: 10px;
+}
+
+.icon-3 {
+    background-color: #DADDD8;
+    width: 176px;
+    height: 160px;
+    border-radius: 10px;
+}
+
+.icon-4 {
+    background-color: #DADDD8;
+    width: 176px;
+    height: 160px;
+    border-radius: 10px;
+}
+
+.icons-bed {
+   display: grid;
+   place-content: center;
+}
+
+.card {
+    padding: 10px 10px;
+    width: calc(26% - 20px);
+    border-radius: 6px;
+    background-color: #8FB339;
+    text-align: center;
+ }
+ 
+ .box h3 {
+    color: white;
+    margin-top: -5px;
+ }
+ 
+ .box p {
+    color: white;
+    margin-top: -15px;
+ }
+ 
+ .icon {
+    background-color: none;
+    margin:0px auto;
+    display: grid;
+    place-content: center
+ }
+ 
+ .icons {
+    display: flex;
+    place-content: center;
+ }
+
+/*Contenedor de Reservas*/
+.reservation-container {
+    background-color: #DADDD8;
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.reservation-info h1 {
+    font-size: 22px;
+    font-weight: 350px;
+    margin-top: -2px;
+    margin-bottom: -2px;
+}
+
+.reservation-info h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: -20px;
+}
+
+.button {
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    margin-top: 10px;
+}
+
+.reservation-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.icon-contact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10px;
+    gap: 5px;
+}
+
+.icons-contact {
+    height: 16.5px;
+    width: 16.5px;
+}
+
+
+/*Comentarios*/
+.comments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.comment-review {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.photo-review {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+}
+
+.person-comment h1 {
+    font-size: 18px;
+}
+
+.person-comment h3 {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: -15px;
+}
+
+.comment {
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.review-titles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.star-reviews {
+    width: 20px;
+    height: 20px;
+}
+
+.reviews-button {
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    margin-top: 10px;
+}
