@@ -116,6 +116,15 @@ table th {
     color: #888;
 }
 
+.save-delete {
+    margin-bottom: 20px; 
+}
+
+.user-reports, .business-reports {
+    display: block;
+    margin-bottom: 10px; 
+}
+
 .welcome,
 .reservations,
 .payment-methods,
@@ -134,66 +143,6 @@ table th {
     text-align: left;
 }
 
-.payment-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 10px;
-    width: 90%;
-}
-
-.payment-card .card-info {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-}
-
-.payment-card .card-info p {
-    margin: 0;
-    margin-right: 20px;
-}
-
-.right-align .payment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.right-align .add-payment {
-    background-color: #a3a6a0;
-    color: #fff;
-    border: none;
-    padding: 5px;
-}
-
-#popup {
-    display: none;
-    position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    width: 80%; 
-    max-width: 600px; 
-    background-color: rgb(255, 255, 255);
-    z-index: 1;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(19, 19, 19, 0.2);
-}
-
-#closePopup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
 input[type="submit"] {
     padding: 10px 20px;
     border: none;
@@ -205,8 +154,8 @@ input[type="submit"] {
   }
   
   input[type="submit"]:first-child {
-    background-color: #474f48; 
-    color: white;
+    background-color: #e7e7e7; 
+    color: rgb(0, 0, 0);
   }
   
   input[type="submit"]:last-child {
@@ -214,23 +163,58 @@ input[type="submit"] {
     color: white;
   }
   
-  
   input[type="submit"]:hover {
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   }
 
-  #nombre,
-#cedula,
-#fecha-nacimiento,
-#correo,
-#telefono,
-#pais,
-#estado,
-#direccion {
-  width: 300%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px; 
-  box-sizing: border-box;
+  .show-requests,
+.user-reports,
+.business-reports {
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #8FB339;
+    color: white;
+    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.show-requests:hover,
+.user-reports:hover,
+.business-reports:hover {
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.action-cell {
+    display: flex;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.left-buttons,
+.right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.left-buttons a,
+.right-buttons a {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    color: #fff;
+    background-color: #8FB339;
+    border-radius: 5px;
+}
+
+.left-buttons a:hover,
+.right-buttons a:hover {
+    background-color: #6d8f24;
 }

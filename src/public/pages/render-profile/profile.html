@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kuppa User</title>
+  <link rel="stylesheet" href="MyAccount.css">
+  <script src="popup.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header> <!--falta agregar header-->
+      <h1>Kuppa</h1>
+    </header>
+    <div class="content">
+      <div class="account-details">
+        <div class="user-profile">
+          <img src="fotoperfil.jpg" alt="Imagen de perfil" class="profile-image">
+          <h3>Nombre Apellido</h3>
+          <p class="user-email">cliente@kuppa.cr</p>
+          <p class="user-age">Edad: 27</p>
+        </div>
+        <h3>Detalles de cuenta</h3>
+        <div class="account-details">
+          <input type="text" id="nombre" placeholder="Nombre completo">
+          <input type="text" id="cedula" placeholder="Identificación/Cédula/Pasaporte">
+          <input type="date" id="fecha-nacimiento" placeholder="Fecha de nacimiento">
+          <input type="email" id="correo" placeholder="Correo electrónico">
+          <input type="number" id="telefono" placeholder="Número de teléfono">
+          <input type="text" id="pais" placeholder="País">
+          <input type="text" id="estado" placeholder="Estado">
+          <input type="text" id="direccion" placeholder="Dirección">
+          <label for="tipo-usuario">Tipo de usuario:</label>
+          <select id="tipo-usuario" name="tipo-usuario">
+            <option value="cliente">Cliente</option>
+            <option value="proveedor">Proveedor</option>
+          </select>
+          <input type="submit" value="Guardar">
+          <input type="submit" value="Eliminar Cuenta">
+        </div>
+      </div>
+      <main>
+        <section class="welcome">
+          <h2>Hola, Nombre</h2>
+          <p>Te damos la bienvenida a tu perfil en Kuppa App, la aplicación para disfrutar de lugares más increíbles y seguros de Costa Rica</p>
+        </section>
+        <section class="reservations">
+          <h2>Reservas</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Monto</th>
+                <th>Negocio</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>125000</td>
+                <td>Hotel Puerto Viejo</td>
+                <td>25/12/2023</td>
+                <td>
+                  <a href="#">Modificar</a>
+                  <a href="#">Cancelar</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="payment-methods right-align">
+          <div class="payment-header">
+            <h2>Métodos de Pago</h2>
+            <button class="add-payment" id="showPopup">Agregar</button>
+          </div>
+          <div class="payment-card">
+            <div class="card-info">
+              <p>Tipo de Tarjeta: Visa</p>
+              <p>Número de Tarjeta: **** **** **** 1234</p>
+              <p>Fecha de Expiración: 12/25</p>
+            </div>
+            <button class="delete-payment">Eliminar</button>
+          </div>
+        </section>
+        <section class="my-business">
+          <h2>Mis negocios</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Lugar</th>
+                <th>Condición</th>
+                <th>Nombre del negocio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>San Carlos</td>
+                <td>Aprobado</td>
+                <td>Hotel Vulcano</td>
+                <td>
+                  <a href="#">Ver</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </div>
+  <footer>
+    <p>Todos los derechos reservados</p> <!--Falta footer-->
+  </footer>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>Agregar Método de Pago</h2>
+      <div class="card-info">
+        <label for="tipo-tarjeta">Tipo de Tarjeta:</label>
+        <select id="tipo-tarjeta" name="tipo-tarjeta">
+          <option value="Visa">Visa</option>
+          <option value="MasterCard">MasterCard</option>
+        </select>
+        <label for="numero-tarjeta">Número de Tarjeta:</label>
+        <input type="text" id="numero-tarjeta" placeholder="**** **** **** ****">
+        <label for="fecha-expiracion">Fecha de Expiración:</label>
+        <input type="text" id="fecha-expiracion" placeholder="MM/YY">
+      </div>
+      <button class="close-popup" id="closePopup">Cerrar</button>
+      <button class="add-payment" id="addCard">Agregar Tarjeta</button>
+    </div>
+  </div>
+</body>
+</html>

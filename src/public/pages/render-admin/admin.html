@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kuppa Admin</title> <!--falta agregar header-->
+  <link rel="stylesheet" href="MyAdmin.css">
+  <script src="popup.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kuppa</h1>
+    </header>
+    <div class="content">
+      <div class="account-details">
+        <div class="user-profile">
+          <img src="fotoperfil.jpg" alt="Imagen de perfil" class="profile-image">
+          <h3>Nombre Apellido</h3>
+          <p class="user-email">cliente@kuppa.cr</p>
+        </div>
+        <h2>Detalles de cuenta</h2>
+        <div class="account-info">
+          <div class="info-item">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" placeholder="Nombre completo">
+          </div>
+          <div class="info-item">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" placeholder="Correo electrónico">
+          </div>
+        </div>
+        <h3>Solicitudes de negocios</h3>
+        <button class="show-requests">Mostrar solicitudes</button>
+        <h3>Reportes</h3>
+        <div class="reports">
+          <button class="user-reports">Usuarios finales</button>
+          <button class="business-reports">Negocios</button>
+        </div>
+        <div class="save-delete">
+          <input type="submit" value="Guardar">
+          <input type="submit" value="Eliminar Cuenta">
+        </div>
+      </div>
+      <main>
+        <section class="main-content">
+          <h2>Solicitudes</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Lugar</th>
+                <th>Tipo de Negocio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>125000</td>
+                <td>Hotel Puerto Viejo</td>
+                <td>25/12/2023</td>
+                <td class="action-cell">
+                    <div class="button-container">
+                        <div class="left-buttons">
+                            <a href="#">Ver</a>
+                            <span class="vertical-line"></span>
+                        </div>
+                        <div class="right-buttons">
+                            <a href="#">Aceptar</a>
+                            <span class="vertical-line"></span>
+                            <a href="#">Negar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+          </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </div>
+  <footer>
+    <p>Todos los derechos reservados</p> <!--Falta footer-->
+  </footer>
+</body>
+</html>
