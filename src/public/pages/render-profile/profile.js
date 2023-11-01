@@ -1,3 +1,7 @@
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const addMethodPaymentBtn = document.getElementById('addMethod');
 

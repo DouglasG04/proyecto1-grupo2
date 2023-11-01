@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../../assets/img/isotipo-kupaa.png" type="image/x-icon">
     <link rel="stylesheet" href="./businesspage.css">
     <link rel="stylesheet" href="../styles.css">
+    <script src="./businesspage.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
@@ -22,8 +23,7 @@
         <header class="nav-container">
             <!-- Linkear -->
             <div>
-                <img class="nav-container-logo" src="../../assets/img/logotipo-horizontal-kupaa.png"
-                    alt="Logotipo Kuppa">
+                <img class="nav-container-logo" src="../../assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
             </div>
             <nav class="nav-container-options-align">
                 <!-- Linkear -->
@@ -33,13 +33,20 @@
                     <li><a href="">Contáctanos</a></li>
                 </ul>
             </nav>
-            <button class="btn account-button">
+            <button class="btn account-button dropbtn" onclick="myFunction()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#Edit">Ver/editar perfil</a>
+                    <a href="#Reserv">Mis reservas</a>
+                    <a class="dropdown-content-visibility disabled-links" href="#Approvals" disabled>Aprobar negocios</a>
+                    <a class="dropdown-content-visibility disabled-links" href="#Reports">Reportes</a>
+                </div>
+        
                 <!-- Linkear -->
                 <div>
-                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars dropbtn"></i>
                 </div>
                 <div>
-                    <i class="fa-solid fa-circle-user fa-xl"></i>
+                    <i class="fa-solid fa-circle-user fa-xl dropbtn"></i>
                 </div>
             </button>
         </header>
