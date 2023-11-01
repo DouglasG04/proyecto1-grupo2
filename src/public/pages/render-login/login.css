@@ -155,7 +155,6 @@
 .register select {
     display: flex;
     flex-direction: column;
-
     width: 300px;
     padding: 12px 8px;
     border-radius: 5px;
@@ -212,6 +211,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    align-items: center;
 }
 
 .register .form-group label {

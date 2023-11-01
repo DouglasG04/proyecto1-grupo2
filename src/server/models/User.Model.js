@@ -26,6 +26,15 @@ const paymentSchema = new Schema({
 
 })
 
+const ratingSchema = new Schema({
+    photo: String,
+    name: String,
+    lastname: String,
+    rating: Number,
+    country: String,
+    state: String,
+    comment: String,
+})
 
 const businessSchema = new Schema({
     _id: ObjectId,
@@ -56,6 +65,8 @@ const businessSchema = new Schema({
     photos: [String],
     phonenumber: String,
     generaldescription: String,
+    category: String,
+    ratings: [ratingSchema]
 })
 
 const userSchema = new Schema({
@@ -65,6 +76,7 @@ const userSchema = new Schema({
         required: true,
     },
     lastname: String,
+    idcard: String,
     email: {
         type: String,
         required: true,

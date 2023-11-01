@@ -1,18 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const showPopupButton = document.getElementById("showPopup");
-    const closePopupButton = document.getElementById("closePopup");
-    const popup = document.getElementById("popup");
-    const addCardButton = document.getElementById("addCard");
+document.addEventListener('DOMContentLoaded', () => {
+  const addMethodPaymentBtn = document.getElementById('addMethod');
 
-    showPopupButton.addEventListener("click", function () {
-        popup.style.display = "block";
+  addMethodPaymentBtn.addEventListener('click', async () => {
+    const { value: formValues } = await Swal.fire({
+      title: 'Agregar Método de Pago',
+      html:
+        `<input id="swal-input1" class="swal2-input">` +
+        '<input id="swal-input2" class="swal2-input">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value
+        ]
+      }
     });
 
-    closePopupButton.addEventListener("click", function () {
-        popup.style.display = "none";
-    });
-
-    addCardButton.addEventListener("click", function () {
-        popup.style.display = "none";
-    });
+    if (formValues) {
+      Swal.fire(JSON.stringify(formValues));
+    }
+  });
 });

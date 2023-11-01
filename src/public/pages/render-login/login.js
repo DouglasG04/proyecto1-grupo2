@@ -73,6 +73,7 @@ formRegister.addEventListener('submit', (event) => {
 
     const name = document.getElementById('name').value;
     const lastname = document.getElementById('lastname').value;
+    const idcard = document.getElementById('idcard').value;
     const password = document.getElementById('passwordreg').value;
     const passwordverification = document.getElementById('passwordverification').value;
     const email = document.getElementById('emailreg').value;
@@ -84,6 +85,7 @@ formRegister.addEventListener('submit', (event) => {
     const FormData = {
         name,
         lastname,
+        idcard,
         password,
         uploadPhoto: previewImage.src,
         entitydocFront: entityFrontPreview.src,
@@ -112,9 +114,9 @@ formRegister.addEventListener('submit', (event) => {
             icon: 'warning',
             title: 'Las contraseña no coinciden'
         })
-    }else if(FormData.uploadPhoto.toString().includes('file:') 
-    && FormData.entitydocFront.toString().includes('file:') 
-    && FormData.entitydocBack.toString().includes('file:')){
+    } else if (FormData.uploadPhoto.toString().includes('file:') ||
+        FormData.entitydocFront.toString().includes('file:') ||
+        FormData.entitydocBack.toString().includes('file:')) {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -132,8 +134,8 @@ formRegister.addEventListener('submit', (event) => {
             title: 'Faltan imagenes por subir'
         })
     }
-    
-    
+
+
     else if (
         (password === passwordverification &&
             FormData.uploadPhoto.toString().includes('data:image') &&
@@ -168,7 +170,7 @@ formRegister.addEventListener('submit', (event) => {
                     })
                 }
 
-              
+
             })
     }
 

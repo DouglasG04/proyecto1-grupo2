@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kuppa</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
-        <link rel="stylesheet" href="./styles.css">
-        
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuppa</title>
+    <link rel="shortcut icon" href="../../assets/img/isotipo-kupaa.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="./styles.css">
+
+
+    <script src="homepage.js" defer></script>
+
+</head>
+
 <body>
     <header class="nav-container">
         <!-- Linkear -->
         <div>
-            <img class="nav-container-logo" src="/src/public/assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
+            <img class="nav-container-logo" src="../assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
         </div>
         <nav class="nav-container-options-align">
             <!-- Linkear -->
@@ -24,13 +30,20 @@
                 <li><a href="">Contáctanos</a></li>
             </ul>
         </nav>
-        <button class="btn account-button">
+        <button class="btn account-button dropbtn" onclick="myFunction()">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#Edit">Ver/editar perfil</a>
+                <a href="#Reserv">Mis reservas</a>
+                <a class="dropdown-content-visibility disabled-links" href="#Approvals" disabled>Aprobar negocios</a>
+                <a class="dropdown-content-visibility disabled-links" href="#Reports">Reportes</a>
+            </div>
+
             <!-- Linkear -->
             <div>
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars dropbtn"></i>
             </div>
             <div>
-                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <i class="fa-solid fa-circle-user fa-xl dropbtn"></i>
             </div>
         </button>
     </header>
@@ -38,49 +51,56 @@
         <section>
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                    <img src="/src/public/assets/img/Quetzal.jpg" class="slides-img" alt="Quetzal en una rama">
+                    <img src="../assets/img/Quetzal.jpg" class="slides-img" alt="Quetzal en una rama">
                 </div>
                 <div class="mySlides fade">
-                    <img src="/src/public/assets/img/laguna.jpg" class="slides-img" alt="Laguna y vegetación alrededor">
+                    <img src="../assets/img/laguna.jpg" class="slides-img" alt="Laguna y vegetación alrededor">
                 </div>
                 <div class="mySlides fade">
-                    <img src="/src/public/assets/img/volcano.jpg" class="slides-img" alt="Volcán Arenal desde el lago Arenal">
-                 </div>
+                    <img src="../assets/img/volcano.jpg" class="slides-img" alt="Volcán Arenal desde el lago Arenal">
+                </div>
             </div>
-                <div class="search-bar-container">
-                    <input class="search-bar-input" type="text" placeholder="Buscar...">
-                    <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
-                    <button class="btn search-bar-filter-button">
-                        <div>
-                            <i class="fa-solid fa-sliders"></i>
-                        </div>
-                        <div>
-                            <p>Filters</p>
-                        </div>
-                    </button>
-                </div>
+            <div class="search-bar-container">
+                <input class="search-bar-input" type="text" placeholder="Buscar...">
+                <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
+                <button class="btn search-bar-filter-button dropbtn2" onclick="myFunction2()">
+                    <div id="myDropdown2" class="dropdown-content2">
+                        <a href="#location">Ubicación</a>
+                        <a href="#type">Tipo de negocio</a>
+                        <a href="#price">Precios</a>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-sliders dropbtn2"></i>
+                    </div>
+                    <div>
+                        <p class="dropbtn2">Filters</p>
+                    </div>
+                </button>
+            </div>
             <div class="categories-container-align">
-               <!-- Linkear -->
+                <!-- Linkear -->
                 <div class="categories-container-options">
-                <p>Alimentación</p>
-                <p>Entretenimiento</p>
-                <p>Hospedaje</p> 
+                    <p>Alimentación</p>
+                    <p>Entretenimiento</p>
+                    <p>Hospedaje</p>
                 </div>
             </div>
         </section>
         <section id="businessesList" class="businesses-container">
-        <!-- Linkear -->
+            <!-- Linkear -->
         </section>
     </main>
     <footer class="footer-container">
         <div>
-            <img class="footer-container-ICT" src="/src/public/assets/img/logo-ict-2018.png" alt="Logo Instituto Costarricense de Turismo">
+            <img class="footer-container-ICT" src="../assets/img/logo-ict-2018.png"
+                alt="Logo Instituto Costarricense de Turismo">
         </div>
         <div>
-            <img class="footer-container-esencial" src="/src/public/assets/img/esencial.png" alt="Logo marca Esencial Costa Rica">
+            <img class="footer-container-esencial" src="../assets/img/esencial.png"
+                alt="Logo marca Esencial Costa Rica">
         </div>
-        <div >
-            <a class="footer-container-contact" href="/src/public/assets/img/Section-contactanos">Políticas de cancelación</a>
+        <div>
+            <a class="footer-container-contact" href="../assets/img/Section-contactanos">Políticas de cancelación</a>
             <!-- Linkear -->
         </div>
         <div class="footer-container-contact">
@@ -92,7 +112,7 @@
             </div>
         </div>
         <div class="footer-container-contact">
-            <div> 
+            <div>
                 <i class="fa-solid fa-envelope"></i>
             </div>
             <div>
@@ -101,17 +121,20 @@
         </div>
         <div class="footer-container-contact">
             <div>
-                <a class="footer-container-contact" href="https://www.instagram.com/oficial_ict/"><i class="fa-brands fa-instagram fa-lg"></i></a>  
+                <a class="footer-container-contact" href="https://www.instagram.com/oficial_ict/"><i
+                        class="fa-brands fa-instagram fa-lg"></i></a>
             </div>
             <div>
-                <a class="footer-container-contact" href="https://www.facebook.com/InstitutoCostarricensedeTurismoOficial/"><i class="fa-brands fa-square-facebook fa-lg"></i></a>
+                <a class="footer-container-contact"
+                    href="https://www.facebook.com/InstitutoCostarricensedeTurismoOficial/"><i
+                        class="fa-brands fa-square-facebook fa-lg"></i></a>
             </div>
             <div>
-                <a class="footer-container-contact" href="https://www.youtube.com/channel/UCf4vVKxVaYpRtmFaStDfQTw"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                <a class="footer-container-contact" href="https://www.youtube.com/channel/UCf4vVKxVaYpRtmFaStDfQTw"><i
+                        class="fa-brands fa-youtube fa-lg"></i></a>
             </div>
         </div>
     </footer>
-
-    <script src="./homepage.js"></script>
 </body>
+
 </html>

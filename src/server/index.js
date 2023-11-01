@@ -5,26 +5,30 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json())
-app.use(cors({
-    origin: (origin, callback) => {
-        const ACCEPTED_ORIGINS = [
-            'http://localhost:3000',
-            'http://localhost:3001',
-            'http://localhost:1234',
-            'https://localhost:8080',
-        ]
+app.use(cors({ origin: '*' }))
 
-        if (ACCEPTED_ORIGINS.includes(origin)) {
-            return callback(null, true)
-        }
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         const ACCEPTED_ORIGINS = [
+//             'http://localhost:3000',
+//             'http://localhost:3001',
+//             'http://localhost:1234',
+//             'https://localhost:8080',
+//             '*',
+//             '/'
+//         ]
 
-        if (!origin) {
-            return callback(null, true)
-        }
+//         if (ACCEPTED_ORIGINS.includes(origin)) {
+//             return callback(null, true)
+//         }
 
-        return callback(new Error('Not allowed by CORS'))
-    }
-}))
+//         if (!origin) {
+//             return callback(null, true)
+//         }
+
+//         return callback(new Error('Not allowed by CORS'))
+//     }
+// }))
 
 
 const PORT = process.env.PORT || 1234;
