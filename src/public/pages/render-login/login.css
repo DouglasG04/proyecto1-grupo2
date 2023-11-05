@@ -122,7 +122,7 @@
 }
 
 .register .right-section-register {
-    margin: 30px 0px;
+    margin: 30px 0px 0px 0px;
     width: 50%;
 }
 
@@ -214,6 +214,8 @@
     align-items: center;
 }
 
+
+
 .register .form-group label {
     color: #222222;
 }
@@ -243,7 +245,6 @@
     margin-top: 10px;
     width: 400px;
     height: 210px;
-    background-color: var(--darkGrayKupaa);
 }
 
 .register-entitydocument-front label {

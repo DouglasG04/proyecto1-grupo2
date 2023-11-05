@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Registrar Negocio | Kupaa</title>
+	<link rel="stylesheet" type="text/css" href="../styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css">
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<link rel="shortcut icon" href="../../assets/img/isotipo-kupaa.png" type="image/x-icon">
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="./new.business.css">
+	<script src="./new.business.js" defer></script>
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<div class="header">
+			<ul>
+				<li class="active form_1_progessbar">
+					<div>
+						<p>1</p>
+					</div>
+				</li>
+				<li class="form_2_progessbar">
+					<div>
+						<p>2</p>
+					</div>
+				</li>
+				<li class="form_3_progessbar">
+					<div>
+						<p>3</p>
+					</div>
+				</li>
+
+				<li class="form_4_progessbar">
+					<div>
+						<p>4</p>
+					</div>
+				</li>
+
+				<li class="form_5_progessbar">
+					<div>
+						<p>5</p>
+					</div>
+				</li>
+
+				<li class="form_6_progessbar">
+					<div>
+						<p>6</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="form_wrap">
+			<div class="form_1 data_info">
+
+				<div class="form_container">
+					<div class="text_and_image">
+						<div>
+							<h2>Describe tu negocio</h2>
+							<p>A continuación, se le mostrarán diferentes preguntas y opciones para que pueda publicar y
+								destacar su negocio o servicio de manera efectiva. Por favor, proporcione la siguiente
+								información y detalles relevantes sobre su negocio, lo que nos permitirá mostrar su
+								negocio
+								de la mejor manera posible en nuestra plataforma. Cuanta más información proporcione,
+								más
+								atractiva y completa será su publicación.</p>
+						</div>
+
+						<img class="imagen rana arboricola" src="../../assets/img/rana.business.jpg">
+					</div>
+				</div>
+			</div>
+
+			<div class="form_2 data_info" style="display: none;">
+
+				<div class="step2">
+					<h2>¿Cuál de los siguientes tipos describe mejor tu negocio?</h2>
+					<form>
+						<div class="container-buttons-option">
+							<!-- Opción 1: Hospedaje -->
+							<div> <input type="radio" class="radio-button" id="hospedaje" name="tipo_negocio"
+									value="hospedaje">
+								<label for="hospedaje" class="button-option">
+									<i class="fa-solid fa-house"></i> Hospedaje
+								</label>
+							</div>
+
+
+							<!-- Opción 2: Alimentación -->
+							<div><input type="radio" class="radio-button" id="alimentacion" name="tipo_negocio"
+									value="alimentacion">
+								<label for="alimentacion" class="button-option">
+									<i class="fa-solid fa-utensils"></i>Alimentación
+								</label>
+							</div>
+
+
+							<div> <!-- Opción 3: Entretenimiento -->
+								<input type="radio" class="radio-button" id="entretenimiento" name="tipo_negocio"
+									value="entretenimiento">
+								<label for="entretenimiento" class="button-option">
+									<i class="fa-solid fa-person-hiking"></i> Entretenimiento
+								</label>
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+
+			<div class="form_3 data_info" style="display: none;">
+				<h2 style="text-align: center;">¿Donde se encuentra tu negocio?</h2>
+				<form>
+					<div class="form_container">
+						<div class="input_wrap">
+							<label for="province">Provincia</label>
+							<select name="provincias" id="province" class="input">
+								<option value="Alajuela">Alajuela</option>
+								<option value="San José">San José</option>
+								<option value="Heredia">Heredia</option>
+								<option value="Cartago">Cartago</option>
+								<option value="Guanacaste">Guanacaste</option>
+								<option value="Puntarenas">Puntarenas</option>
+							</select>
+						</div>
+						<div class="input_wrap">
+							<label for="city">Ciudad</label>
+							<input type="text" name="City" class="input" id="city">
+						</div>
+						<div class="input_wrap">
+							<label for="address">Dirección</label>
+							<input type="text" name="address" class="input" id="address">
+						</div>
+						<div class="input_wrap">
+							<label for="address_two">Dirección, línea dos (si corresponde)</label>
+							<input type="text" name="address_two" class="input" id="address_two">
+						</div>
+						<div class="input_wrap">
+							<label for="address_three">Dirección, línea tres (si corresponde)</label>
+							<input type="text" name="address_three" class="input" id="address_three">
+						</div>
+
+						<div class="input_wrap">
+							<p class="map-file"></p>
+
+							<iframe
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62879.695128149215!2d-84.15454492271691!3d9.935543132515727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e342c50d15c5%3A0xe6746a6a9f11b882!2zU2FuIEpvc8Op!5e0!3m2!1ses!2scr!4v1698883233136!5m2!1ses!2scr"
+								width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<div class="form_4 data_info" style="display: none;">
+				<div class="step4">
+					<h2>Elige como maximo 5 fotos</h2>
+					<form>
+						<div class="form_container">
+							<div class="photo-gallery">
+								<div class="iframe-photos img-1">
+									<img src="" alt="">
+									<label for="img1">
+										Buscar imagen
+									</label>
+									<input type="file" id="img1" style="display: none;">
+								</div>
+								<div class="iframe-photos img-2">
+									<img src="" alt="">
+									<label for="img2">
+										Buscar imagen
+									</label>
+									<input type="file" id="img2" style="display: none;">
+								</div>
+								<div class="iframe-photos img-3">
+									<img src="" alt="">
+									<label for="img3">
+										Buscar imagen
+									</label>
+									<input type="file" id="img3" style="display: none;">
+								</div>
+								<div class="iframe-photos img-4">
+									<img src="" alt="">
+									<label for="img4">
+										Buscar imagen
+									</label>
+									<input type="file" id="img4" style="display: none;">
+								</div>
+								<div class="iframe-photos img-5">
+									<img src="" alt="">
+									<label for="img1">
+										Buscar imagen
+									</label>
+									<input type="file" id="img5" style="display: none;">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				
+			</div>
+
+			<div class="form_5 data_info" style="display: none;">
+				<div class="step5">
+					<h2>Añade tu descripción</h2>
+					<form>
+						<div class="form_container">
+							<div class="input_wrap">
+								<label for="businessName">Nombre del negocio</label>
+								<input type="text" name="businessName" class="input" id="businessName">
+							</div>
+							<div class="input_wrap">
+								<label for="price">Precio del servicio</label>
+								<input type="text" name="price" class="input" id="price">
+							</div>
+							<div class="input_wrap">
+								<label for="description">Descripción General</label>
+								<input type="text" name="description" class="input" id="description">
+							</div>
+						</div>
+					</form>
+				</div>
+
+				
+			</div>
+
+
+			<div class="form_6 data_info" style="display: none;">
+			
+
+				<div class="text_and_image2">
+					<div>
+						<h2>Terminar y publicar</h2>
+						<p>¡Felicidades! Has completado todos los pasos necesarios para publicar tu negocio con éxito.
+							Ahora, solo resta un último paso: publicar tu negocio en nuestra plataforma. Una vez que
+							completes esta última acción, recibirás un correo electrónico de confirmación para verificar que
+							tu negocio se ha publicado de manera exitosa.</p>
+					</div>
+					
+					<img class="imagen bahia ballena Costa Rica" src="../../assets/img/bahia.business.jpg">
+				</div>
+			</div>
+
+		</div>
+		<div class="btns_wrap">
+			<div class="common_btns form_1_btns">
+				<button type="button" class="btn_next">Siguiente <span class="icon"><ion-icon
+							name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_2_btns" style="display: none; justify-content: space-between;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon
+							name="arrow-back-sharp"></ion-icon></span>Atrás</button>
+				<button type="button" class="btn_next">Siguiente <span class="icon"><ion-icon
+							name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_3_btns" style="display: none; justify-content: space-between;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon
+							name="arrow-back-sharp"></ion-icon></span>Atrás</button>
+				<button type="button" class="btn_next">Siguiente <span class="icon"><ion-icon
+							name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_4_btns" style="display: none; justify-content: space-between;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon
+							name="arrow-back-sharp"></ion-icon></span>Atrás</button>
+				<button type="button" class="btn_next">Siguiente <span class="icon"><ion-icon
+							name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_5_btns" style="display: none; justify-content: space-between;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon
+							name="arrow-back-sharp"></ion-icon></span>Atrás</button>
+				<button type="button" class="btn_next">Siguiente <span class="icon"><ion-icon
+							name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+
+			<div class="common_btns form_6_btns" style="display: none; justify-content: space-between;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon
+							name="arrow-back-sharp"></ion-icon></span>Atrás</button>
+				<button type="button" class="btn_done">Publicar</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

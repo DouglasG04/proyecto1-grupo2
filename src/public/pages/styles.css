@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 
 * {
@@ -138,9 +138,8 @@ p {
 
 .slides-img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
-    object-position: 0 -100px;
+    height: 700px;
+    opacity: 0.9;
 }
 
 @keyframes fade {
@@ -155,8 +154,8 @@ p {
 
 .search-bar-container {
     position: absolute;
-    top: 450px;
-    left: 35%;
+    top: 663px;
+    left: 38.5%;
     display: flex;
     flex-direction: row;
 }
@@ -164,7 +163,7 @@ p {
 .search-bar-input {
     background-color: #fff;
     border-radius: 20px;
-    border: none;
+    border: 1px solid var(--grayKupaa);
     height: 35px;
     width: 360px;
     padding-left: 18px;
@@ -197,22 +196,24 @@ p {
 
 .categories-container-align {
     position: absolute;
-    top: 525px;
-    left: 36%;
+    top: 730px;
+    left: 39%;
 }
 
 .categories-container-options {
     display: flex;
-    flex-direction: row;
-    color: #fff;
-    align-items: end;
-    justify-content: end;
-    gap: 80px;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 182px; */
+    /* align-self: flex-end; */
+    gap: 45px;
     text-shadow: 1px 1px 2px black;
 }
 
 .categories-container-options p {
     color: #fff;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .businesses-container {
@@ -249,6 +250,10 @@ p {
     color: var(--darkGrayKupaa);
     font-size: 16px;
     text-align: start;
+}
+
+.business-photograpy{
+    cursor: pointer;
 }
 
 .business-photograpy img{
