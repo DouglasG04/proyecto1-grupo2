@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuppa</title>
+    <title>Inicio Kuppa</title>
     <link rel="shortcut icon" href="../assets/img/isotipo-kupaa.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
@@ -51,40 +51,46 @@
         <section>
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                    <img src="../assets/img/Quetzal.jpg" class="slides-img" alt="Quetzal en una rama">
+                    <img src="../assets/img/tucan-carousel.jpg" class="slides-img" alt="Quetzal en una rama">
                 </div>
                 <div class="mySlides fade">
-                    <img src="../assets/img/laguna.jpg" class="slides-img" alt="Laguna y vegetación alrededor">
+                    <img src="../assets/img/rana-carousel.jpg" class="slides-img" alt="Laguna y vegetación alrededor">
                 </div>
                 <div class="mySlides fade">
-                    <img src="../assets/img/volcano.jpg" class="slides-img" alt="Volcán Arenal desde el lago Arenal">
+                    <img src="../assets/img/osoperesozo-carousel.jpg" class="slides-img" alt="Volcán Arenal desde el lago Arenal">
                 </div>
             </div>
-            <div class="search-bar-container">
-                <input class="search-bar-input" type="text" placeholder="Buscar...">
-                <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
-                <button class="btn search-bar-filter-button dropbtn2" onclick="myFunction2()">
-                    <div id="myDropdown2" class="dropdown-content2">
-                        <a href="#location">Ubicación</a>
-                        <a href="#type">Tipo de negocio</a>
-                        <a href="#price">Precios</a>
+
+            <div style="display: block; justify-content: center; align-items: center;">
+                <div class="search-bar-container">
+                    <input class="search-bar-input" type="text" placeholder="Buscar...">
+                    <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
+                    <button class="btn search-bar-filter-button dropbtn2" onclick="myFunction2()">
+                        <div id="myDropdown2" class="dropdown-content2">
+                            <a href="#location">Ubicación</a>
+                            <a href="#type">Tipo de negocio</a>
+                            <a href="#price">Precios</a>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-sliders dropbtn2"></i>
+                        </div>
+                        <div>
+                            <p class="dropbtn2">Filters</p>
+                        </div>
+                    </button>
+                </div>
+                <div class="categories-container-align">
+                    <!-- Linkear -->
+                    <div class="categories-container-options">
+                        <p>Alimentación</p>
+                        <p>Entretenimiento</p>
+                        <p>Hospedaje</p>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-sliders dropbtn2"></i>
-                    </div>
-                    <div>
-                        <p class="dropbtn2">Filters</p>
-                    </div>
-                </button>
-            </div>
-            <div class="categories-container-align">
-                <!-- Linkear -->
-                <div class="categories-container-options">
-                    <p>Alimentación</p>
-                    <p>Entretenimiento</p>
-                    <p>Hospedaje</p>
                 </div>
             </div>
+           
+
+
         </section>
         <section id="businessesList" class="businesses-container">
             <!-- Linkear -->

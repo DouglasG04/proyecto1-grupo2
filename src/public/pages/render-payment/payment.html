@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./payment.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+
+    <link rel="shortcut icon" href="../../assets/img/isotipo-kupaa.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+    <title>Solicitar Reserva | Kupaa</title>
 </head>
+
 <body>
     <header class="nav-container">
         <!-- Linkear -->
         <div>
-            <img class="nav-container-logo" src="/src/public/assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
+            <img class="nav-container-logo" src="../../assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
         </div>
         <nav class="nav-container-options-align">
             <!-- Linkear -->
@@ -20,100 +31,150 @@
                 <li><a href="">Contáctanos</a></li>
             </ul>
         </nav>
-        <button class="btn account-button">
+        <button class="btn account-button dropbtn" onclick="myFunction()">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#Edit">Ver/editar perfil</a>
+                <a href="#Reserv">Mis reservas</a>
+                <a class="dropdown-content-visibility disabled-links" href="#Approvals" disabled>Aprobar negocios</a>
+                <a class="dropdown-content-visibility disabled-links" href="#Reports">Reportes</a>
+            </div>
+
             <!-- Linkear -->
             <div>
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars dropbtn"></i>
             </div>
             <div>
-                <i class="fa-solid fa-circle-user fa-xl"></i>
+                <i class="fa-solid fa-circle-user fa-xl dropbtn"></i>
             </div>
         </button>
     </header>
     <main>
         <div class="contact-container">
-            <form class="form">
-                <label for="nombre" class="label">Nombre</label>
-                <input type="text" id="nombre" class="input" placeholder="Ingrese su nombre" required>
-                <label for="apellido" class="label">Apellido</label>
-                <input type="text" id="apellido" class="input" placeholder="Apellido" required>
-                <label for="email" class="label">E-mail</label>
-                <input type="email" id="email" class="input" placeholder="ejemplo@gmail.com" required>
-                <label for="pais" class="label">Pais</label>
-                <select name="pais" id="pais" class="select" required>
-                    <option value="" selected disabled>Selecciona un país</option>
-                    <option value="Costa Rica">Costa Rica</option>
-                    <option value="Panama">Panama</option>
-                </select>
-                <label for="telefono" class="label">Telefono</label>
-                <input type="tel" id="telefono" class="input" required placeholder="+">
-                <label for="fecha" class="label"></label>
-                <div class="flex-container-one">
-                    <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
-                    <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
-                 </div>
-                 <h3 class="payment-details-title">Detalles de Pago</h3>
-                 <label for="titular" class="form-label">Titular</label>
-                 <input type="text" name="titular" id="titular" class="form-inputs" placeholder="Titular" required>
-                 <label for="numeroTarjeta" class="form-label">Numero de tarjeta</label>
-                 <input type="number" name="numeroTarjeta" id="numeroTarjeta" class="form-inputs" placeholder="xxxx xxxxx xxxxx xxx" required>
-                 <div class="flex-container">
-                     <label for="fecha" class="form-label">Fecha</label>
-                     <label for="cvvcvc" class="form-label cvv">CVV/CVC</label>
-                 </div>
-                 <div class="flex-container">
-                    <select name="dia" id="dia" class="form-input" required>
-                        <option value="" selected disabled>Inicio</option>
-                        <!-- Opciones para los días del 1 al 31 -->
-                        <script>
-                            for (var i = 1; i <= 31; i++) {
-                                document.write('<option value="' + i + '">' + i + '</option>');
-                            }
-                        </script>
-                    </select>
-                    <select name="mes" id="mes" class="form-input" required>
-                        <option value="" selected disabled>Final</option>
-                        <!-- Opciones para los meses del 1 al 12 -->
-                        <script>
-                            for (var i = 1; i <= 12; i++) {
-                                document.write('<option value="' + i + '">' + i + '</option>');
-                            }
-                        </script>
-                    </select>
-                    <input type="text" name="cvvcvc" id="cvvcvc" class="form-input" placeholder="xxxx" required>
+            <form id="form" class="form">
+                <h1>Solicitar reserva</h1>
+                <div class="first-section">
+                    <div class="form-group">
+                        <label for="nombre" class="label">Nombre</label>
+                        <input type="text" id="nombre" class="input" placeholder="Ingrese su nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellido" class="label">Apellido</label>
+                        <input type="text" id="apellido" class="input" placeholder="Apellido" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email" class="label">E-mail</label>
+                        <input type="email" id="email" class="input" placeholder="ejemplo@gmail.com" required>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="pais" class="label">Pais</label>
+                        <select name="pais" id="pais" class="select" required>
+                            <option value="" selected disabled>Selecciona un país</option>
+                            <option value="Costa Rica">Costa Rica</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="telefono" class="label">Teléfono</label>
+                        <input type="tel" id="telefono" class="input" required placeholder="+">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="fecha" class="label">Fecha Entrada / Fecha Salida</label>
+                        <div class="flex-container-one">
+                            <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
+                            <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
+                        </div>
+                    </div>
                 </div>
-                 <div class="button-algn">
-                 <button class="payment-details-button" type="submit">Pagar y Reservar</button>
+
+                <div class="second-section">
+                    <h2 class="payment-details-title">Detalles de Pago</h2>
+
+                    <div class="form-group">
+                        <label for="titular" class="form-label">Titular</label>
+                        <input type="text" name="titular" id="titular" class="form-inputs" placeholder="Titular"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroTarjeta" class="form-label">Numero de tarjeta</label>
+                        <input type="number" name="numeroTarjeta" id="numeroTarjeta" class="form-inputs"
+                            placeholder="xxxx xxxxx xxxxx xxx" required>
+                    </div>
+
+                    <div class="form-date-expiration">
+                        <div class="labels">
+                            <label for="fecha" class="form-label">Fecha de Caducidad</label>
+                            <label for="cvvcvc" class="form-label cvv">CVV/CVC</label>
+                        </div>
+
+                        <div class="inputs">
+                            <div>
+                                <select name="dia" id="dia" class="form-input" required>
+                                    <option value="" selected disabled>Inicio</option>
+                                    <!-- Opciones para los días del 1 al 31 -->
+                                    <script>
+                                        for (var i = 1; i <= 31; i++) {
+                                            document.write('<option value="' + i + '">' + i + '</option>');
+                                        }
+                                    </script>
+                                </select>
+                                <select name="mes" id="mes" class="form-input" required>
+                                    <option value="" selected disabled>Final</option>
+                                    <!-- Opciones para los meses del 1 al 12 -->
+                                    <script>
+                                        for (var i = 1; i <= 12; i++) {
+                                            document.write('<option value="' + i + '">' + i + '</option>');
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <input type="text" name="cvvcvc" id="cvvcvc" class="form-input" placeholder="xxxx" required>
+                        </div>
+                    </div>
+                    <button id="btnPay">Pagar y Reservar</button>
                 </div>
             </form>
-            <div class="info-container">
-                <img src="/src/public/assets/img/volcano.jpg" alt="" class="form-img">
+            <div class="business-details">
+                <img src="../../assets/img/volcano-payment.jpg" alt="" class="form-img">
                 <div class="info-details">
-                    <h3 class="info-title">Cristal House Mountain View</h3>
-                    <p class="info-contents location"><img src="/src/public/assets/img/locationIcon.png" alt="" class="info-icon">Heredia CR</p>
-                    <p class="info-contents">Hospedaje</p>
-                    <div class="info-content info-flex">
-                        <div class="info-days">
-                            <p>4 días</p> </div>
-                            <div class="info-days">
-                            <p>$500</p>
-                        </div>    
+                    <div class="header-details">
+                        <h2 class="info-title">Cristal House Mountain View</h2>
+                        <p class="info-contents location"><i class="fa-solid fa-location-dot info-icon"></i>Heredia, Costa Rica</p>
+                        <p class="info-contents">Hospedaje</p>
                     </div>
-                    <div class="info-content info-flex">
-                        <div class="info-per">
-                            <p>Descuento</p>
-                        </div>
-                        <div class="info-per">
-                            <p>-$28</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="info-content info-flex">
-                        <div class="info-total">
-                            <p>Total</p>
-                        </div> 
-                        <div class="info-total">
-                            <p>$701</p>
+                   <hr style="  background-color: var(--darkGrayKupaa);
+                   height: 2px;
+                   border: none; margin-top: 20px;">
+                    <div class="information-business">
+                        <h3>Información del negocio</h3>
+                        <div class="information-details">
+                            <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 20px;">
+                                <p class="date-business">4 días</p>
+                                <p class="price-business">$500</p>
+                            </div>
+                            <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 5px;">
+                                <p class="discount-business">Descuento</p>
+                                <p class="discountamount-business">-$29</p>
+                            </div>
+
+                            <hr style="  background-color: var(--darkGrayKupaa);
+                            height: 2px;
+                            border: none; margin-top: 20px;">
+
+                            <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 20px;">
+                                <p class="total-business">Total</p>
+                                <p class="totalamount-business">$471</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,13 +183,16 @@
     </main>
     <footer class="footer-container">
         <div>
-            <img class="footer-container-ICT" src="/src/public/assets/img/logo-ict-2018.png" alt="Logo Instituto Costarricense de Turismo">
+            <img class="footer-container-ICT" src="../../assets/img/logo-ict-2018.png"
+                alt="Logo Instituto Costarricense de Turismo">
         </div>
         <div>
-            <img class="footer-container-esencial" src="/src/public/assets/img/esencial.png" alt="Logo marca Esencial Costa Rica">
+            <img class="footer-container-esencial" src="../../assets/img/esencial.png"
+                alt="Logo marca Esencial Costa Rica">
         </div>
-        <div >
-            <a class="footer-container-contact" href="/src/public/assets/img/Section-contactanos">Políticas de cancelación</a>
+        <div>
+            <a class="footer-container-contact" href="../../assets/img/Section-contactanos">Políticas de
+                cancelación</a>
             <!-- Linkear -->
         </div>
         <div class="footer-container-contact">
@@ -136,11 +200,11 @@
                 <i class="fa-solid fa-phone"></i>
             </div>
             <div>
-                <p>+506-22995800</p>
+                <p>+506-2299-5800</p>
             </div>
         </div>
         <div class="footer-container-contact">
-            <div> 
+            <div>
                 <i class="fa-solid fa-envelope"></i>
             </div>
             <div>
@@ -149,16 +213,21 @@
         </div>
         <div class="footer-container-contact">
             <div>
-                <a class="footer-container-contact" href="https://www.instagram.com/oficial_ict/"><i class="fa-brands fa-instagram fa-lg"></i></a>  
+                <a class="footer-container-contact" href="https://www.instagram.com/oficial_ict/"><i
+                        class="fa-brands fa-instagram fa-lg"></i></a>
             </div>
             <div>
-                <a class="footer-container-contact" href="https://www.facebook.com/InstitutoCostarricensedeTurismoOficial/"><i class="fa-brands fa-square-facebook fa-lg"></i></a>
+                <a class="footer-container-contact"
+                    href="https://www.facebook.com/InstitutoCostarricensedeTurismoOficial/"><i
+                        class="fa-brands fa-square-facebook fa-lg"></i></a>
             </div>
             <div>
-                <a class="footer-container-contact" href="https://www.youtube.com/channel/UCf4vVKxVaYpRtmFaStDfQTw"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                <a class="footer-container-contact" href="https://www.youtube.com/channel/UCf4vVKxVaYpRtmFaStDfQTw"><i
+                        class="fa-brands fa-youtube fa-lg"></i></a>
             </div>
         </div>
     </footer>
     <script src="./payment.js"></script>
 </body>
+
 </html>

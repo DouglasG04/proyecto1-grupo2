@@ -1,3 +1,5 @@
+const e = require("cors");
+
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -25,3 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+
+const saveUser = document.getElementById('saveUser');
+
+saveUser.addEventListener('click', async (event) => {
+  event.preventDefault();
+})

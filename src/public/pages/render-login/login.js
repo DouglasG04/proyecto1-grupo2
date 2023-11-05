@@ -179,3 +179,47 @@ formRegister.addEventListener('submit', (event) => {
 
 })
 
+formLogin.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const FormData = {
+        username,
+        email,
+        password
+    }
+
+    fetch('http://localhost:1234/api/user/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(FormData)
+    }).then(response => response.json())
+        .then(data => {
+            if (data.status === 200) {
+                Swal.fire({
+                    title: '¡Bienvenido!',
+                    text: 'Has iniciado sesión exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'index.html'
+                    }
+                })
+            } else {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: 'Ha ocurrido un error al iniciar sesión',
+                    icon: 'error',
+                    confirmButtonText: 'Intentar de nuevo'
+                })
+            }
+        })
+
+})
+

@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-/*Grid de Imágenes*/
+/*Grid de ImÃƒÂ¡genes*/
 
 .images-container {
     display: grid;
@@ -184,29 +184,19 @@
 /*Contenedor de Reservas*/
 .card-reservation {
     align-self: flex-start;
-    background-color: var(--grayKupaa);
     border-radius: 10px;
     padding: 60px 50px;
 }
 
 
-.reservation-container {
+
+.reservation-info  {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 240px;
-    width: 230px;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
-.reservation-info h1 {
-    font-size: 22px;
-    font-weight: 350px;
-}
-
-.reservation-info h3 {
-    font-size: 15px;
-    font-weight: 500;
-}
 
 .button {
     padding: 12px 5px;
@@ -226,11 +216,7 @@
     transition: 0.3s
 }
 
-.reservation-icons {
-    display: flex;
-    /* justify-content: space-between; */
-    /* margin-top: 15px; */
-}
+
 
 .icon-contact {
     display: flex;
@@ -308,7 +294,7 @@
     margin: 0 auto;
 }
 
-/*Grid de Imágenes*/
+/*Grid de ImÃƒÂ¡genes*/
 
 .images-container {
     margin-top: 40px;
@@ -487,29 +473,21 @@
 /*Contenedor de Reservas*/
 .card-reservation {
     align-self: flex-start;
-    background-color: var(--grayKupaa);
     border-radius: 10px;
-    padding: 60px 50px;
+    padding: 17px 50px;
+    border: 1px solid var(--darkGrayKupaa);
 }
 
 
 .reservation-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 240px;
-    width: 230px;
+    /* justify-content: space-around; */
+    height: 260px;
+    width: 233px;
 }
 
-.reservation-info h1 {
-    font-size: 22px;
-    font-weight: 350px;
-}
 
-.reservation-info h3 {
-    font-size: 15px;
-    font-weight: 500;
-}
 
 .button {
     padding: 12px 5px;
@@ -521,7 +499,7 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    /* margin-top: 10px; */
+    margin-top: 28px;
 }
 
 .button:hover{
@@ -531,15 +509,22 @@
 
 .reservation-icons {
     display: flex;
-    /* justify-content: space-between; */
-    /* margin-top: 15px; */
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reservation-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 13px;
 }
 
 .icon-contact {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 10px;
+    font-size: 12px;
     gap: 5px;
 }
 
