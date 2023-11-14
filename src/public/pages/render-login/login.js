@@ -1,3 +1,4 @@
+
 const withoutAccount = document.getElementById('withoutAccount');
 const loginSection = document.querySelector('.login');
 const registerSection = document.querySelector('.register');
@@ -17,43 +18,88 @@ const entityBackPreview = document.getElementById('entitydocBackPreview');
 const labelBack = document.querySelector('.labelBack');
 
 
-uploadPhotoInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
 
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            previewImage.src = reader.result;
-        }
-        reader.readAsDataURL(file);
+'use strict';
+let widget_cloudinary = cloudinary.createUploadWidget({
+    cloudName: 'dwsbnp0s2',
+    uploadPreset: 'lcs0xelu'
+}, (err, result) => {
+    if (!err && result && result.event === "success") {
+        previewImage.setAttribute("src", result.info.secure_url);
     }
-})
+});
 
-entitydocFront.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-        labelFront.innerText = "Modificar foto delantera del documento"
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            entityFrontPreview.src = reader.result;
-        }
-        reader.readAsDataURL(file);
+let widget_cloudinary2 = cloudinary.createUploadWidget({
+    cloudName: 'dwsbnp0s2',
+    uploadPreset: 'lcs0xelu'
+}, (err, result) => {
+    if (!err && result && result.event === "success") {
+        entityFrontPreview.setAttribute("src", result.info.secure_url);
     }
-})
+});
 
-entitydocBack.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-        labelBack.innerText = "Modificar foto trasera del documento"
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            entityBackPreview.src = reader.result;
-        }
-        reader.readAsDataURL(file);
+let widget_cloudinary3 = cloudinary.createUploadWidget({
+    cloudName: 'dwsbnp0s2',
+    uploadPreset: 'lcs0xelu'
+}, (err, result) => {
+    if (!err && result && result.event === "success") {
+        entityBackPreview.setAttribute("src", result.info.secure_url);
     }
-})
+});
+
+
+
+// CLOUDINARY
+uploadPhotoInput.addEventListener('click', () => {
+    widget_cloudinary.open();
+}, false)
+
+entitydocFront.addEventListener('click', () => {
+    widget_cloudinary2.open();
+}, false)
+
+entitydocBack.addEventListener('click', () => {
+    widget_cloudinary3.open();
+}, false)
+
+
+// uploadPhotoInput.addEventListener('change', (event) => {
+//     const file = event.target.files[0];
+
+//     if (file) {
+//         const reader = new FileReader();
+//         reader.onloadend = () => {
+//             previewImage.src = reader.result;
+//         }
+//         reader.readAsDataURL(file);
+//     }
+// })
+
+// entitydocFront.addEventListener('change', (event) => {
+//     const file = event.target.files[0];
+
+//     if (file) {
+//         labelFront.innerText = "Modificar foto delantera del documento"
+//         const reader = new FileReader();
+//         reader.onloadend = () => {
+//             entityFrontPreview.src = reader.result;
+//         }
+//         reader.readAsDataURL(file);
+//     }
+// })
+
+// entitydocBack.addEventListener('change', (event) => {
+//     const file = event.target.files[0];
+
+//     if (file) {
+//         labelBack.innerText = "Modificar foto trasera del documento"
+//         const reader = new FileReader();
+//         reader.onloadend = () => {
+//             entityBackPreview.src = reader.result;
+//         }
+//         reader.readAsDataURL(file);
+//     }
+// })
 
 
 removePhoto.addEventListener('click', () => {
@@ -71,26 +117,30 @@ withoutAccount.addEventListener('click', () => {
 formRegister.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    const username = document.getElementById('usernameRegister').value;
     const name = document.getElementById('name').value;
     const lastname = document.getElementById('lastname').value;
     const idcard = document.getElementById('idcard').value;
     const password = document.getElementById('passwordreg').value;
     const passwordverification = document.getElementById('passwordverification').value;
     const email = document.getElementById('emailreg').value;
+    const phonenumber = document.getElementById('phonenumber').value;
     const birthdate = document.getElementById('birthdate').value;
     const country = document.getElementById('country').value;
     const state = document.getElementById('state').value;
     const additionaladdress = document.getElementById('additionaladdress').value;
 
     const FormData = {
+        username,
         name,
         lastname,
         idcard,
         password,
-        uploadPhoto: previewImage.src,
-        entitydocFront: entityFrontPreview.src,
-        entitydocBack: entityBackPreview.src,
+        personalphoto: previewImage.src,
+        entitydocumentfront: entityFrontPreview.src,
+        entitydocumentback: entityBackPreview.src,
         email,
+        phonenumber,
         birthdate,
         country,
         state,
@@ -114,9 +164,9 @@ formRegister.addEventListener('submit', (event) => {
             icon: 'warning',
             title: 'Las contraseña no coinciden'
         })
-    } else if (FormData.uploadPhoto.toString().includes('file:') ||
-        FormData.entitydocFront.toString().includes('file:') ||
-        FormData.entitydocBack.toString().includes('file:')) {
+    } else if (FormData.personalphoto.toString().includes('file:') ||
+        FormData.entitydocumentfront.toString().includes('file:') ||
+        FormData.entitydocumentback.toString().includes('file:')) {
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -138,11 +188,11 @@ formRegister.addEventListener('submit', (event) => {
 
     else if (
         (password === passwordverification &&
-            FormData.uploadPhoto.toString().includes('data:image') &&
-            FormData.uploadPhoto.toString().includes('data:image') &&
-            FormData.uploadPhoto.toString().includes('data:image'))
+            FormData.personalphoto.toString().includes('cloudinary') &&
+            FormData.entitydocumentfront.toString().includes('cloudinary') &&
+            FormData.entitydocumentback.toString().includes('cloudinary'))
     ) {
-        fetch('http://localhost:1234/api/user/new', {
+        fetch('http://localhost:1234/api/user/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -150,7 +200,7 @@ formRegister.addEventListener('submit', (event) => {
             body: JSON.stringify(FormData)
         }).then(response => response.json())
             .then(data => {
-                if (data.status === 200) {
+                if (data) {
                     Swal.fire({
                         title: '¡Cuenta creada!',
                         text: 'Tu cuenta ha sido creada exitosamente',
@@ -158,7 +208,7 @@ formRegister.addEventListener('submit', (event) => {
                         confirmButtonText: 'Iniciar sesión'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = '/login'
+                            window.location.href = 'http://127.0.0.1:5500/src/public/pages/render-login/login.html'
                         }
                     })
                 } else {
@@ -187,12 +237,12 @@ formLogin.addEventListener('submit', (event) => {
     const password = document.getElementById('password').value;
 
     const FormData = {
-        username,
+        username: username.toLowerCase(),
         email,
         password
     }
 
-    fetch('http://localhost:1234/api/user/new', {
+    fetch('http://localhost:1234/api/user/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -201,6 +251,9 @@ formLogin.addEventListener('submit', (event) => {
     }).then(response => response.json())
         .then(data => {
             if (data.status === 200) {
+                localStorage.setItem('session', JSON.stringify(data.loginUser._id));
+                localStorage.setItem('sessionToken', JSON.stringify(data.token._id));
+
                 Swal.fire({
                     title: '¡Bienvenido!',
                     text: 'Has iniciado sesión exitosamente',
@@ -208,10 +261,10 @@ formLogin.addEventListener('submit', (event) => {
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'index.html'
+                        window.location.href = "http://127.0.0.1:5500/src/public/pages/index.html"
                     }
                 })
-            } else {
+            } else if (data.status === 404) {
                 Swal.fire({
                     title: '¡Error!',
                     text: 'Ha ocurrido un error al iniciar sesión',

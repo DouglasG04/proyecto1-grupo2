@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -308,6 +309,7 @@ p {
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    flex-direction: column-reverse;
 }
 
 .dropdown-content a {
@@ -317,9 +319,6 @@ p {
     display: block;
 }
 
-.dropdown-content-visibility {
-    color: #e2eedb;
-}
 
 .dropdown-content a:hover {
     background-color: #ddd;
@@ -336,7 +335,6 @@ p {
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-
 }
 
 .dropdown-content2 a {
@@ -352,14 +350,11 @@ p {
 }
 
 .show {
-    display: block;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .show2 {
     display: block;
 }
 
-.disabled-links {
-    pointer-events: none;
-    color: var(--grayKupaa) !important;
-}
