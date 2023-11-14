@@ -1,8 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Types.ObjectId;
+const ObjectId = Schema.ObjectId;
+
+const reservationsSchema = new Schema({
+    amount: String,
+    checkin: String,
+    checkout: String,
+    businessName: String,
+})
 
 const paymentSchema = new Schema({
+    bank: {
+        type: String,
+        required: true,
+    },
     headline: {
         type: String,
         required: true,
@@ -10,12 +21,13 @@ const paymentSchema = new Schema({
     cardnumber: {
         type: String,
         required: true,
+        unique: true,
     },
-    expirationday: {
+    expirationmonth: {
         type: String,
         required: true,
     },
-    experationmonth: {
+    experationyear: {
         type: String,
         required: true,
     },
@@ -37,30 +49,28 @@ const ratingSchema = new Schema({
 })
 
 const businessSchema = new Schema({
-    _id: ObjectId,
+    idBusiness: ObjectId,
     name: {
         type: String,
         required: true,
     },
-    fulladdress: {
-        province: {
-            type: String,
-            required: true,
-        },
-        state: {
-            type: String,
-            required: true,
-        },
-        direccion: {
-            type: String,
-            required: true,
-        },
-        direccion2: String,
-        direccion3: String,
-        mapdirection: {
-            type: String,
-            required: true,
-        }
+    province: {
+        type: String,
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    direccion: {
+        type: String,
+        required: true,
+    },
+    direccion2: String,
+    direccion3: String,
+    mapdirection: {
+        type: String,
+        required: true,
     },
     photos: [String],
     phonenumber: String,
@@ -69,20 +79,27 @@ const businessSchema = new Schema({
     ratings: [ratingSchema]
 })
 
+
 const userSchema = new Schema({
-    _id: ObjectId,
-    name: {
+    username: {
         type: String,
         required: true,
+        unique: true,
+        lowercase: true,
     },
-    lastname: String,
-    idcard: String,
     email: {
         type: String,
         required: true,
         unique: true,
         lowercase: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
+    name: String,
+    lastname: String,
+    idcard: String,
     birthdate: String,
     phonenumber: String,
     country: String,
@@ -92,10 +109,8 @@ const userSchema = new Schema({
     personalphoto: String,
     entitydocumentfront: String,
     entitydocumentback: String,
-    password: {
-        type: String,
-        required: true,
-    },
+
+    reservations: [reservationsSchema],
     paymentmethods: [paymentSchema],
     business: [businessSchema],
 })

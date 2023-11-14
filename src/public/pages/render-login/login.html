@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -37,6 +38,7 @@
                     <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
                 </div>
 
+                <p style="color: #0051F9; text-decoration: underline; width: 60%; text-align: end; cursor: pointer;">¿Olvido su contraseña?</p>
                 <button>Iniciar Sesión</button>
 
                 <p id="withoutAccount">¿No tienes una cuenta? <span>Regístrate</span></p>
@@ -67,8 +69,7 @@
                     </div>
                     <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
                         <div>
-                            <input type="file" id="uploadPhoto" style="display: none;" accept="image/*">
-                            <label for="uploadPhoto">Subir foto</label>
+                            <label id="uploadPhoto" for="uploadPhoto">Subir foto</label>
                         </div>
                         <button id="removePhoto" class="custom-button">Eliminar foto</button>
                     </div>
@@ -78,6 +79,11 @@
 
             <form id="form-register">
                 <div class="grid-form">
+                    <div class="form-group">
+                        <label for="usernameRegister">Nombre de Usuario</label>
+                        <input type="text" name="usernameRegister" id="usernameRegister" placeholder="Ingrese su nombre de usuario" required>
+                    </div>
+
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" name="name" id="name" placeholder="Ingrese su nombre" required>
@@ -108,6 +114,12 @@
                     <div class="form-group">
                         <label for="emailreg">Correo electrónico</label>
                         <input type="email" name="emailreg" id="emailreg" placeholder="Ingrese su correo electrónico"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phonenumber">Teléfono</label>
+                        <input type="tel" name="phonenumber" id="phonenumber" placeholder="Ingrese su numero de telefono"
                             required>
                     </div>
 
@@ -156,8 +168,8 @@
                     align-items: center;
                     margin: 20px 0px;">
                         <div>
-                            <input type="file" id="entitydocFront" style="display: none;" accept="image/*">
-                            <label for="entitydocFront" class="labelFront">Subir foto delantera del documento</label>
+                            <!-- <input type="file" id="entitydocFront" style="display: none;" accept="image/*"> -->
+                            <label for="entitydocFront" id="entitydocFront" class="labelFront">Subir foto delantera del documento</label>
                         </div>
                     </div>
                 </div>
@@ -173,8 +185,8 @@
                     align-items: center;
                     margin: 20px 0px;">
                         <div>
-                            <input type="file" id="entitydocBack" style="display: none;" accept="image/*">
-                            <label for="entitydocBack" class="labelBack">Subir foto trasera del documento</label>
+                            <!-- <input type="file" id="entitydocBack" style="display: none;" accept="image/*"> -->
+                            <label for="entitydocBack" id="entitydocBack"  class="labelBack">Subir foto trasera del documento</label>
                         </div>
                     </div>
                 </div>
@@ -184,7 +196,7 @@
             </form>
         </div>
     </section>
-
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 </body>
 
 </html>
