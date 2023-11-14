@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 const PORT = process.env.PORT || 1234;
-const mongoURI = process.env.MONGO_URI || "mongodb+srv://GxnzaCR:B3JrojLWvjHEldKo@cluster0.aowwazw.mongodb.net/Kupaa?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_URI || "mongodb+srv://devsolutions:MFu5BRtgADcNHG2L@kuppa.lezxlw2.mongodb.net/kuppa?retryWrites=true&w=majority";
 
 
 mongoose.connect(mongoURI, {
