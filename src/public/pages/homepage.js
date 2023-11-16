@@ -1,11 +1,11 @@
+const currentPage = window.location.href.split('/').pop();
+
+
 const idSession = localStorage.getItem('sessionToken');
 const idUser = localStorage.getItem('session');
 
-const nav = document.querySelector('.nav-container-options');
-const dropdownUserNav = document.getElementById('myDropdown');
 
-
-fetch(`http://localhost:1234/api/user/654ff430b4bb2b240b264b22`, {
+fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -13,33 +13,9 @@ fetch(`http://localhost:1234/api/user/654ff430b4bb2b240b264b22`, {
 })
   .then((response) => response.json())
   .then((data) => {
-    if (data.user.typeofuser === 'C') {
-      nav.innerHTML = ` 
-        <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Mis reservaciones</a></li>
-        <li><a href="#businessesList">Buscar y reservar</a></li>
-        <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
-
-      dropdownUserNav.innerHTML += `
-      <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>
-      `
-    } else if (data.user.typeofuser === 'P') {
-      nav.innerHTML = ` 
-        <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Mis negocios</a></li>
-        <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
-
-      dropdownUserNav.innerHTML = `
-      <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>
-      `
-    } else if (data.user.typeofuser === 'A') {
-      nav.innerHTML = ` 
-        <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Reportes</a></li>`
-
-      dropdownUserNav.innerHTML = `
-      <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>
-      <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Reportes</a>
-      `
-    }
-  })
+    const userType = data.user.typeofuser;
+    handleNavBarByRole(userType, currentPage);
+  });
 
 
 let slideIndex = 0;
@@ -189,6 +165,7 @@ window.onclick = function (event) {
   }
 }
 
+const dropdownUserNav = document.getElementById('myDropdown');
 
 if (dropdownUserNav) {
   dropdownUserNav.addEventListener('click', function (event) {
@@ -214,7 +191,7 @@ function handleLogoutClick(event) {
           text: 'Seras redirigido al inicio de sesión',
           icon: 'success',
           confirmButtonText: 'Aceptar',
-      }).then((result) => {
+        }).then((result) => {
           if (result.isConfirmed) {
             localStorage.removeItem('session');
             window.location.href = 'http://127.0.0.1:5500/src/public/pages/render-login/login.html';
