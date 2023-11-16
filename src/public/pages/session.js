@@ -56,13 +56,13 @@ const handleNavBarByRole = async (role, page) => {
         }
     } else if (role === 'P') {
         nav.innerHTML = ` 
-                <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Mis negocios</a></li>
+                <li><a href="http://127.0.0.1:5500/src/public/pages/render-new-business/new.business.html">Registrar negocio</a></li>
                 <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`;
 
         dropdownUserNav.innerHTML = `<a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`;
     } else if (role === 'A') {
         nav.innerHTML = ` 
-                <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Reportes</a></li>`;
+                <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Aprobar/denegar negocios</a></li>`;
 
         dropdownUserNav.innerHTML = `
                 <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>

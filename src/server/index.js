@@ -69,6 +69,10 @@ app.post('/api/user/register', async (req, res) => {
     console.log(req.body)
     try {
 
+        if(res.statusCode == 500){
+            return res.status(500).json({ message: 'Error in register user' });
+        }
+
         const newUser = new User({
             username: req.body.username,
             name: req.body.name,

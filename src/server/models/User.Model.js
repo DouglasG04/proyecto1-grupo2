@@ -49,7 +49,7 @@ const ratingSchema = new Schema({
 })
 
 const businessSchema = new Schema({
-    idBusiness: ObjectId,
+    statusBusiness: Boolean,
     name: {
         type: String,
         required: true,

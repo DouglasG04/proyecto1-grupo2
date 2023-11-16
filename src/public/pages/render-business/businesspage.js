@@ -58,3 +58,12 @@ function handleLogoutClick(event) {
       }
     });
 }
+
+
+const btnReserve = document.getElementById('btnReserve');
+
+btnReserve.addEventListener('click', function () {
+  window.location.href = 'http://127.0.0.1:5500/src/public/pages/render-payment/payment.html'
+
+  
+})
