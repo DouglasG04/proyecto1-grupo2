@@ -142,7 +142,8 @@ form_6_back_btn.addEventListener("click", function () {
 
 
 
-
+const idSession = localStorage.getItem('sessionToken');
+const idUser = localStorage.getItem('session');
 
 
 btn_done.addEventListener("click", function () {
@@ -158,6 +159,7 @@ btn_done.addEventListener("click", function () {
 	const price = document.getElementById("price").value;
 	const description = document.getElementById("description").value;
 
+
 	const data = {
 		hospedaje,
 		alimentacion,
@@ -172,7 +174,7 @@ btn_done.addEventListener("click", function () {
 		description
 	};
 
-	if(hospedaje == "" || alimentacion == "" || entretenimiento == "" || province == "" || city == "" || address == "" || address_two == "" || address_three == "" || businessName == "" || price == "" || description == ""){
+	if (hospedaje == "" || alimentacion == "" || entretenimiento == "" || province == "" || city == "" || address == "" || address_two == "" || address_three == "" || businessName == "" || price == "" || description == "") {
 		const Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
@@ -184,30 +186,54 @@ btn_done.addEventListener("click", function () {
 				toast.addEventListener('mouseleave', Swal.resumeTimer)
 			}
 		})
-	
 		Toast.fire({
 			icon: 'error',
 			title: 'Faltan campos por llenar!'
 		})
-	}else{
-		const Toast = Swal.mixin({
-			toast: true,
-			position: 'top-end',
-			showConfirmButton: false,
-			timer: 3000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.addEventListener('mouseenter', Swal.stopTimer)
-				toast.addEventListener('mouseleave', Swal.resumeTimer)
-			}
-		})
-	
-		Toast.fire({
-			icon: 'success',
-			title: 'Negocio registrado con exito!'
-		})
+	} else {
+
+		fetch(`http://localhost:1234/api/business/new/6555603df4526d0724350314`, {
+			method: 'POST',
+			body: JSON.stringify(data),
+		}).then(response => response.json())
+			.then(data => {
+				if (data.status === 200) {
+
+					const Toast = Swal.mixin({
+						toast: true,
+						position: 'top-end',
+						showConfirmButton: false,
+						timer: 3000,
+						timerProgressBar: true,
+						didOpen: (toast) => {
+							toast.addEventListener('mouseenter', Swal.stopTimer)
+							toast.addEventListener('mouseleave', Swal.resumeTimer)
+						}
+					})
+
+					Toast.fire({
+						icon: 'success',
+						title: '¡Negocio registrado!',
+						text: 'Seras redirigido a la pagina principal',
+						confirmButtonText: 'Aceptar',
+					}).then((result) => {
+						if (result.isConfirmed) {
+							window.location.href = "http://localhost:1234/home";
+						}
+					})
+				} else {
+					Swal.fire({
+						title: '¡Error!',
+						text: 'No se pudo registrar el negocio',
+						icon: 'error',
+						confirmButtonText: 'Aceptar',
+					})
+				}
+			})
+
+
 	}
 
-	
+
 })
 

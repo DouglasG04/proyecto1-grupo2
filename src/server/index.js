@@ -54,6 +54,7 @@ mongoose.connect(mongoURI, {
 const Session = require('./models/Session.Model');
 const newSession = require('./session.js')
 const User = require('./models/User.Model');
+const SendMail = require('./utils/Mail.Util.js');
 
 
 // Here, we will create ALL our app routes
@@ -69,7 +70,7 @@ app.post('/api/user/register', async (req, res) => {
     console.log(req.body)
     try {
 
-        if(res.statusCode == 500){
+        if (res.statusCode == 500) {
             return res.status(500).json({ message: 'Error in register user' });
         }
 
@@ -134,7 +135,7 @@ app.post('/api/user/login', async (req, res) => {
 app.delete('/api/user/logout/:id', async (req, res) => {
     try {
         const tokenSession = await Session.findByIdAndDelete(req.params.id);
-        
+
         if (!tokenSession) {
             const response = {
                 message: "Token not found",
@@ -142,20 +143,92 @@ app.delete('/api/user/logout/:id', async (req, res) => {
             };
 
             return res.status(404).json(response);
-        }else{
+        } else {
             const response = {
                 message: "Session token deleted successfully",
                 status: res.statusCode,
             };
-    
+
             return res.status(200).json(response);
         }
     } catch (error) {
         return res.status(500).json({ message: 'Error finding token' });
     }
-    
-    
 
+
+
+})
+
+//Recover email
+app.post('/api/user/recover', async (req, res) => {
+    try {
+        const email = req.body.email;
+
+        const user = await User.findOne({ email: email });
+
+        if (!user) {
+            return res.status(404).json({ message: "Correo no encontrado", status: 404 });
+        }
+
+        const link = `http://127.0.0.1:5500/src/public/pages/render-login/password.html?id=${user._id}`;
+
+        const emailBody = `
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          </head>
+          <body>
+            <h1>Recuperacion de contraseña</h1>
+            <p>Para recuperar su contraseña da click en el siguiente link</p>
+            <a href="${link}">Recuperar contraseña</a>
+          </body>
+        </html>
+        `;
+
+        const mailSent = await SendMail(email, "Recuperar contraseña", emailBody);
+
+        if (mailSent) {
+            return res.status(200).json({ message: "Email enviado correctamente", status: 200 });
+        } else {
+            return res.status(500).json({ message: "Error enviando email", status: 500 });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
+
+
+
+// Recover password
+app.post('/api/user/recover/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            const response = {
+                message: "User not found",
+                status: 404,
+            };
+
+            return res.status(404).json(response);
+        }
+
+        user.password = req.body.password;
+        await user.save();
+
+        const response = {
+            message: "Password updated successfully",
+            status: res.statusCode,
+        };
+
+        return res.status(200).json(response);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 })
 
 
@@ -192,7 +265,7 @@ app.put('/api/user/:id', async (req, res) => {
     try {
         const updateUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
-        if(!updateUser) {
+        if (!updateUser) {
             const response = {
                 message: "User not found",
                 status: 404,
@@ -207,7 +280,7 @@ app.put('/api/user/:id', async (req, res) => {
         }
 
         return res.status(200).json(response);
-        
+
 
 
     } catch (error) {
@@ -242,6 +315,38 @@ app.delete('/api/user/:id', async (req, res) => {
         return res.status(500).json({ message: 'Error finding user' });
     }
 })
+
+// Add business
+app.post('/api/user/business/new/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            const response = {
+                message: "User not found",
+                status: 404,
+            }
+
+            return res.status(404).json(response);
+
+        }
+
+        user.business.push(req.body);
+        await user.save();
+
+        const response = {
+            message: "Business added successfully",
+            status: res.statusCode,
+        }
+
+        return res.status(200).json(response);
+
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 
 // Add payment method
 app.post('/api/user/paymentmethod/:id', async (req, res) => {

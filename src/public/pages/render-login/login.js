@@ -113,6 +113,13 @@ withoutAccount.addEventListener('click', () => {
     document.title = 'Registrar cuenta | Kupaa';
 });
 
+const kuppaRegister = document.getElementById('kuppaReg');
+
+kuppaRegister.addEventListener('click', () => {
+    registerSection.classList.add('hide-element');
+    loginSection.classList.remove('hide-element');
+    document.title = 'Iniciar sesión | Kupaa';
+})
 
 formRegister.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -130,6 +137,9 @@ formRegister.addEventListener('submit', (event) => {
     const state = document.getElementById('state').value;
     const additionaladdress = document.getElementById('additionaladdress').value;
 
+
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+
     const FormData = {
         username,
         name,
@@ -145,6 +155,16 @@ formRegister.addEventListener('submit', (event) => {
         country,
         state,
         additionaladdress,
+    }
+
+    if (!passwordRegex.test(password)) {
+        Swal.fire({
+            title: '¡Contraseña inválida!',
+            text: 'Por favor, verifica que tu contraseña tenga al menos un número, una mayúscula, una minúscula y un carácter especial para ser aceptada.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+        return;
     }
 
     if (password !== passwordverification) {
@@ -276,3 +296,9 @@ formLogin.addEventListener('submit', (event) => {
 
 })
 
+
+const forgotPassword = document.getElementById('forgotpassword');
+
+forgotPassword.addEventListener('click', () => {
+    window.location.href = "http://127.0.0.1:5500/src/public/pages/render-login/forgotpassword.html"
+})

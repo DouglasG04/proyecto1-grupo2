@@ -38,7 +38,7 @@
                     <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
                 </div>
 
-                <p style="color: #0051F9; text-decoration: underline; width: 60%; text-align: end; cursor: pointer;">¿Olvido su contraseña?</p>
+                <p style="color: #0051F9; text-decoration: underline; width: 60%; text-align: end; cursor: pointer;" id="forgotpassword">¿Olvido su contraseña?</p>
                 <button>Iniciar Sesión</button>
 
                 <p id="withoutAccount">¿No tienes una cuenta? <span>Regístrate</span></p>
@@ -59,7 +59,7 @@
 
         <div class="right-section-register">
             <div class="headline-section">
-                <img src="../../assets/img/logotipo-horizontal-kupaa.png" alt="logo-kupaa" style="width: 380px;">
+                <img src="../../assets/img/logotipo-horizontal-kupaa.png" alt="logo-kupaa" style="width: 380px; cursor: pointer;" id="kuppaReg">
                 <h1>Registrar cuenta</h1>
 
                 <div class="register-photo">
@@ -196,6 +196,11 @@
             </form>
         </div>
     </section>
+
+    <section id="forgotpasswordDiv" class="hide-element">
+
+    </section>
+
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 </body>
 
