@@ -308,7 +308,6 @@ window.onload = function () {
         event.preventDefault(); 
 
         console.log('Logout button clicked!');
-        alert('Logout button clicked!');
 
         console.log('Logout button clicked!');
         fetch(`http://localhost:1234/api/user/logout/654c4d980880e0ef8cd903fb`, {

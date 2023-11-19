@@ -54,7 +54,7 @@ mongoose.connect(mongoURI, {
 const Session = require('./models/Session.Model');
 const newSession = require('./session.js')
 const User = require('./models/User.Model');
-const SendMail = require('./utils/Mail.Util.js');
+const sendMail = require('./utils/Mail.Util.js');
 
 
 // Here, we will create ALL our app routes
@@ -320,6 +320,68 @@ app.delete('/api/user/:id', async (req, res) => {
 app.post('/api/user/business/new/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
+        console.log(req.body);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found", status: 404 });
+        }
+
+        // Verifica los campos requeridos antes de agregar el negocio
+        const { name, province, city, price, address, address_two, address_three, mapdirection, photos, phone, description, category, ratings } = req.body;
+
+
+        const newBusiness = {
+            _id: new mongoose.Types.ObjectId(),
+            name,
+            province,
+            state: city,
+            direccion: address,
+            direccion2: address_two,
+            direccion3: address_three,
+            mapdirection,
+            photos,
+            price: price,
+            phonenumber: phone,
+            generaldescription: description,
+            category,
+            ratings,
+            statusBusiness: false,
+        };
+
+        user.business.push(newBusiness);
+        await user.save();
+
+
+        const link = `http://127.0.0.1:5500/src/public/pages/render-new-business/aprovebusiness.admin.html?id=${user._id}&businessId=${newBusiness._id}`;
+
+        const htmlBody = `
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          </head>
+          <body>
+            <h1>Aprobar negocio</h1>
+            <p>Tienes una solicitud de negocio, para aprobar el negocio da click en el siguiente link</p>
+            <a href="${link}">Ver negocio</a>
+          </body>
+        </html>
+
+        `
+        sendMail("devsolutionscenfotec@gmail.com", "Aprobacion de negocio", htmlBody)
+
+        return res.status(200).json({ message: "Negocio agregado exitosamente", status: 200 });
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
+// Get business by ID
+app.get('/api/user/business/:id/:businessId', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
 
         if (!user) {
             const response = {
@@ -331,21 +393,97 @@ app.post('/api/user/business/new/:id', async (req, res) => {
 
         }
 
-        user.business.push(req.body);
-        await user.save();
+        const business = user.business.find(business => business._id == req.params.businessId);
+
+        if (!business) {
+            const response = {
+                message: "Business not found",
+                status: 404,
+            }
+
+            return res.status(404).json(response);
+        }
 
         const response = {
-            message: "Business added successfully",
+            user,
+            business,
             status: res.statusCode,
         }
 
         return res.status(200).json(response);
+    }
+    catch (error) {
+        return res.status(500).json({ message: 'Error finding user' });
+    }
+})
+
+// Change status business
+app.put('/api/user/business/:id/:businessId', async (req, res) => {
+    try {
+        const { id, businessId } = req.params;
+        const { status } = req.body;
+
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found", status: 404 });
+        }
+
+        const business = user.business.find(business => business._id == businessId);
+
+        if (!business) {
+            return res.status(404).json({ message: "Business not found", status: 404 });
+        }
+
+        business.statusBusiness = status;
+        await user.save();
+
+
+        if (status === true) {
+            const htmlBody = `
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              </head>
+              <body>
+                <h1>Negocio aprobado</h1>
+                <p>Su negocio ha sido aprobado, ya puedes verlo en tu perfil!</p>
+                <a href="http://127.0.0.1:5500/src/public/pages/render-login/login.html">Ver negocio</a>
+              </body>
+            </html>
+    
+            `
+            sendMail(user.email, "Aprobacion de negocio", htmlBody)
+        } else if (status === false) {
+            const htmlBody = `
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              </head>
+              <body>
+                <h1>Negocio rechazado</h1>
+                <p>Su negocio ha sido rechazado, no cumple los requisitos para ser publicado</p>
+              </body>
+            </html>
+    
+            `
+            sendMail(user.email, "Negocio negado", htmlBody)
+        }
+
+        return res.status(200).json({ message: "Status changed successfully", status: 200 });
+
 
 
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        return res.status(500).json({ message: error.message });
     }
-})
+});
+
+
 
 
 // Add payment method
@@ -410,7 +548,7 @@ app.delete('/api/user/paymentmethod/:id/:methodId', async (req, res) => {
 // It have to be the last route requet
 app.use((req, res, next) => {
     res.status(404).sendFile(__dirname + '/404/404.html');
-})
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port http://localhost:${PORT}`)

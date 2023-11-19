@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprobar/Denegar negocio</title>
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <script src="./aprovebusiness.admin.js" defer></script>
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+        type="text/css">
+
+
+    <style>
+        #map {
+            width: 404px;
+            height: 300px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 0;
+        }
+
+        .form-group label {
+            color: #222222;
+        }
+
+        .form-group input {
+            padding: 0px 9px;
+            height: 40px;
+            width: 340px;
+            margin: 6px 0;
+            border: 1px solid #C4C4C4;
+            border-radius: 5px;
+        }
+
+        .form-group select {
+            padding: 0px 9px;
+            height: 40px;
+            width: 340px;
+            margin: 6px 0;
+            border: 1px solid #C4C4C4;
+            border-radius: 5px;
+        }
+
+        #acceptBusiness {
+            z-index: 1;
+            background-color: var(--darkGreenKupaa);
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            padding: 8px 50px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #rejectBusiness {
+            z-index: 1;
+            background-color: var(--darkGrayKupaa);
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            padding: 8px 50px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #photos img {
+            height: 200px;
+            width: 335px;
+            border-radius: 10px;
+        }
+    </style>
+
+    <section style="margin: 0 auto;max-width: 400px; margin-top: 150px;">
+        <h1 style="text-align: center;">Vista previa del negocio</h1>
+
+        <div class="details-user"
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; margin-top: 30px;">
+            <h2>Información del usuario</h2>
+            <img src="" alt="user" id="photoUserBusiness" style="width: 150px;
+            height: 150px;
+            border-radius: 50%;">
+
+            <h3 id="usernameBusiness"></h3>
+            <h3 id="idCardBusiness"></h3>
+            <input type="email" disabled id="emailBusiness" style=" padding: 0px 9px;
+            height: 40px;
+            width: 240px;
+            margin: 6px 0;
+            border: 1px solid #C4C4C4;
+            border-radius: 5px;">
+
+
+            <img src="" alt="idfront" id="idFrontBusiness" style="width: 350px;
+            height: 210px;">
+
+            <img src="" alt="idback" id="idBackBusiness" style="width: 350px; height: 210px;">
+
+
+        </div>
+
+
+
+
+
+
+        <div id="business">
+            <div class="details" style="display: grid; gap: 50px; margin-bottom: 100px; margin-top: 100px;">
+                <h2 style="text-align: center;">Información del negocio</h2>
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <p id="category"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Nombre del Negocio</label>
+                    <p id="name"></p>
+                </div>
+
+                <div style="display:flex; flex-direction: column; justify-content: center;">
+                    <label for="description">Descripcion general</label>
+                    <p id="description" style="max-width: 340px;"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Precio</label>
+                    <p id="price"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <p id="phone"></p>
+                </div>
+
+                <div id="photos">
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="ubications">
+                <div class="form-group">
+                    <label for="province">Provincia</label>
+                    <select name="province" id="province" class="input" disabled>
+                        <option value="A">Alajuela</option>
+                        <option value="SJ">San José</option>
+                        <option value="H">Heredia</option>
+                        <option value="C">Cartago</option>
+                        <option value="G">Guanacaste</option>
+                        <option value="P">Puntarenas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="city">Ciudad</label>
+                    <input disabled type="text" name="city" class="input" id="city">
+                </div>
+                <div class="form-group">
+                    <label for="address">Dirección</label>
+                    <input disabled type="text" name="address" class="input" id="address">
+                </div>
+                <div class="form-group">
+                    <label for="address_two">Dirección, línea dos (si corresponde)</label>
+                    <input disabled type="text" name="address_two" class="input" id="address_two">
+                </div>
+                <div class="form-group">
+                    <label for="address_three">Dirección, línea tres (si corresponde)</label>
+                    <input disabled type="text" name="address_three" class="input" id="address_three">
+                </div>
+
+
+                <div id="map"></div>
+            </div>
+
+
+
+
+
+        </div>
+
+        <div style="
+            margin: 30px 0px 100px 0px;
+            gap: 25px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;">
+            <button id="acceptBusiness">Aceptar negocio</button>
+            <button id="rejectBusiness">Rechazar negocio</button>
+        </div>
+
+    </section>
+</body>
+
+</html>

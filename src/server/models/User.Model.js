@@ -54,6 +54,7 @@ const businessSchema = new Schema({
         type: String,
         required: true,
     },
+    price: String,
     province: {
         type: String,
         required: true,
