@@ -155,12 +155,12 @@ window.onload = function () {
     btnAcceptBusiness.addEventListener('click', () => {
         const status = true;
 
-        fetch(`http://localhost:1234/api/user/business/6555603df4526d0724350314/65599af254ae718c3f8691aa`, {
+        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ status: status })
+            body: JSON.stringify({ statusBusiness: status })
         }).then((response) => response.json())
             .then(data => {
                 if (data.status === 200) {
@@ -192,12 +192,12 @@ window.onload = function () {
     btnRejectBusiness.addEventListener('click', () => {
 
         const status = false;
-        fetch(`http://localhost:1234/api/user/business/6555603df4526d0724350314/65599af254ae718c3f8691aa`, {
+        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ status: status })
+            body: JSON.stringify({ statusBusiness: status })
         }).then((response) => response.json())
             .then(data => {
                 if (data.status === 200) {

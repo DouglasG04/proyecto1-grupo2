@@ -28,7 +28,7 @@
         <nav class="nav-container-options-align">
             <!-- Linkear -->
             <ul class="nav-container-options">
-                
+
             </ul>
         </nav>
         <button class="btn account-button dropbtn" onclick="myFunction()">
@@ -71,8 +71,7 @@
                     <div class="form-group">
                         <label for="pais" class="label">Pais</label>
                         <select name="pais" id="pais" class="select" required>
-                            <option value="" selected disabled>Selecciona un país</option>
-                            <option value="Costa Rica">Costa Rica</option>
+                            <option value="Costa Rica" selected>Costa Rica</option>
                         </select>
                     </div>
 
@@ -88,8 +87,8 @@
                     <div class="form-group">
                         <label for="fecha" class="label">Fecha Entrada / Fecha Salida</label>
                         <div class="flex-container-one">
-                            <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
-                            <input type="date" id="fecha" class="input-one" placeholder="Check-in date" required>
+                            <input type="date" id="checkin" class="input-one" placeholder="Check-in date" required>
+                            <input type="date" id="checkout" class="input-one" placeholder="Check-in date" required>
                         </div>
                     </div>
                 </div>
@@ -102,9 +101,19 @@
                         <input type="text" name="titular" id="titular" class="form-inputs" placeholder="Titular"
                             required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="bank">Banco:</label>
+                        <select name="bank" id="bank">
+                            <option value=""></option>
+                            <option value="BAC">MasterCard</option>
+                            <option value="VS">Visa</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="numeroTarjeta" class="form-label">Numero de tarjeta</label>
-                        <input type="number" name="numeroTarjeta" id="numeroTarjeta" class="form-inputs"
+                        <input type="text" name="numeroTarjeta" id="numeroTarjeta" class="form-inputs"
                             placeholder="xxxx xxxxx xxxxx xxx" required>
                     </div>
 
@@ -116,52 +125,53 @@
 
                         <div class="inputs">
                             <div>
-                                <select name="dia" id="dia" class="form-input" required>
-                                    <option value="" selected disabled>Inicio</option>
+                                <select name="month" id="month" class="form-input" required>
+                                    <option value="" selected disabled>Mes</option>
                                     <!-- Opciones para los días del 1 al 31 -->
-                                    <script>
-                                        for (var i = 1; i <= 31; i++) {
-                                            document.write('<option value="' + i + '">' + i + '</option>');
-                                        }
-                                    </script>
-                                </select>
-                                <select name="mes" id="mes" class="form-input" required>
-                                    <option value="" selected disabled>Final</option>
-                                    <!-- Opciones para los meses del 1 al 12 -->
                                     <script>
                                         for (var i = 1; i <= 12; i++) {
                                             document.write('<option value="' + i + '">' + i + '</option>');
                                         }
                                     </script>
                                 </select>
+                                <select name="year" id="year" class="form-input" required>
+                                    <option value="" selected disabled>Año</option>
+                                    <!-- Opciones para los meses del 1 al 12 -->
+                                    <script>
+                                        for (var i = 2000; i <= 2034; i++) {
+                                            document.write('<option value="' + i + '">' + i + '</option>');
+                                        }
+                                    </script>
+                                </select>
                             </div>
-                            <input type="text" name="cvvcvc" id="cvvcvc" class="form-input" placeholder="xxxx" required>
+                            <input type="text" name="cvvcvc" id="cvvcvc" class="form-input" placeholder="***"
+                                maxlength="3" style="text-align: end;" required>
                         </div>
                     </div>
                     <button id="btnPay">Pagar y Reservar</button>
                 </div>
             </form>
             <div class="business-details">
-                <img src="../../assets/img/volcano-payment.jpg" alt="" class="form-img">
+                <img src="" alt="" class="form-img">
                 <div class="info-details">
                     <div class="header-details">
-                        <h2 class="info-title">Cristal House Mountain View</h2>
-                        <p class="info-contents location"><i class="fa-solid fa-location-dot info-icon"></i>Heredia, Costa Rica</p>
-                        <p class="info-contents">Hospedaje</p>
+                        <h2 class="info-title"></h2>
+                        <p class="info-contents location"><i class="fa-solid fa-location-dot info-icon"></i></p>
+                        <p class="info-contents-type"></p>
                     </div>
-                   <hr style="  background-color: var(--darkGrayKupaa);
+                    <hr style="  background-color: var(--darkGrayKupaa);
                    height: 2px;
                    border: none; margin-top: 20px;">
                     <div class="information-business">
                         <h3>Información del negocio</h3>
                         <div class="information-details">
                             <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 20px;">
-                                <p class="date-business">4 días</p>
-                                <p class="price-business">$500</p>
+                                <p class="date-business">0 días</p>
+                                <p class="price-business"></p>
                             </div>
                             <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 5px;">
                                 <p class="discount-business">Descuento</p>
-                                <p class="discountamount-business">-$29</p>
+                                <p class="discountamount-business">-$30</p>
                             </div>
 
                             <hr style="  background-color: var(--darkGrayKupaa);
@@ -170,7 +180,7 @@
 
                             <div style="width: 100%; display: flex; justify-content: space-between; margin-top: 20px;">
                                 <p class="total-business">Total</p>
-                                <p class="totalamount-business">$471</p>
+                                <p class="totalamount-business">₡0</p>
                             </div>
                         </div>
                     </div>

@@ -65,6 +65,7 @@ app.get('/', (req, res) => {
 
 // All the apis that we will create have to use this format /api/...
 
+
 // Register user
 app.post('/api/user/register', async (req, res) => {
     console.log(req.body)
@@ -157,6 +158,16 @@ app.delete('/api/user/logout/:id', async (req, res) => {
 
 
 
+})
+
+// Get all users
+app.get('/api/users', async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 })
 
 //Recover email
@@ -369,7 +380,7 @@ app.post('/api/user/business/new/:id', async (req, res) => {
         </html>
 
         `
-        sendMail("devsolutionscenfotec@gmail.com", "Aprobacion de negocio", htmlBody)
+        sendMail("devsolutionscenfotec@gmail.com", "Solicitud de aprobación de negocio", htmlBody)
 
         return res.status(200).json({ message: "Negocio agregado exitosamente", status: 200 });
 
@@ -421,7 +432,7 @@ app.get('/api/user/business/:id/:businessId', async (req, res) => {
 app.put('/api/user/business/:id/:businessId', async (req, res) => {
     try {
         const { id, businessId } = req.params;
-        const { status } = req.body;
+        const { statusBusiness } = req.body;
 
         const user = await User.findById(id);
 
@@ -435,11 +446,11 @@ app.put('/api/user/business/:id/:businessId', async (req, res) => {
             return res.status(404).json({ message: "Business not found", status: 404 });
         }
 
-        business.statusBusiness = status;
+        business.statusBusiness = statusBusiness;
         await user.save();
 
 
-        if (status === true) {
+        if (statusBusiness === true) {
             const htmlBody = `
             <!DOCTYPE html>
             <html lang="en">
@@ -456,7 +467,7 @@ app.put('/api/user/business/:id/:businessId', async (req, res) => {
     
             `
             sendMail(user.email, "Aprobacion de negocio", htmlBody)
-        } else if (status === false) {
+        } else if (statusBusiness === false) {
             const htmlBody = `
             <!DOCTYPE html>
             <html lang="en">
@@ -540,6 +551,37 @@ app.delete('/api/user/paymentmethod/:id/:methodId', async (req, res) => {
     }
 });
 
+
+// Add reservation method
+app.post('/api/user/reservation/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            const response = {
+                message: "User not found",
+                status: 404,
+            }
+
+            return res.status(404).json(response);
+
+        }
+
+        user.reservations.push(req.body);
+        await user.save();
+
+        const response = {
+            message: "Reservation added successfully",
+            status: res.statusCode,
+        }
+
+        return res.status(200).json(response);
+
+
+    } catch (error) {
+        return res.status(500).json({ message: 'Error finding user' });
+    }
+})
 
 
 

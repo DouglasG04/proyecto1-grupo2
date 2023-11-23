@@ -194,11 +194,11 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 
-.button {
+#btnReserve {
     padding: 12px 5px;
     width: 100%;
     background-color: #000;
@@ -208,23 +208,15 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    /* margin-top: 10px; */
+    margin-top: 10px;
 }
 
-.button:hover{
+#btnReserve:hover{
     background-color: var(--darkGreenKupaa);
     transition: 0.3s
 }
 
 
-
-.icon-contact {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 10px;
-    gap: 5px;
-}
 
 .icons-contact {
     height: 16.5px;
@@ -482,9 +474,9 @@
 .reservation-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
-    height: 260px;
-    width: 233px;
+    justify-content: space-around;
+    height: 295px;
+    width: 235px;
 }
 
 
@@ -499,7 +491,7 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    margin-top: 28px;
+    /* margin-top: 28px; */
 }
 
 .button:hover{
@@ -507,17 +499,15 @@
     transition: 0.3s
 }
 
-.reservation-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+
 
 .reservation-details{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 13px;
+    justify-content: space-between;
+    height: 85px;
+    /* gap: 10px; */
+    /* margin-top: 13px; */
 }
 
 .icon-contact {

@@ -8,9 +8,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 30%;
-    border-right: 1px solid var(--darkGrayKupaa);
+
 }
 
 .profile-details {
@@ -114,6 +113,7 @@
     width: 70%;
     align-self: flex-start;
     padding: 50px 50px;
+    border-left: 1px solid var(--darkGrayKupaa);
 }
 
 .right-profile p {
@@ -230,7 +230,7 @@ table .fa-brands {
     transition: 0.3s;
 }
 
-#seeBusiness {
+td .seeBusiness {
     background-color: var(--darkGreenKupaa);
     color: #fff;
     font-size: 14px;
@@ -243,7 +243,7 @@ table .fa-brands {
     cursor: pointer;
 }
 
-#seeBusiness:hover {
+td .seeBusiness:hover {
     background-color: var(--lightGreenKupaa);
     transition: 0.3s;
 }
@@ -313,9 +313,8 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 30%;
-    border-right: 1px solid var(--darkGrayKupaa);
+    /* border-right: 1px solid var(--darkGrayKupaa); */
 }
 
 .profile-details {
@@ -420,6 +419,7 @@ h2 {
     width: 70%;
     align-self: flex-start;
     padding: 50px 50px;
+    border-left: 1px solid;
 }
 
 .right-profile p {
@@ -585,10 +585,11 @@ h2 {
 }
 
 
-.card-info{
+.card-info {
     display: grid;
     gap: 24px;
 }
+
 .close-popup,
 .add-payment {
     width: 100%;
@@ -619,7 +620,8 @@ h2 {
     margin: 0px;
 }
 
-.form-group label, .label-forrow {
+.form-group label,
+.label-forrow {
     font-weight: 500;
     margin-bottom: 5px;
 }
@@ -656,4 +658,44 @@ h2 {
 input:focus {
     outline: none;
     border: 1px solid var(--darkGreenKupaa);
+}
+
+
+
+.popupBusiness {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 800px;
+    height: 900px;
+    /* padding: 20px; */
+    border: 1px solid #ccc;
+    z-index: 1000;
+    border-radius: 0px;
+    scroll-behavior: auto;
+    overflow-y: scroll;
+}
+
+
+.popupBusiness i {
+    z-index: 100;
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	font-size: 18px;
+	color: var(--darkGrayKupaa);
+	cursor: pointer;
+}
+
+
+.businessContent {
+    background-color: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
 }

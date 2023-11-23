@@ -120,29 +120,12 @@
               <tr>
                 <th>Monto</th>
                 <th>Negocio</th>
-                <th>Fecha</th>
+                <th>Fecha Entrada / Fecha Salida</th>
                 <th>Acciones</th>
               </tr>
             </thead>
-            <tbody class="data-body">
-              <tr class="data-row">
-                <td>₡125000</td>
-                <td>Hotel Puerto Viejo</td>
-                <td>25/12/2023</td>
-                <td>
-                  <button id="editReservation">Modificar</button>
-                  <button id="cancelReservation">Cancelar</button>
-                </td>
-              </tr>
-              <tr class="data-row">
-                <td>$200</td>
-                <td>Hotel Tamarindo</td>
-                <td>25/12/2023</td>
-                <td>
-                  <button id="editReservation">Modificar</button>
-                  <button id="cancelReservation">Cancelar</button>
-                </td>
-              </tr>
+            <tbody class="data-body-reservations">
+             
             </tbody>
           </table>
         </div>
@@ -177,15 +160,8 @@
               </tr>
             </thead>
 
-            <tbody class="data-body">
-              <tr class="data-row">
-                <td>Hotel Puerto Viejo</td>
-                <td>Puerto Viejo, Limón</td>
-                <td>Activo</td>
-                <td>
-                  <button id="seeBusiness">Ver</button>
-                </td>
-              </tr>
+            <tbody class="data-body-business">
+           
             </tbody>
           </table>
 
@@ -309,6 +285,12 @@
         <button class="add-payment" id="addCard">Agregar metodo</button>
       </div>
 
+    </div>
+  </div>
+
+  <div id="popupBusiness" class="hide-element popupBusiness">
+    <i class="fa-solid fa-x fa-x1 hide-element"></i>
+    <div class="businessContent">
     </div>
   </div>
 </body>

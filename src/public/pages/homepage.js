@@ -19,7 +19,7 @@ fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
 
 
 let slideIndex = 0;
-showSlides();
+
 
 function showSlides() {
   let i;
@@ -33,99 +33,11 @@ function showSlides() {
   setTimeout(showSlides, 10000); // Change image every 10 seconds
 }
 
-const businesses = [{
-  photography: "../assets/img/image1.jpg",
-  name: "El Mirador",
-  location: "Montes de Oro",
-  price: "65.000",
-},
-{
-  photography: "../assets/img/image2.jpg",
-  name: "Sky Tram",
-  location: "Arenal",
-  price: "15.000",
-},
-{
-  photography: "../assets/img/image3.jpg",
-  name: "Negra's Place",
-  location: "Punta Uva",
-  price: "6.000",
-},
-{
-  photography: "../assets/img/image4.jpg",
-  name: "Tropical Lodge",
-  location: "Esterillos",
-  price: "25.000",
-},
-{
-  photography: "../assets/img/image5.jpg",
-  name: "Surf School",
-  location: "Santa Teresa",
-  price: "7.000",
-},
-{
-  photography: "../assets/img/image6.jpg",
-  name: "Soda Guetto Girl",
-  location: "Puerto Viejo",
-  price: "8.000",
-},
-{
-  photography: "../assets/img/image7.jpg",
-  name: "Sky Walk",
-  location: "Monteverde",
-  price: "15.000",
-},
-{
-  photography: "../assets/img/image8.jpg",
-  name: "Donde Tere",
-  location: "Fraijanes",
-  price: "10.000",
-},
-{
-  photography: "../assets/img/image9.jpg",
-  name: "Tamarindo nightlife",
-  location: "Tamarindo",
-  price: "5.000",
-},
-{
-  photography: "../assets/img/image10.jpg",
-  name: "El Bosque",
-  location: "Santa Elena",
-  price: "45.000",
-},
-{
-  photography: "../assets/img/image11.jpg",
-  name: "Tico y Rico",
-  location: "Playa del Coco",
-  price: "15.000",
-},
-{
-  photography: "../assets/img/image12.jpg",
-  name: "Kerwá hostel",
-  location: "Brasilito",
-  price: "30.000",
-}];
+
 
 window.onload = function () {
-  renderlist();
+  showSlides();
 };
-
-function renderlist() {
-  const businessesContainer = document.getElementById("businessesList")
-  businesses.forEach(function (business) {
-    businessesContainer.innerHTML +=
-      `<div class="card-business">
-      <div class="business-photograpy">
-      <img  src='${business.photography}'/>
-      </div>
-      <div class="card-business-info"> 
-      <p class="card-business-title">${business.name}, ${business.location}</p>
-      <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
-      </div>
-      
-    </div>`;
-  });
-}
 
 
 function myFunction() {
@@ -200,3 +112,98 @@ function handleLogoutClick(event) {
       }
     });
 }
+
+
+fetch('http://localhost:1234/api/users', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then((response) => response.json())
+  .then((data) => {
+    const users = data;
+    const businessesContainer = document.getElementById("businessesList")
+
+
+    users.forEach((user) => {
+      let contador = 0;
+      user.business.forEach((business) => {
+
+        if (business.statusBusiness === true) {
+
+          switch (business.province) {
+            case 'SJ':
+              business.province = 'San José'
+              break;
+
+            case 'A':
+              business.province = 'Alajuela'
+              break;
+
+            case 'C':
+              business.province = 'Cartago'
+              break;
+
+            case 'H':
+              business.province = 'Heredia'
+              break;
+
+            case 'G':
+              business.province = 'Guanacaste'
+              break;
+
+            case 'P':
+              business.province = 'Puntarenas'
+              break;
+
+            case 'L':
+              business.province = 'Limón'
+              break;
+
+            default:
+              break;
+
+          }
+
+          businessesContainer.innerHTML +=
+            `<div class="card-business" data-method-id="${business._id}">
+            <div class="business-photograpy">
+              <img src='${business.photos[0]}'/>
+            </div>
+            <div class="card-business-info"> 
+              <p class="card-business-title">${business.name}, ${business.province}</p>
+              <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+            </div>
+      
+          </div>`
+
+          contador++;
+        }
+
+        // const btnPagination = document.getElementById('paginationControls');
+        // if(contador >= 2){
+        //   btnPagination.classList.remove('hide-element');
+        //   btnPagination.classList.add('show-element');  
+        // }
+
+      })
+    })
+
+  })
+
+
+const businessesContainer = document.getElementById("businessesList");
+
+businessesContainer.addEventListener('click', function (event) {
+  const clickedBusiness = event.target.closest('.card-business');
+  
+  if (clickedBusiness) {
+    const businessId = clickedBusiness.getAttribute('data-method-id');
+    const userId = localStorage.getItem('session');
+
+
+
+    window.location.href = `http://127.0.0.1:5500/src/public/pages/render-business/businesspage.html?id=6555603df4526d0724350314&business=${businessId}`;
+
+  }
+});

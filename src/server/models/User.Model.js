@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 
 const reservationsSchema = new Schema({
-    amount: String,
+    cupon: Boolean,
+    cuponAmount: Number,
+    amount: Number,
     checkin: String,
     checkout: String,
     businessName: String,
-})
+},
+    {
+        timestamps: true,
+    }
+)
 
 const paymentSchema = new Schema({
     bank: {
@@ -35,7 +40,6 @@ const paymentSchema = new Schema({
         type: String,
         required: true,
     }
-
 })
 
 const ratingSchema = new Schema({
@@ -54,7 +58,7 @@ const businessSchema = new Schema({
         type: String,
         required: true,
     },
-    price: String,
+    price: Number,
     province: {
         type: String,
         required: true,
@@ -77,8 +81,13 @@ const businessSchema = new Schema({
     phonenumber: String,
     generaldescription: String,
     category: String,
-    ratings: [ratingSchema]
-})
+    ratings: [ratingSchema],
+
+},
+    {
+        timestamps: true,
+    }
+)
 
 
 const userSchema = new Schema({

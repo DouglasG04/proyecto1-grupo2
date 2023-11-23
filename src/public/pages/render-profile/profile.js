@@ -8,10 +8,20 @@ function myFunction() {
 window.onload = function () {
     const currentPage = window.location.href.split('/').pop();
 
-    
+    const popupBusiness = document.getElementById('popupBusiness');
+    const closePopupBusiness = popupBusiness.querySelector('.fa-x1');
+
+    if (closePopupBusiness && popupBusiness) {
+        closePopupBusiness.addEventListener('click', () => {
+            popupBusiness.classList.remove('show-element');
+            popupBusiness.classList.add('hide-element');
+        });
+    }
+
+
     const idSession = localStorage.getItem('sessionToken');
     const idUser = localStorage.getItem('session');
-    
+
 
     fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
         method: 'GET',
@@ -19,17 +29,17 @@ window.onload = function () {
             'Content-Type': 'application/json',
         },
     })
-    .then((response) => response.json())
-    .then((data) => {
-        const userType = data.user.typeofuser;
-        handleNavBarByRole(userType, currentPage);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            const userType = data.user.typeofuser;
+            handleNavBarByRole(userType, currentPage);
+        });
 
 
 
 
 
-    
+
 
 
 
@@ -62,7 +72,6 @@ window.onload = function () {
 
     const tableBody = document.querySelector('.data-body-payment');
 
-
     fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
         method: 'GET',
         headers: {
@@ -94,6 +103,7 @@ window.onload = function () {
             typeOfUser.value = data.user.typeofuser;
 
 
+            //Render payment by user
             data.user.paymentmethods.forEach((element) => {
                 const iconType = element.bank;
                 let iconHTML;
@@ -121,7 +131,148 @@ window.onload = function () {
                 `;
             });
 
+            // Render reservations by user
+            const tableBodyReservation = document.querySelector('.data-body-reservations');
+            data.user.reservations.forEach((element) => {
+                tableBodyReservation.innerHTML = `  
+                <tr class="data-row">
+                <td>₡${element.amount}</td>
+                <td>${element.businessName}</td>
+                <td>${element.checkin} / ${element.checkout}</td>
+                <td>
+                  <button id="editReservation">Modificar</button>
+                  <button id="cancelReservation">Cancelar</button>
+                </td>
+              </tr>`;
+            });
+
+
         })
+
+
+
+    fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => response.json())
+        .then((data) => {
+            if (data.status === 200) {
+                const businesses = data.user.business;
+
+                // Código para actualizar la tabla con la información de negocios
+                const tableBodyBusiness = document.querySelector('.data-body-business');
+
+                businesses.forEach((business) => {
+                    switch (business.province) {
+
+                        case 'SJ':
+                            business.province = 'San José';
+                            break;
+
+                        case 'A':
+                            business.province = 'Alajuela';
+                            break;
+
+                        case 'C':
+                            business.province = 'Cartago';
+                            break;
+
+                        case 'H':
+                            business.province = 'Heredia';
+                            break;
+
+                        case 'G':
+                            business.province = 'Guanacaste';
+                            break;
+
+                        case 'P':
+                            business.province = 'Puntarenas';
+                            break;
+
+                        case 'L':
+                            business.province = 'Limón';
+                            break;
+                    }
+
+                    tableBodyBusiness.innerHTML += `
+                            <tr class="data-row">
+                                <td>${business.name}</td>
+                                <td>${business.state}, ${business.province}</td>
+                                <td>${business.statusBusiness === true ? 'Activo' : 'Inactivo'}</td>
+                                <td>
+                                    <button class="seeBusiness" data-business-id="${business._id}">Ver</button>
+                                </td>
+                            </tr>
+                        `;
+                });
+
+                const seeBusinessButtons = document.querySelectorAll('.seeBusiness');
+                const businessContent = document.querySelector('.businessContent');
+                const popupBusiness = document.getElementById('popupBusiness');
+
+                seeBusinessButtons.forEach((button) => {
+                    button.addEventListener('click', (event) => {
+                        const businessId = button.getAttribute('data-business-id');
+
+                        businessContent.innerHTML = '';
+
+                        popupBusiness.classList.remove('hide-element');
+                        popupBusiness.classList.add('show-element');
+
+                        fetch(`http://localhost:1234/api/user/business/6555603df4526d0724350314/${businessId}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        }).then((response) => response.json())
+                            .then((data) => {
+                                if (data.status === 200) {
+                                    switch (data.business.province) {
+
+                                        case 'SJ':
+                                            data.business.province = 'San José';
+                                            break;
+
+                                        case 'A':
+                                            data.business.province = 'Alajuela';
+                                            break;
+
+                                        case 'C':
+                                            data.business.province = 'Cartago';
+                                            break;
+
+                                        case 'H':
+                                            data.business.province = 'Heredia';
+                                            break;
+
+                                        case 'G':
+                                            data.business.province = 'Guanacaste';
+                                            break;
+
+                                        case 'P':
+                                            data.business.province = 'Puntarenas';
+                                            break;
+
+                                        case 'L':
+                                            data.business.province = 'Limón';
+                                            break;
+
+                                    }
+
+                                    businessContent.innerHTML += `
+                                            <h2> Vista previa del negocio </h2>
+                                            <h3> ${data.business.name} </h3>
+                                            <p> ${data.business.generaldescription} </p>
+                                            <p> ${data.business.state}, ${data.business.province} </p>
+                                        `;
+                                }
+                            });
+                    });
+                });
+            }
+        });
 
 
 
@@ -305,7 +456,7 @@ window.onload = function () {
     }
 
     function handleLogoutClick(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         console.log('Logout button clicked!');
 
@@ -334,14 +485,3 @@ window.onload = function () {
             });
     }
 }
-
-
-
-
-
-
-
-
-
-
-

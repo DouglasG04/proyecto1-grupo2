@@ -76,6 +76,24 @@ const handleNavBarByRole = async (role, page) => {
         }
 
 
+        if (page.includes('businesspage.html')) {
+            nav.innerHTML = ` 
+                <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
+                <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
+
+           
+        }
+
+
+        if(page.includes('payment.html')){
+            nav.innerHTML = ` 
+            <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
+            <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
+
+          
+        }
+
+
 
     } else if (role === 'A') {
         nav.innerHTML = ` 

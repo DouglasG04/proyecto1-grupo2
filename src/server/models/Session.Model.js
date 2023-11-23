@@ -7,5 +7,5 @@ const sessionSchema = new Schema({
     },
 }, { timestamps: true });
 
-const Session = mongoose.model("Session", sessionSchema);
+const Session = mongoose.model("session", sessionSchema);
 module.exports = Session;
