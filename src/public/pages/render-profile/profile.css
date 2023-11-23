@@ -156,7 +156,9 @@ table .fa-brands {
 
 .reservations h2,
 .payment-title,
-.business h2 {
+.business h2,
+.request h2,
+.dashboard h2 {
     margin-top: 80px;
 }
 
@@ -302,6 +304,43 @@ h2 {
 .add-payment:hover {
     opacity: 0.8;
 }
+
+
+#acceptRequest {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#acceptRequest:hover {
+    background-color: var(--lightGreenKupaa);
+    transition: 0.3s;
+}
+
+#rejectRequest {
+    background-color: var(--darkGrayKupaa);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#rejectRequest:hover {
+    background-color: #000;
+    transition: 0.3s;
+}
+
 
 .container-profile {
     display: flex;
@@ -462,7 +501,9 @@ table .fa-brands {
 
 .reservations h2,
 .payment-title,
-.business h2 {
+.business h2,
+.request h2,
+.dashboard h2 {
     margin-top: 80px;
     text-align: start;
 }
@@ -501,7 +542,6 @@ table .fa-brands {
     background-color: #000;
     transition: 0.3s;
 }
-
 
 .payment-title {
     display: flex;
@@ -585,10 +625,11 @@ h2 {
 }
 
 
-.card-info{
+.card-info {
     display: grid;
     gap: 24px;
 }
+
 .close-popup,
 .add-payment {
     width: 100%;
@@ -619,7 +660,8 @@ h2 {
     margin: 0px;
 }
 
-.form-group label, .label-forrow {
+.form-group label,
+.label-forrow {
     font-weight: 500;
     margin-bottom: 5px;
 }
@@ -656,4 +698,194 @@ h2 {
 input:focus {
     outline: none;
     border: 1px solid var(--darkGreenKupaa);
+}
+
+
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cardBox .card {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
+    min-height: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+
+}
+
+
+.cardBox .card .numbers {
+    position: relative;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+
+.cardBox .card .cardName {
+    color: var(--darkGrayKupaa);
+
+}
+
+.cardBox .card .iconBox {
+    font-size: 2.5em;
+    color: var(--darkGreenKupaa);
+
+}
+
+/* Charts */
+.graphBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+
+
+}
+
+.graphBox .box {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    min-height: 200px;
+
+}
+
+
+.detailsBusiness {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: 1fr, 2fr;
+}
+
+.detailsBusiness .totalBusiness {
+    position: relative;
+    display: grid;
+    min-height: 530px;
+    background: #fff;
+    padding: 20px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.cardHeader h2 {
+    font-weight: 600;
+}
+
+.btnAll {
+    position: relative;
+    padding: 5px 10px;
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.detailsBusiness .tableDetails {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+
+.detailsBusiness .tableDetails .datathBusiness {
+    align-items: center;
+    ;
+
+}
+
+.detailsBusiness .tableDetails .datathBusiness td {
+    font-weight: 600;
+}
+
+.detailsBusiness .totalBusiness .tableDetails .dataBusiness {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness {
+    border-bottom: none;
+}
+
+.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness:hover {
+    background: #D6DBDF;
+    color: #090909;
+}
+
+.detailsBusiness .totalBusiness .tableDetails .dataBusiness td {
+    padding: 9px 5px;
+
+}
+
+.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:last-child,
+.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:last-child {
+    text-align: right;
+}
+
+.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:nth-child(2),
+.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:nth-child(2) {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:nth-child(3),
+.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:nth-child(3) {
+    text-align: center;
+}
+
+#activateBusiness {
+    background-color: var(--darkGreenKupaa);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#activateBusiness:hover {
+    background-color: var(--lightGreenKupaa);
+    transition: 0.3s;
+}
+
+#deactiveBusiness {
+    background-color: var(--darkGrayKupaa);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#deactiveBusiness:hover {
+    background-color: #000;
+    transition: 0.3s;
 }
