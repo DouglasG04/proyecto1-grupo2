@@ -133,14 +133,14 @@
 
         <div class="payment">
           <div class="payment-title">
-            <h2>Metodos de pago</h2>
+            <h2>Métodos de pago</h2>
             <button id="addMethod">Agregar</button>
           </div>
 
 
           <table>
             <tbody class="data-body-payment">
-              
+
             </tbody>
           </table>
         </div>
@@ -155,7 +155,7 @@
               <tr>
                 <th>Nombre de negocio</th>
                 <th>Ubicación</th>
-                <th>Condicion</th>
+                <th>Condición</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -167,8 +167,133 @@
 
         </div>
       </div>
+
+      <div class="request">
+        <h2>Solicitudes de negocio</h2>
+        <table id="table">
+          <thead class="data-thead">
+            <tr>
+              <th>Categoría</th>
+              <th>Negocio</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="data-body">
+            <tr class="data-row">
+              <td>Hospedaje</td>
+              <td>Hotel Punta Leona</td>
+              <td>25/11/2023</td>
+              <td>
+                <button id="acceptRequest">Aceptar</button>
+                <button id="rejectRequest">Rechazar</button>
+              </td>
+            </tr>
+            <tr class="data-row">
+              <td>Entretenimietno</td>
+              <td>Finca la chimba</td>
+              <td>25/12/2023</td>
+              <td>
+                <button id="acceptRequest">Aceptar</button>
+                <button id="rejectRequest">Rechazar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="dashboard" class="table">
+        <h2>Reportes</h2>
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers">1200</div>
+              <div class="cardName">Usuarios</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers">1500</div>
+              <div class="cardName">Negocios</div>
+            </div>
+            <div class="iconBox">
+              <i class="fa-solid fa-hotel"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Chart JS Integration-->
+      <div class="graphBox">
+        <div class="box"> <canvas id="firstChart"></canvas> </div>
+        <div class="box"> <canvas id="secondChart"></canvas></div>
+      </div>
+
+      <div class="detailsBusiness">
+        <div class="totalBusiness">
+          <div class="cardHeader">
+            <h2>Negocios Registrados</h2>
+            <a href="#" class="btnAll">Ver todos</a>
+          </div>
+          <table class="tableDetails">
+            <thead class="datathBusiness">
+              <tr class="dataBusiness">
+                <td>Nombre</td>
+                <td>Fecha</td>
+                <td>Categoria</td>
+                <td>Condición</td>
+              </tr>
+            </thead>
+
+            <tbody class="dataBusinessBody">
+              <tr class="dataBusiness">
+                <td>Hotel el amanecer</td>
+                <td>10/05/2023</td>
+                <td>Hospedaje</td>
+                <td>
+                  <button id="activateBusiness">Activar</button>
+                  <button id="deactiveBusiness">Inactivar</button>
+                </td>
+              </tr>
+
+              <tr class="dataBusiness">
+                <td>Hotel el amanecer</td>
+                <td>10/05/2023</td>
+                <td>Hospedaje</td>
+                <td>
+                  <button id="activateBusiness">Activar</button>
+                  <button id="deactiveBusiness">Inactivar</button>
+                </td>
+              </tr>
+
+              <tr class="dataBusiness">
+                <td>Hotel el amanecer</td>
+                <td>10/05/2023</td>
+                <td>Hospedaje</td>
+                <td>
+                  <button id="activateBusiness">Activar</button>
+                  <button id="deactiveBusiness">Inactivar</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </div>
+
+
+
   </div>
+
+
+
 
   <footer class="footer-container">
     <div>
@@ -220,7 +345,7 @@
     <div class="popup-content">
       <h2>Agregar Método de Pago</h2>
 
-      
+
       <div class="card-info">
 
         <div class="form-group">
@@ -230,11 +355,11 @@
 
         <div class="form-group">
           <label for="bank">Banco:</label>
-        <select name="bank" id="bank">
-          <option value=""></option>
-          <option value="BAC">MasterCard</option>
-          <option value="VS">Visa</option>
-        </select>
+          <select name="bank" id="bank">
+            <option value=""></option>
+            <option value="BAC">MasterCard</option>
+            <option value="VS">Visa</option>
+          </select>
         </div>
 
         <div class="form-group-row">
@@ -251,8 +376,8 @@
 
         </div>
 
-
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+        <script src="profile.js"> </script>
         <div>
           <label class="label-forrow">Fecha de Expiración:</label>
           <div class="form-group-row">
@@ -274,7 +399,7 @@
               </script>
             </select>
           </div>
-          
+
         </div>
 
 

@@ -38,16 +38,6 @@ window.onload = function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
     const addMethod = document.getElementById('addMethod');
 
     const hiUser = document.getElementById('hiUser');
@@ -484,4 +474,73 @@ window.onload = function () {
                 }
             });
     }
+
+
+
+var ctx = document.getElementById('firstChart').getContext('2d');
+var secondChart = document.getElementById('secondChart').getContext('2d');
+var firstChart= new Chart(ctx, {
+type: 'polarArea',
+data: {
+    labels: ['Usuarios', 'Negocios'],
+    datasets: [{
+        label: 'Traffic Source',
+        data: [1200, 1500],
+        backgroundColor: [
+            'rgba(19, 117, 71, 1)',   
+            'rgba(143, 179, 57, 1)' 
+           
+        ],
+
+    }]
+},
+options: {
+   responsive: true,
 }
+});
+
+
+var firstChart = new Chart(secondChart, {
+    type: 'bar',
+    data: {
+        labels: ['Hospedaje', 'Alimentación', 'Entretenimiento'],
+        datasets: [{
+            label: 'Negocios',
+            data: [100,300,50],
+            backgroundColor: [
+                'rgba(19, 117, 71, 1)',   
+            'rgba(143, 179, 57, 1)' 
+              
+            ],
+        
+    
+        }]
+    },
+    options: {
+       responsive: true,
+    }
+});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
