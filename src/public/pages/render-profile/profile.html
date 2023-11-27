@@ -22,7 +22,10 @@
   <header class="nav-container">
     <!-- Linkear -->
     <div>
-      <img class="nav-container-logo" src="../../assets/img/logotipo-horizontal-kupaa.png" alt="Logotipo Kuppa">
+      <a href="http://127.0.0.1:5500/src/public/pages/index.html">
+        <img class="nav-container-logo" src="../../assets/img/logotipo-horizontal-kupaa.png"
+            alt="Logotipo Kuppa">
+    </a>
     </div>
     <nav class="nav-container-options-align">
       <!-- Linkear -->
@@ -91,7 +94,7 @@
           <select id="typeUser" name="tipo-usuario">
             <option value="">Tipo de usuario</option>
             <option value="C">Cliente</option>
-            <option value="P">Proveedor</option>
+            <option value="P">Dueño de negocio</option>
           </select>
 
 
@@ -111,8 +114,7 @@
       <p>Te damos la bienvenida a tu perfil en Kuppa App, la aplicación para disfrutar de lugares más increíbles y
         seguros de Costa Rica</p>
 
-      <!--SERIA SOLO RENDERIZAR ESTE-->
-      <div class="data-user">
+      <div class="data-user section-myreservations">
         <div class="reservations">
           <h2>Reservas</h2>
           <table id="table">
@@ -131,7 +133,7 @@
         </div>
 
 
-        <div class="payment">
+        <div class="payment section-mymethodpayments">
           <div class="payment-title">
             <h2>Métodos de pago</h2>
             <button id="addMethod">Agregar</button>
@@ -144,31 +146,28 @@
             </tbody>
           </table>
         </div>
-
-
-
-
-        <div class="business">
-          <h2>Mis negocios</h2>
-          <table>
-            <thead class="data-thead">
-              <tr>
-                <th>Nombre de negocio</th>
-                <th>Ubicación</th>
-                <th>Condición</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-
-            <tbody class="data-body-business">
-           
-            </tbody>
-          </table>
-
-        </div>
       </div>
 
-      <div class="request">
+      <div class="business section-myregisteredbusiness">
+        <h2>Mis negocios</h2>
+        <table>
+          <thead class="data-thead">
+            <tr>
+              <th>Nombre de negocio</th>
+              <th>Ubicación</th>
+              <th>Condición</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="data-body-business">
+
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="request section-businessrequests">
         <h2>Solicitudes de negocio</h2>
         <table id="table">
           <thead class="data-thead">
@@ -179,62 +178,48 @@
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody class="data-body">
-            <tr class="data-row">
-              <td>Hospedaje</td>
-              <td>Hotel Punta Leona</td>
-              <td>25/11/2023</td>
-              <td>
-                <button id="acceptRequest">Aceptar</button>
-                <button id="rejectRequest">Rechazar</button>
-              </td>
-            </tr>
-            <tr class="data-row">
-              <td>Entretenimietno</td>
-              <td>Finca la chimba</td>
-              <td>25/12/2023</td>
-              <td>
-                <button id="acceptRequest">Aceptar</button>
-                <button id="rejectRequest">Rechazar</button>
-              </td>
-            </tr>
+          <tbody class="data-body-allbusiness">
+
           </tbody>
         </table>
       </div>
 
-      <div class="dashboard" class="table">
-        <h2>Reportes</h2>
-        <div class="cardBox">
-          <div class="card">
-            <div>
-              <div class="numbers">1200</div>
-              <div class="cardName">Usuarios</div>
+      <div class="section-reports">
+        <div class="dashboard" class="table">
+          <h2>Reportes</h2>
+          <div class="cardBox">
+            <div class="card">
+              <div>
+                <div class="numbers numberOfUsers">0</div>
+                <div class="cardName">Usuarios</div>
+              </div>
+              <div class="iconBox">
+                <i class="fa-solid fa-users"></i>
+              </div>
             </div>
-            <div class="iconBox">
-              <i class="fa-solid fa-users"></i>
-            </div>
-          </div>
 
-          <div class="card">
-            <div>
-              <div class="numbers">1500</div>
-              <div class="cardName">Negocios</div>
+            <div class="card">
+              <div>
+                <div class="numbers numberOfBusiness">0</div>
+                <div class="cardName">Negocios</div>
+              </div>
+              <div class="iconBox">
+                <i class="fa-solid fa-hotel"></i>
+              </div>
             </div>
-            <div class="iconBox">
-              <i class="fa-solid fa-hotel"></i>
-            </div>
+
           </div>
 
         </div>
-
+        <!-- Chart JS Integration-->
+        <div class="graphBox">
+          <div class="box"> <canvas id="firstChart"></canvas> </div>
+          <div class="box"> <canvas id="secondChart"></canvas></div>
+        </div>
       </div>
-      <!-- Chart JS Integration-->
-      <div class="graphBox">
-        <div class="box"> <canvas id="firstChart"></canvas> </div>
-        <div class="box"> <canvas id="secondChart"></canvas></div>
-      </div>
 
-      <div class="detailsBusiness">
+
+      <div class="detailsBusiness section-allregisteredbusiness">
         <div class="totalBusiness">
           <div class="cardHeader">
             <h2>Negocios Registrados</h2>
@@ -250,36 +235,7 @@
               </tr>
             </thead>
 
-            <tbody class="dataBusinessBody">
-              <tr class="dataBusiness">
-                <td>Hotel el amanecer</td>
-                <td>10/05/2023</td>
-                <td>Hospedaje</td>
-                <td>
-                  <button id="activateBusiness">Activar</button>
-                  <button id="deactiveBusiness">Inactivar</button>
-                </td>
-              </tr>
-
-              <tr class="dataBusiness">
-                <td>Hotel el amanecer</td>
-                <td>10/05/2023</td>
-                <td>Hospedaje</td>
-                <td>
-                  <button id="activateBusiness">Activar</button>
-                  <button id="deactiveBusiness">Inactivar</button>
-                </td>
-              </tr>
-
-              <tr class="dataBusiness">
-                <td>Hotel el amanecer</td>
-                <td>10/05/2023</td>
-                <td>Hospedaje</td>
-                <td>
-                  <button id="activateBusiness">Activar</button>
-                  <button id="deactiveBusiness">Inactivar</button>
-                </td>
-              </tr>
+            <tbody class="dataBusinessBody data-body-registeredBusiness">
 
             </tbody>
           </table>

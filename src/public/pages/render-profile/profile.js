@@ -1,6 +1,4 @@
-let dataUser;
 
-const dateYear = new Date().getFullYear();
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -19,11 +17,16 @@ window.onload = function () {
     }
 
 
-    const idSession = localStorage.getItem('sessionToken');
-    const idUser = localStorage.getItem('session');
+    const idSessionWithQuotes = localStorage.getItem('sessionToken');
+    const idSession = idSessionWithQuotes.replaceAll('"', '');
+    
+    
+    const idUserWithQuotes = localStorage.getItem('session');
+    const idUser = idUserWithQuotes.replaceAll('"', '');
 
 
-    fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+    // Load navigation bar by role
+    fetch(`http://localhost:1234/api/user/${idUser}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -31,11 +34,37 @@ window.onload = function () {
     })
         .then((response) => response.json())
         .then((data) => {
-            const userType = data.user.typeofuser;
+            userType = data.user.typeofuser;
+
+            const businessRequests = document.querySelector('.section-businessrequests');
+            const allBusiness = document.querySelector('.section-allregisteredbusiness');
+            const myregisteredBusiness = document.querySelector('.section-myregisteredbusiness');
+            const reports = document.querySelector('.section-reports');
+            const reservations = document.querySelector('.section-myreservations');
+            const paymentMethods = document.querySelector('.section-mymethodpayments');
+
+            [businessRequests, allBusiness, myregisteredBusiness, reports, reservations, paymentMethods].forEach(element => {
+                element.classList.add('hide-element');
+            });
+
+
+            if (userType === 'C') {
+                reservations.classList.remove('hide-element');
+                paymentMethods.classList.remove('hide-element');
+            } else if (userType === 'P') {
+                myregisteredBusiness.classList.remove('hide-element');
+            } else if (userType === 'A') {
+                [businessRequests, allBusiness, reports].forEach(element => {
+                    element.classList.remove('hide-element');
+                });
+            }
             handleNavBarByRole(userType, currentPage);
-        });
+        }).catch((error) => {
+            handleNavBarByRole(null, currentPage);
+          })
 
 
+    // Handle sections by user type
 
 
     const addMethod = document.getElementById('addMethod');
@@ -62,7 +91,9 @@ window.onload = function () {
 
     const tableBody = document.querySelector('.data-body-payment');
 
-    fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+
+    // Render user data
+    fetch(`http://localhost:1234/api/user/${idUser}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -77,6 +108,7 @@ window.onload = function () {
             detailEmail.innerHTML = data.user.email;
             userPhoto.src = data.user.personalphoto;
 
+            const dateYear = new Date().getFullYear();
             const convertAge = new Date(data.user.birthdate);
             const age = dateYear - convertAge.getFullYear();
             detailAge.innerHTML = `Edad: ${age}`;
@@ -124,11 +156,16 @@ window.onload = function () {
             // Render reservations by user
             const tableBodyReservation = document.querySelector('.data-body-reservations');
             data.user.reservations.forEach((element) => {
-                tableBodyReservation.innerHTML = `  
+
+                
+                tableBodyReservation.innerHTML += `  
                 <tr class="data-row">
                 <td>₡${element.amount}</td>
                 <td>${element.businessName}</td>
-                <td>${element.checkin} / ${element.checkout}</td>
+                <td>
+                    <input type="date" id="checkin" disabled>
+                    <input type="date" id="checkout" disabled>
+                </td>
                 <td>
                   <button id="editReservation">Modificar</button>
                   <button id="cancelReservation">Cancelar</button>
@@ -141,7 +178,8 @@ window.onload = function () {
 
 
 
-    fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+    // Render business by user
+    fetch(`http://localhost:1234/api/user/${idUser}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -211,7 +249,7 @@ window.onload = function () {
                         popupBusiness.classList.remove('hide-element');
                         popupBusiness.classList.add('show-element');
 
-                        fetch(`http://localhost:1234/api/user/business/6555603df4526d0724350314/${businessId}`, {
+                        fetch(`http://localhost:1234/api/user/business/${idUser}/${businessId}`, {
                             method: 'GET',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -265,7 +303,7 @@ window.onload = function () {
         });
 
 
-
+    // Event listener for save USER changes button
     btnSaveUser.addEventListener('click', (event) => {
         event.preventDefault();
 
@@ -281,7 +319,7 @@ window.onload = function () {
             typeofuser: typeOfUser.value,
         }
 
-        fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+        fetch(`http://localhost:1234/api/user/${idUser}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -290,22 +328,28 @@ window.onload = function () {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 Swal.fire({
                     title: '¡Datos actualizados!',
                     text: 'Tus datos han sido actualizados exitosamente',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
                 })
+
             })
 
     })
 
 
+
+    // Event listener for delete USER button (ACCOUNT)
     btnDeleteUser.addEventListener('click', (event) => {
         event.preventDefault();
 
-        fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+        fetch(`http://localhost:1234/api/user/${idUser}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -332,7 +376,7 @@ window.onload = function () {
     })
 
 
-
+    // Event listener for delete PAYMENT METHOD button
     tableBody.addEventListener('click', (event) => {
         const target = event.target;
 
@@ -342,7 +386,7 @@ window.onload = function () {
 
             if (methodId) {
 
-                fetch(`http://localhost:1234/api/user/paymentmethod/6555603df4526d0724350314/${methodId}`, {
+                fetch(`http://localhost:1234/api/user/paymentmethod/${idUser}/${methodId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -373,7 +417,7 @@ window.onload = function () {
 
 
 
-
+    // Event listener for add PAYMENT METHOD button
 
     addMethod.addEventListener('click', () => {
 
@@ -409,7 +453,7 @@ window.onload = function () {
                 bank: bank.value,
             }
 
-            fetch(`http://localhost:1234/api/user/paymentmethod/6555603df4526d0724350314`, {
+            fetch(`http://localhost:1234/api/user/paymentmethod/${idUser}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -451,7 +495,7 @@ window.onload = function () {
         console.log('Logout button clicked!');
 
         console.log('Logout button clicked!');
-        fetch(`http://localhost:1234/api/user/logout/654c4d980880e0ef8cd903fb`, {
+        fetch(`http://localhost:1234/api/user/logout/${idSession}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -477,49 +521,340 @@ window.onload = function () {
 
 
 
-var ctx = document.getElementById('firstChart').getContext('2d');
-var secondChart = document.getElementById('secondChart').getContext('2d');
-var firstChart= new Chart(ctx, {
-type: 'polarArea',
-data: {
-    labels: ['Usuarios', 'Negocios'],
-    datasets: [{
-        label: 'Traffic Source',
-        data: [1200, 1500],
-        backgroundColor: [
-            'rgba(19, 117, 71, 1)',   
-            'rgba(143, 179, 57, 1)' 
-           
-        ],
+    // Admin dashboard
 
-    }]
-},
-options: {
-   responsive: true,
-}
-});
+    let numberOfUsers = 0;
+    let totalBusinessCount = 0;
+
+    let numberOfBusinessHospedaje = 0;
+    let numberOfBusinessAlimentacion = 0;
+    let numberOfBusinessEntretenimiento = 0;
+
+    const totalUsers = document.querySelector('.numberOfUsers');
+    const totalBusiness = document.querySelector('.numberOfBusiness');
 
 
-var firstChart = new Chart(secondChart, {
-    type: 'bar',
-    data: {
-        labels: ['Hospedaje', 'Alimentación', 'Entretenimiento'],
-        datasets: [{
-            label: 'Negocios',
-            data: [100,300,50],
-            backgroundColor: [
-                'rgba(19, 117, 71, 1)',   
-            'rgba(143, 179, 57, 1)' 
-              
-            ],
-        
-    
-        }]
-    },
-    options: {
-       responsive: true,
+
+    fetch(`http://localhost:1234/api/users`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            numberOfUsers = data.length;
+
+            const pendingBusiness = document.querySelector('.data-body-allbusiness');
+            const registeredBusiness = document.querySelector('.data-body-registeredBusiness');
+
+            // All users
+            data.forEach(user => {
+                const userBusinessCount = user.business.length;
+                totalBusinessCount += userBusinessCount;
+
+                // All business for each user
+                user.business.forEach(business => {
+                    const userId = user._id;
+
+                    if (business.category === 'Hospedaje') {
+                        numberOfBusinessHospedaje++;
+                    } else if (business.category === 'Alimentacion') {
+                        numberOfBusinessAlimentacion++;
+                    } else if (business.category === 'Entretenimiento') {
+                        numberOfBusinessEntretenimiento++;
+                    }
+
+                    registeredBusiness.innerHTML += `
+                    <tr class="dataBusiness" data-method-id="${business._id}" data-user-id="${userId}">
+                        <td>${business.name}</td>
+                        <td>${business.createdAt}</td>
+                        <td>${business.category}</td>
+                        <td>
+                            <button class="activateBusiness" id="activateBusiness">Activar</button>
+                            <button class="desactiveBusiness" id="desactiveBusiness">Inactivar</button>
+                        </td>
+                    </tr>`;
+
+                    if (business.statusBusiness === false) {
+                        pendingBusiness.innerHTML += `
+                        <tr class="data-row" data-method-id="${business._id}" data-user-id="${userId}">
+                            <td>${business.category}</td>
+                            <td>${business.name}</td>
+                            <td>${business.createdAt}</td>
+                            <td>
+                                <button class="acceptRequest" id="acceptRequest">Aceptar</button>
+                                <button class="rejectRequest" id="rejectRequest">Rechazar</button>
+                            </td>
+                        </tr>`;
+                    }
+
+
+
+                });
+
+            });
+
+            totalUsers.innerHTML = numberOfUsers;
+            totalBusiness.innerHTML = totalBusinessCount;
+
+            createCharts();
+            updateCharts();
+
+            const acceptRequest = document.querySelectorAll('#acceptRequest');
+            const rejectRequest = document.querySelectorAll('#rejectRequest');
+
+            const activateBusiness = document.querySelectorAll('#activateBusiness');
+            const desactiveBusiness = document.querySelectorAll('#desactiveBusiness');
+
+
+
+            // Change status business in dashboard
+            if (acceptRequest) {
+                acceptRequest.forEach((button) => {
+                    button.addEventListener('click', (e) => {
+
+                        const businessId = e.target.closest('.data-row').dataset.methodId;
+                        const userId = e.target.closest('.data-row').dataset.userId;
+
+                        const status = true;
+
+                        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ statusBusiness: status })
+                        }).then((response) => response.json())
+                            .then(data => {
+                                if (data.status === 200) {
+                                    Swal.fire({
+                                        title: '¡Éxito!',
+                                        text: 'Se ha aprobado el negocio',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title: '¡Error!',
+                                        text: 'No se pudo aprobar el negocio',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                    })
+                })
+            }
+
+            if (rejectRequest) {
+                rejectRequest.forEach((button) => {
+                    button.addEventListener('click', (e) => {
+
+                        const businessId = e.target.closest('.data-row').dataset.methodId;
+                        const userId = e.target.closest('.data-row').dataset.userId;
+
+                        const status = false;
+
+                        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ statusBusiness: status })
+                        }).then((response) => response.json())
+                            .then(data => {
+                                if (data.status === 200) {
+                                    Swal.fire({
+                                        title: '¡Éxito!',
+                                        text: 'Se ha rechazado el negocio',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title: '¡Error!',
+                                        text: 'No se pudo rechazar el negocio',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                    })
+                })
+
+            }
+
+
+
+            if (activateBusiness) {
+                activateBusiness.forEach((button) => {
+                    button.addEventListener('click', (e) => {
+                        const businessId = e.target.closest('.dataBusiness').dataset.methodId;
+                        const userId = e.target.closest('.dataBusiness').dataset.userId;
+
+                        const status = true;
+
+                        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ statusBusiness: status })
+                        }).then((response) => response.json())
+                            .then(data => {
+                                if (data.status === 200) {
+                                    Swal.fire({
+                                        title: '¡Éxito!',
+                                        text: 'Se ha activado el negocio',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title: '¡Error!',
+                                        text: 'No se pudo activar el negocio',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                    })
+                })
+            }
+
+
+            if (desactiveBusiness) {
+                desactiveBusiness.forEach((button) => {
+                    button.addEventListener('click', (e) => {
+                        const businessId = e.target.closest('.dataBusiness').dataset.methodId;
+                        const userId = e.target.closest('.dataBusiness').dataset.userId;
+
+                        const status = false;
+
+                        fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ statusBusiness: status })
+                        }).then((response) => response.json())
+                            .then(data => {
+                                if (data.status === 200) {
+                                    Swal.fire({
+                                        title: '¡Éxito!',
+                                        text: 'Se ha desactivado el negocio',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                } else {
+                                    Swal.fire({
+                                        title: '¡Error!',
+                                        text: 'No se pudo desactivar el negocio',
+                                        icon: 'error',
+                                        confirmButtonText: 'Aceptar',
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                    })
+                })
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+
+
+
+
+
+    // Charts
+    const ctx = document.getElementById('firstChart').getContext('2d');
+    const secondChartCanvas = document.getElementById('secondChart').getContext('2d');
+
+
+    function createCharts() {
+        firstChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Usuarios', 'Negocios'],
+                datasets: [{
+                    label: 'Traffic Source',
+                    data: [numberOfUsers, totalBusinessCount],
+                    backgroundColor: [
+                        'rgba(19, 117, 71, 1)',
+                        'rgba(143, 179, 57, 1)'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        secondChart = new Chart(secondChartCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Hospedaje', 'Alimentación', 'Entretenimiento'],
+                datasets: [{
+                    label: 'Negocios',
+                    data: [numberOfBusinessHospedaje, numberOfBusinessAlimentacion, numberOfBusinessEntretenimiento],
+                    backgroundColor: [
+                        'rgba(19, 117, 71, 1)',
+                        'rgba(143, 179, 57, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
     }
-});
+
+
+    function updateCharts() {
+        if (firstChart && secondChart) {
+            firstChart.data.datasets[0].data = [numberOfUsers, totalBusinessCount];
+            secondChart.data.datasets[0].data = [numberOfBusinessHospedaje, numberOfBusinessAlimentacion, numberOfBusinessEntretenimiento];
+
+            firstChart.update();
+            secondChart.update();
+        }
+    }
 }
 
 

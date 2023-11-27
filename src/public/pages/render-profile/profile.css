@@ -5,11 +5,10 @@
 }
 
 .left-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30%;
-
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* width: 30%; */
 }
 
 .profile-details {
@@ -110,10 +109,10 @@
 
 
 .right-profile {
-    width: 70%;
-    align-self: flex-start;
-    padding: 50px 50px;
-    border-left: 1px solid var(--darkGrayKupaa);
+    /* width: 70%; */
+    /* align-self: flex-start; */
+    /* padding: 50px 50px; */
+    /* border-left: 1px solid var(--darkGrayKupaa); */
 }
 
 .right-profile p {
@@ -353,7 +352,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     width: 30%;
-    /* border-right: 1px solid var(--darkGrayKupaa); */
+    border-right: 1px solid var(--darkGrayKupaa);
 }
 
 .profile-details {
@@ -458,7 +457,8 @@ h2 {
     width: 70%;
     align-self: flex-start;
     padding: 50px 50px;
-    border-left: 1px solid;
+    /* border-left: 1px solid; */
+    height: 100%;
 }
 
 .right-profile p {
@@ -705,7 +705,7 @@ input:focus {
 .cardBox {
     position: relative;
     width: 100%;
-    padding: 20px;
+    padding-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
@@ -770,25 +770,18 @@ input:focus {
 .detailsBusiness {
     position: relative;
     width: 100%;
-    padding: 20px;
-    padding-top: 0;
-    display: grid;
+    /* padding: 20px; */
+    padding-top: 20px;
+    /* display: grid; */
     grid-template-columns: 1fr, 2fr;
 }
 
-.detailsBusiness .totalBusiness {
-    position: relative;
-    display: grid;
-    min-height: 530px;
-    background: #fff;
-    padding: 20px;
-}
+
 
 .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
 }
 
 .cardHeader h2 {
@@ -840,22 +833,6 @@ input:focus {
 
 }
 
-.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:last-child,
-.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:last-child {
-    text-align: right;
-}
-
-.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:nth-child(2),
-.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:nth-child(2) {
-    text-align: right;
-    padding-right: 20px;
-}
-
-.detailsBusiness .totalBusiness .tableDetails .datathBusiness .dataBusiness td:nth-child(3),
-.detailsBusiness .totalBusiness .tableDetails .dataBusinessBody .dataBusiness td:nth-child(3) {
-    text-align: center;
-}
-
 #activateBusiness {
     background-color: var(--darkGreenKupaa);
     color: #fff;
@@ -873,7 +850,7 @@ input:focus {
     transition: 0.3s;
 }
 
-#deactiveBusiness {
+#desactiveBusiness {
     background-color: var(--darkGrayKupaa);
     color: #fff;
     font-size: 14px;
@@ -886,7 +863,7 @@ input:focus {
     cursor: pointer;
 }
 
-#deactiveBusiness:hover {
+#desactiveBusiness:hover {
     background-color: #000;
     transition: 0.3s;
 }

@@ -66,6 +66,14 @@ const handleNavBarByRole = async (role, page) => {
 
                 break;
 
+            case 'contact.html':
+                nav.innerHTML = ` 
+                    <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>`
+
+                dropdownUserNav.innerHTML += `
+                    <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
+
+                break;
 
             default:
                 nav.innerHTML = ` 
@@ -81,27 +89,63 @@ const handleNavBarByRole = async (role, page) => {
                 <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
                 <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
 
-           
+
         }
 
 
-        if(page.includes('payment.html')){
+        if (page.includes('payment.html')) {
             nav.innerHTML = ` 
             <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
             <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
 
-          
+
         }
 
 
 
     } else if (role === 'A') {
         nav.innerHTML = ` 
+                <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
                 <li><a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Aprobar/denegar negocios</a></li>`;
 
         dropdownUserNav.innerHTML += `
                 <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>
                 <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Reportes</a>`;
+    } else if (role == '' || !role || role == null) {
+
+        switch (page) {
+            case 'index.html':
+                dropdownUserNav.innerHTML += `
+              <a href="http://127.0.0.1:5500/src/public/pages/render-login/login.html">Crear cuenta</a>
+              `
+                break;
+
+
+            case 'profile.html':
+                dropdownUserNav.innerHTML += `
+              <a href="http://127.0.0.1:5500/src/public/pages/render-login/login.html">Crear cuenta</a>
+              `
+
+                break;
+        }
+
+        if (page.includes('businesspage.html')) {
+            dropdownUserNav.innerHTML += `
+            <a href="http://127.0.0.1:5500/src/public/pages/render-login/login.html">Crear cuenta</a>
+            `
+
+
+        }
+
+
+        if (page.includes('payment.html')) {
+            dropdownUserNav.innerHTML += `
+            <a href="http://127.0.0.1:5500/src/public/pages/render-login/login.html">Crear cuenta</a>
+            `
+
+
+        }
+
     }
 }
 
