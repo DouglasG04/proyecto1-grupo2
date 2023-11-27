@@ -23,7 +23,7 @@ body {
 }
 
 .show-element {
-    display: flex;
+    display: block;
 }
 
 .hide-element {

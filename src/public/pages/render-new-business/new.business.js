@@ -215,7 +215,8 @@ map.addControl(
 );
 
 const idSession = localStorage.getItem('sessionToken');
-const idUser = localStorage.getItem('session');
+const idUserWithQuotes = localStorage.getItem('session');
+const idUser = idUserWithQuotes.replaceAll('"', '');
 
 
 const img1 = document.getElementById("img1");
@@ -439,7 +440,7 @@ btn_done.addEventListener("click", function () {
 		})
 	} else {
 
-		fetch(`http://localhost:1234/api/user/business/new/6555603df4526d0724350314`, {
+		fetch(`http://localhost:1234/api/user/business/new/${idUser}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

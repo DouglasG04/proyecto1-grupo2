@@ -8,11 +8,14 @@ function myFunction() {
 const currentPage = window.location.href.split('/').pop();
 
 
-const idSession = localStorage.getItem('sessionToken');
-const idUser = localStorage.getItem('session');
+const idSessionWithQuotes = localStorage.getItem('sessionToken');
+const idSession = idSessionWithQuotes.replaceAll('"', '');
 
 
-fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+const idUserWithQuotes = localStorage.getItem('session');
+const idUser = idUserWithQuotes.replaceAll('"', '');
+
+fetch(`http://localhost:1234/api/user/${idUser}`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -22,7 +25,9 @@ fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
   .then((data) => {
     const userType = data.user.typeofuser;
     handleNavBarByRole(userType, currentPage);
-  });
+  }).catch((error) => {
+    handleNavBarByRole(null, currentPage);
+  })
 
 
 
@@ -38,7 +43,7 @@ if (logoutContainer) {
 
 function handleLogoutClick(event) {
   event.preventDefault();
-  fetch(`http://localhost:1234/api/user/logout/654d3a8bbae8b12b0617f5d0`, {
+  fetch(`http://localhost:1234/api/user/logout/${idSession}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -69,7 +74,7 @@ const userId = urlParams.get('id');
 const businessId = urlParams.get('business');
 
 
-
+// Load business by id
 fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
   method: 'GET',
   headers: {
@@ -184,7 +189,7 @@ fetch(`http://localhost:1234/api/user/business/${userId}/${businessId}`, {
 const btnReserve = document.getElementById('btnReserve');
 
 btnReserve.addEventListener('click', function () {
-  window.location.href = `http://127.0.0.1:5500/src/public/pages/render-payment/payment.html?id=6555603df4526d0724350314&business=${businessId}`
+  window.location.href = `http://127.0.0.1:5500/src/public/pages/render-payment/payment.html?id=${userId}&business=${businessId}`
 
 
 })

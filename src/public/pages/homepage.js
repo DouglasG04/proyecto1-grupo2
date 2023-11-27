@@ -1,14 +1,20 @@
 const currentPage = window.location.href.split('/').pop();
 
+const idSessionWithQuotes = localStorage.getItem('sessionToken');
+const idSession = idSessionWithQuotes.replaceAll('"', '');
 
-const idSession = localStorage.getItem('sessionToken');
-const idUser = localStorage.getItem('session');
+
+const idUserWithQuotes = localStorage.getItem('session');
+const idUser = idUserWithQuotes.replaceAll('"', '');
+
+
 let businessdata=[];
 let filterSelected="";
 let minpriceFilter="";
 let maxpriceFilter=""
 
-fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+
+fetch(`http://localhost:1234/api/user/${idUser}`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -18,7 +24,9 @@ fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
   .then((data) => {
     const userType = data.user.typeofuser;
     handleNavBarByRole(userType, currentPage);
-  });
+  }).catch((error) => {
+    handleNavBarByRole(null, currentPage);
+  })
 
 
 let slideIndex = 0;
@@ -101,7 +109,7 @@ if (dropdownUserNav) {
 
 function handleLogoutClick(event) {
   event.preventDefault();
-  fetch(`http://localhost:1234/api/user/logout/654d44d828e632989e4f2826`, {
+  fetch(`http://localhost:1234/api/user/logout/${idSession}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -117,6 +125,7 @@ function handleLogoutClick(event) {
           confirmButtonText: 'Aceptar',
         }).then((result) => {
           if (result.isConfirmed) {
+            localStorage.removeItem('sessionToken');
             localStorage.removeItem('session');
             window.location.href = 'http://127.0.0.1:5500/src/public/pages/render-login/login.html';
           }
@@ -138,11 +147,10 @@ fetch('http://localhost:1234/api/users', {
 
 
     users.forEach((user) => {
-      let contador = 0;
       user.business.forEach((business) => {
 
         if (business.statusBusiness === true) {
-
+          const userIdForBusiness = user._id;
           switch (business.province) {
             case 'SJ':
               business.province = 'San José'
@@ -179,7 +187,7 @@ fetch('http://localhost:1234/api/users', {
           
           businessdata.push(business);
           businessesContainer.innerHTML +=
-            `<div class="card-business" data-method-id="${business._id}">
+            `<div class="card-business" data-method-id="${business._id}" data-user-id="${userIdForBusiness}">
             <div class="business-photograpy">
               <img src='${business.photos[0]}'/>
             </div>
@@ -190,14 +198,8 @@ fetch('http://localhost:1234/api/users', {
       
           </div>`
 
-          contador++;
+         
         }
-
-        // const btnPagination = document.getElementById('paginationControls');
-        // if(contador >= 2){
-        //   btnPagination.classList.remove('hide-element');
-        //   btnPagination.classList.add('show-element');  
-        // }
 
       })
     })
@@ -209,14 +211,14 @@ const businessesContainer = document.getElementById("businessesList");
 
 businessesContainer.addEventListener('click', function (event) {
   const clickedBusiness = event.target.closest('.card-business');
-  
+
   if (clickedBusiness) {
     const businessId = clickedBusiness.getAttribute('data-method-id');
-    const userId = localStorage.getItem('session');
+    const userIdForBusiness = clickedBusiness.getAttribute('data-user-id');
 
 
 
-    window.location.href = `http://127.0.0.1:5500/src/public/pages/render-business/businesspage.html?id=6555603df4526d0724350314&business=${businessId}`;
+    window.location.href = `http://127.0.0.1:5500/src/public/pages/render-business/businesspage.html?id=${userIdForBusiness}&business=${businessId}`;
 
   }
 });

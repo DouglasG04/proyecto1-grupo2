@@ -5,11 +5,15 @@ function myFunction() {
 const currentPage = window.location.href.split('/').pop();
 
 
-const idSession = localStorage.getItem('sessionToken');
-const idUser = localStorage.getItem('session');
+const idSessionWithQuotes = localStorage.getItem('sessionToken');
+const idSession = idSessionWithQuotes.replaceAll('"', '');
 
 
-fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
+const idUserWithQuotes = localStorage.getItem('session');
+const idUser = idUserWithQuotes.replaceAll('"', '');
+
+
+fetch(`http://localhost:1234/api/user/${idUser}`, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -19,7 +23,9 @@ fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
   .then((data) => {
     const userType = data.user.typeofuser;
     handleNavBarByRole(userType, currentPage);
-  });
+  }).catch((error) => {
+    handleNavBarByRole(null, currentPage);
+  })
 
 
 
@@ -35,7 +41,7 @@ if (logoutContainer) {
 
 function handleLogoutClick(event) {
   event.preventDefault();
-  fetch(`http://localhost:1234/api/user/logout/654d45438cbe1ea5c50cef5a`, {
+  fetch(`http://localhost:1234/api/user/logout/${idSession}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -59,6 +65,8 @@ function handleLogoutClick(event) {
     });
 }
 
+
+// Load business data from URL
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('id');
@@ -236,7 +244,7 @@ form.addEventListener('submit', (event) => {
     cvv,
   }
 
-  fetch(`http://localhost:1234/api/user/reservation/6555603df4526d0724350314`, {
+  fetch(`http://localhost:1234/api/user/reservation/${idUser}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -246,7 +254,7 @@ form.addEventListener('submit', (event) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.status === 200) {
-        fetch(`http://localhost:1234/api/user/paymentmethod/6555603df4526d0724350314`, {
+        fetch(`http://localhost:1234/api/user/paymentmethod/${idUser}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

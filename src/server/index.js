@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 require("dotenv").config();
 const mongoose = require('mongoose');
-const cloudinary = require('cloudinary').v2;
 const bodyParser = require('body-parser');
 
 
@@ -65,6 +64,16 @@ app.get('/', (req, res) => {
 
 // All the apis that we will create have to use this format /api/...
 
+
+// Get all users
+app.get('/api/users', async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
 
 // Register user
 app.post('/api/user/register', async (req, res) => {
@@ -160,15 +169,7 @@ app.delete('/api/user/logout/:id', async (req, res) => {
 
 })
 
-// Get all users
-app.get('/api/users', async (req, res) => {
-    try {
-        const users = await User.find();
-        res.json(users);
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
+
 
 //Recover email
 app.post('/api/user/recover', async (req, res) => {
@@ -569,6 +570,22 @@ app.post('/api/user/reservation/:id', async (req, res) => {
 
         user.reservations.push(req.body);
         await user.save();
+
+        const htmlBody = `
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              </head>
+              <body>
+                <h1>Reservación hecha</h1>
+                <p>Ya puedes visualizar la reserva en tu perfil!</p>
+              </body>
+            </html>
+    
+            `
+            sendMail(user.email, "Resevacion lista", htmlBody)
 
         const response = {
             message: "Reservation added successfully",
