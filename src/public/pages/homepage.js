@@ -3,7 +3,10 @@ const currentPage = window.location.href.split('/').pop();
 
 const idSession = localStorage.getItem('sessionToken');
 const idUser = localStorage.getItem('session');
-
+let businessdata=[];
+let filterSelected="";
+let minpriceFilter="";
+let maxpriceFilter=""
 
 fetch(`http://localhost:1234/api/user/6555603df4526d0724350314`, {
   method: 'GET',
@@ -60,12 +63,21 @@ window.onclick = function (event) {
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction2() {
-  document.getElementById("myDropdown2").classList.toggle("show2");
+  var dropdowns = document.getElementsByClassName("dropdown-content2");
+ 
+  var dropdowns = document.getElementsByClassName("dropdown-content2");
+  var i;
+  for (i = 0; i < dropdowns.length; i++) {
+    var openDropdown = dropdowns[i];
+    if (!openDropdown.classList.contains('show2')) {
+      document.getElementById("myDropdown2").classList.toggle("show2");
+    }
+  }
 }
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {
-  if (!event.target.matches('.dropbtn2')) {
+  if (!event.target.matches('.dropbtn2') && !event.target.matches('.dropdown-item2')) {
     var dropdowns = document.getElementsByClassName("dropdown-content2");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
@@ -164,7 +176,8 @@ fetch('http://localhost:1234/api/users', {
               break;
 
           }
-
+          
+          businessdata.push(business);
           businessesContainer.innerHTML +=
             `<div class="card-business" data-method-id="${business._id}">
             <div class="business-photograpy">
@@ -207,3 +220,207 @@ businessesContainer.addEventListener('click', function (event) {
 
   }
 });
+
+
+function filter(){
+    let inputValue = document.getElementsByClassName("search-bar-input")[0].value
+    switch (filterSelected) {
+      case 'Price':
+        const filterPrice = businessdata.filter(filter => filter.price >= minpriceFilter && filter.price <= maxpriceFilter)
+        if(filterPrice != null){
+          businessesContainer.innerHTML="";
+          filterPrice.forEach(business => {
+            businessesContainer.innerHTML +=
+          `<div class="card-business" data-method-id="${business._id}">
+          <div class="business-photograpy">
+            <img src='${business.photos[0]}'/>
+          </div>
+          <div class="card-business-info"> 
+            <p class="card-business-title">${business.name}, ${business.province}</p>
+            <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+          </div>
+        
+        </div>`
+          });
+        }
+        break;
+
+      case 'Province':
+        const filterProvince = businessdata.filter(filter => filter.province.toLowerCase().includes(inputValue.toLowerCase()))
+        if(filterProvince != null){
+          businessesContainer.innerHTML="";
+          filterProvince.forEach(business => {
+            businessesContainer.innerHTML +=
+          `<div class="card-business" data-method-id="${business._id}">
+          <div class="business-photograpy">
+            <img src='${business.photos[0]}'/>
+          </div>
+          <div class="card-business-info"> 
+            <p class="card-business-title">${business.name}, ${business.province}</p>
+            <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+          </div>
+        
+        </div>`
+          });
+        }
+        break;
+
+      case 'Category':
+        const filterCat = businessdata.filter(filter => filter.category.toLowerCase().includes(inputValue.toLowerCase()))
+        businessesContainer.innerHTML="";
+        filterCat.forEach(business => {
+          businessesContainer.innerHTML +=
+        `<div class="card-business" data-method-id="${business._id}">
+        <div class="business-photograpy">
+          <img src='${business.photos[0]}'/>
+        </div>
+        <div class="card-business-info"> 
+          <p class="card-business-title">${business.name}, ${business.province}</p>
+          <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+        </div>
+      
+      </div>`
+        });
+        break;
+
+      default:
+        
+      const filterAll = businessdata.filter(filter => filter.name.toLowerCase().includes(inputValue.toLowerCase()))
+        businessesContainer.innerHTML="";
+        filterAll.forEach(business => {
+          businessesContainer.innerHTML +=
+        `<div class="card-business" data-method-id="${business._id}">
+        <div class="business-photograpy">
+          <img src='${business.photos[0]}'/>
+        </div>
+        <div class="card-business-info"> 
+          <p class="card-business-title">${business.name}, ${business.province}</p>
+          <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+        </div>
+      
+      </div>`
+        });
+      
+        break;
+
+    }
+}
+
+var itemFilter = document.getElementById("myDropdown2");
+
+for(i=0;i<=itemFilter.childElementCount-1;i++){
+  itemFilter.children[i].addEventListener("click",function(event){
+    handleItemFilter(event)
+   
+  });
+  }
+  var categoryFilter = document.getElementById("categories-container");
+
+for(i=0;i<=categoryFilter.childElementCount-1;i++){
+  categoryFilter.children[i].addEventListener("click",function(event){
+    handleCategoryFilter(event)
+  });
+  }
+
+  function handleItemFilter(event){
+    event.preventDefault();
+    var itemFilter = document.getElementsByClassName("dropdown-item2");
+    for (var i = 0; i < itemFilter.length; i++) {
+      let card = document.getElementsByClassName('card');
+      if(event.target.id==='Price' && !event.target.classList.contains('dropdown-item2-active')){
+        card[0].style.display = 'block';
+  
+      }
+      else{
+        card[0].style.display = 'none';
+      }
+
+      if(itemFilter[i].id=== event.target.id){
+        if(itemFilter[i].classList.contains('dropdown-item2-active')){
+          itemFilter[i].classList.remove('dropdown-item2-active')
+          filterSelected = "";
+        }
+        else{
+          
+          itemFilter[i].classList.add('dropdown-item2-active')
+        filterSelected = event.target.id;
+        }
+        
+      }
+      else if(itemFilter[i].classList.contains('dropdown-item2-active')){
+        itemFilter[i].classList.remove('dropdown-item2-active')
+      }
+  }
+
+
+  }
+
+
+  function handleCategoryFilter(event){
+    event.preventDefault();
+    document.getElementsByClassName("search-bar-input")[0].value=""
+    var itemFilter = document.getElementsByClassName("categories-container-item");
+    for (var i = 0; i < itemFilter.length; i++) {
+      itemFilter[i].classList.remove('categories-container-item-active')
+      if(itemFilter[i].id=== event.target.id){
+        itemFilter[i].classList.add('categories-container-item-active')
+      }
+  }
+  const filterCategory = businessdata.filter(filter => filter.category === event.target.id)
+if(filterCategory != null){
+  businessesContainer.innerHTML="";
+  filterCategory.forEach(business => {
+    businessesContainer.innerHTML +=
+  `<div class="card-business" data-method-id="${business._id}">
+  <div class="business-photograpy">
+    <img src='${business.photos[0]}'/>
+  </div>
+  <div class="card-business-info"> 
+    <p class="card-business-title">${business.name}, ${business.province}</p>
+    <p class="card-business-price"><i class="fa-solid  fa-colon-sign"></i>${business.price}</p>
+  </div>
+
+</div>`
+  });
+}
+}
+
+let minValue = document.getElementById("min-value");
+let maxValue = document.getElementById("max-value");
+
+const rangeFill = document.querySelector(".range-fill");
+
+// Function to validate range and update the fill color on slider
+function validateRange() {
+  let minPrice = parseInt(inputElements[1].value);
+  let maxPrice = parseInt(inputElements[2].value);
+
+  if (minPrice > maxPrice) {
+    let tempValue = maxPrice;
+    maxPrice = minPrice;
+    minPrice = tempValue;
+  }
+
+  const minPercentage = ((minPrice - 0) / 600000) * 100;
+  const maxPercentage = ((maxPrice - 0) / 600000) * 100;
+
+  rangeFill.style.left = minPercentage + "%";
+  rangeFill.style.width = maxPercentage - minPercentage + "%";
+
+  minValue.innerHTML = "₡" + minPrice;
+  maxValue.innerHTML = "₡" + maxPrice;
+
+  minpriceFilter = minPrice;
+  maxpriceFilter = maxPrice;
+}
+
+const inputElements = document.querySelectorAll("input");
+
+// Add an event listener to each input element
+inputElements.forEach((element) => {
+  element.classList.contains('search-bar-input')? "" : element.addEventListener("input", validateRange);
+});
+
+// Initial call to validateRange
+validateRange();
+  

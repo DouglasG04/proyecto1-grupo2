@@ -62,12 +62,12 @@
             <div style="display: block; justify-content: center; align-items: center;">
                 <div class="search-bar-container">
                     <input class="search-bar-input" type="text" placeholder="Buscar...">
-                    <button class="btn"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
+                    <button class="btn" onclick="filter();"><i class="fa-solid fa-magnifying-glass search-bar-icon"></i></button>
                     <button class="btn search-bar-filter-button dropbtn2" onclick="myFunction2()">
                         <div id="myDropdown2" class="dropdown-content2">
-                            <a href="#location">Ubicación</a>
-                            <a href="#type">Tipo de negocio</a>
-                            <a href="#price">Precios</a>
+                            <label id="Province" class="dropdown-item2">Ubicación</label>
+                            <label id="Category" class="dropdown-item2">Tipo de negocio</label>
+                            <label id="Price" class="dropdown-item2">Precios</label>
                         </div>
                         <div>
                             <i class="fa-solid fa-sliders dropbtn2"></i>
@@ -76,13 +76,49 @@
                             <p class="dropbtn2">Filters</p>
                         </div>
                     </button>
+                    <div class="card">
+                        <h4>Elige un rango de precio</h4>
+                  
+                        <div class="price-content">
+                          <div>
+                            <label>Min</label>
+                            <p id="min-value">₡0</p>
+                          </div>
+                  
+                          <div>
+                            <label>Max</label>
+                            <p id="max-value">₡600000</p>
+                          </div>
+                        </div>
+                  
+                        <div class="range-slider">
+                          <div class="range-fill"></div>
+                  
+                          <input
+                            type="range"
+                            class="min-price"
+                            value="0"
+                            min="0"
+                            max="600000"
+                            step="1000"
+                          />
+                          <input
+                            type="range"
+                            class="max-price"
+                            value="600000"
+                            min="0"
+                            max="600000"
+                            step="1000"
+                          />
+                        </div>
+                      </div>
                 </div>
                 <div class="categories-container-align">
                     <!-- Linkear -->
-                    <div class="categories-container-options">
-                        <p>Alimentación</p>
-                        <p>Entretenimiento</p>
-                        <p>Hospedaje</p>
+                    <div class="categories-container-options" id="categories-container">
+                        <p id="Alimentacion" class="categories-container-item">Alimentación</p>
+                        <p id="Entretenimiento" class="categories-container-item">Entretenimiento</p>
+                        <p id="Hospedaje" class="categories-container-item">Hospedaje</p>
                     </div>
                 </div>
             </div>
