@@ -585,7 +585,7 @@ app.post('/api/user/reservation/:id', async (req, res) => {
             </html>
     
             `
-            sendMail(user.email, "Resevacion lista", htmlBody)
+        sendMail(user.email, "Resevacion lista", htmlBody)
 
         const response = {
             message: "Reservation added successfully",
@@ -599,6 +599,40 @@ app.post('/api/user/reservation/:id', async (req, res) => {
         return res.status(500).json({ message: 'Error finding user' });
     }
 })
+
+
+// Modify reservation method because of the checkin and checkout
+app.put('/api/user/reservation/:id/:reservationId', async (req, res) => {
+    try {
+        const { id, reservationId } = req.params;
+
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found", status: 404 });
+        }
+
+        const reservation = user.reservations.find(reservation => reservation._id == reservationId);
+
+        if (!reservation) {
+            return res.status(404).json({ message: "Reservation not found", status: 404 });
+        }
+
+        reservation.checkin = req.body.checkin;
+        reservation.checkout = req.body.checkout;
+        await user.save();
+
+        const response = {
+            message: "Reservation updated successfully",
+            status: res.statusCode,
+        }
+
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+})
+
 
 
 

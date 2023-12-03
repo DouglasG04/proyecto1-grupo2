@@ -14,17 +14,6 @@ const handleNavBarByRole = async (role, page) => {
                 <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
 
                 break;
-
-            case 'businesspage.html':
-                nav.innerHTML = ` 
-                <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
-                <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
-
-                dropdownUserNav.innerHTML += `
-                <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
-
-                break;
-
             case 'contact.html':
                 nav.innerHTML = ` 
                 <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>`
@@ -45,14 +34,25 @@ const handleNavBarByRole = async (role, page) => {
               `
 
                 break;
+        }
 
-            case 'payment.html':
-                nav.innerHTML = ` 
-                <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
-                <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
 
-                dropdownUserNav.innerHTML += `
-                <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
+        if (page.includes('payment.html')) {
+            nav.innerHTML = ` 
+            <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
+            <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
+
+            dropdownUserNav.innerHTML += `
+            <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
+        }
+
+        if (page.includes('businesspage.html')) {
+            nav.innerHTML = ` 
+            <li><a href="http://127.0.0.1:5500/src/public/pages/index.html">Inicio</a></li>
+            <li><a href="http://127.0.0.1:5500/src/public/pages/render-contact/contact.html">Contáctanos</a></li>`
+
+            dropdownUserNav.innerHTML += `
+            <a href="http://127.0.0.1:5500/src/public/pages/render-profile/profile.html">Ver/editar perfil</a>`
         }
     } else if (role === 'P') {
         switch (page) {

@@ -161,6 +161,24 @@ table .fa-brands {
     margin-top: 80px;
 }
 
+
+#saveReservation {
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#saveReservation:hover {
+    background-color: var(--lightGreenKupaa);
+    transition: 0.3s;
+}
+
 #editReservation {
     background-color: var(--darkGreenKupaa);
     color: #fff;

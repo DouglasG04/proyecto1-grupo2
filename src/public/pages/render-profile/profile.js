@@ -19,8 +19,8 @@ window.onload = function () {
 
     const idSessionWithQuotes = localStorage.getItem('sessionToken');
     const idSession = idSessionWithQuotes.replaceAll('"', '');
-    
-    
+
+
     const idUserWithQuotes = localStorage.getItem('session');
     const idUser = idUserWithQuotes.replaceAll('"', '');
 
@@ -61,7 +61,7 @@ window.onload = function () {
             handleNavBarByRole(userType, currentPage);
         }).catch((error) => {
             handleNavBarByRole(null, currentPage);
-          })
+        })
 
 
     // Handle sections by user type
@@ -157,24 +157,79 @@ window.onload = function () {
             const tableBodyReservation = document.querySelector('.data-body-reservations');
             data.user.reservations.forEach((element) => {
 
-                
+
                 tableBodyReservation.innerHTML += `  
-                <tr class="data-row">
+                <tr class="data-row" data-reservation-id="${element._id}" data-user-id="${dataUser._id}">
                 <td>₡${element.amount}</td>
                 <td>${element.businessName}</td>
                 <td>
-                    <input type="date" id="checkin" disabled>
-                    <input type="date" id="checkout" disabled>
+                    <input type="date" id="checkin" value="${element.checkin}" disabled>
+                    <input type="date" id="checkout" value="${element.checkout}" disabled>
                 </td>
                 <td>
-                  <button id="editReservation">Modificar</button>
+                  <button id="editReservation" >Modificar</button>
                   <button id="cancelReservation">Cancelar</button>
                 </td>
               </tr>`;
             });
 
+            const editReservation = document.querySelectorAll('#editReservation');
+            const cancelReservation = document.querySelectorAll('#cancelReservation');
 
+
+            if (editReservation) {
+                editReservation.forEach((button) => {
+                    button.addEventListener('click', (event) => {
+                        const row = event.target.closest('.data-row');
+                        const reservationId = row.dataset.reservationId;
+                        const userId = row.dataset.userId;
+
+
+                        const editButton = row.querySelector('#editReservation');
+                        editButton.innerText = 'Guardar';
+                        editButton.id = 'saveReservation';
+
+                        const checkinInput = row.querySelector('#checkin');
+                        const checkoutInput = row.querySelector('#checkout');
+                        checkinInput.disabled = false;
+                        checkoutInput.disabled = false;
+
+
+                        const saveReservation = row.querySelector('#saveReservation');
+                        saveReservation.addEventListener('click', (event) => {
+                            const FormData = {
+                                checkin: checkinInput.value,
+                                checkout: checkoutInput.value,
+                            }
+
+                            fetch(`http://localhost:1234/api/user/reservation/${userId}/${reservationId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(FormData)
+                            })
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data.status === 200) {
+                                        Swal.fire({
+                                            title: '¡Reservación actualizada!',
+                                            text: 'Tu reservación ha sido actualizada exitosamente',
+                                            icon: 'success',
+                                            confirmButtonText: 'Aceptar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        })
+                                    }
+                                })
+                        })
+                    })
+                })
+            }
         })
+
 
 
 
