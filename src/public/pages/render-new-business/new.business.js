@@ -141,7 +141,139 @@ form_6_back_btn.addEventListener("click", function () {
 
 
 
+//Fotografias
+let imagen1 = "";
+let imagen2 = "";
+let imagen3 = "";
+let imagen4 = "";
+let imagen5 = "";
 
+window.onload = function () {
+  const button1 = document.getElementById("img1");
+  const previstaImagen1 = document.getElementById("pre-img1");
+  const myWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: "dwsbnp0s2",
+      uploadPreset: "lcs0xelu",
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        previstaImagen1.src = result.info.url;
+        imagen1 = result.info.url;
+		button1.classList.add("hide-element");
+      }
+    }
+  );
+
+  button1.addEventListener(
+    "click",
+    function () {
+      myWidget.open();
+    },
+    false
+  );
+
+  const button2 = document.getElementById("img2");
+  const previstaImagen2 = document.getElementById("pre-img2");
+  const myWidget2 = cloudinary.createUploadWidget(
+    {
+      cloudName: "dwsbnp0s2",
+      uploadPreset: "lcs0xelu",
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        previstaImagen2.src = result.info.url;
+        imagen2 = result.info.url;
+		button2.classList.add("hide-element");
+      }
+    }
+  );
+
+  button2.addEventListener(
+    "click",
+    function () {
+      myWidget2.open();
+    },
+    false
+  );
+
+  const button3 = document.getElementById("img3");
+  const previstaImagen3 = document.getElementById("pre-img3");
+  const myWidget3 = cloudinary.createUploadWidget(
+    {
+      cloudName: "dwsbnp0s2",
+      uploadPreset: "lcs0xelu",
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        previstaImagen3.src = result.info.url;
+        imagen3 = result.info.url;
+		button3.classList.add("hide-element");
+      }
+    }
+  );
+
+  button3.addEventListener(
+    "click",
+    function () {
+      myWidget3.open();
+    },
+    false
+  );
+
+  const button4 = document.getElementById("img4");
+  const previstaImagen4 = document.getElementById("pre-img4");
+  const myWidget4 = cloudinary.createUploadWidget(
+    {
+      cloudName: "dwsbnp0s2",
+      uploadPreset: "lcs0xelu",
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        previstaImagen4.src = result.info.url;
+        imagen4 = result.info.url;
+		button4.classList.add("hide-element");
+      }
+    }
+  );
+
+  button4.addEventListener(
+    "click",
+    function () {
+      myWidget4.open();
+    },
+    false
+  );
+
+  const button5 = document.getElementById("img5");
+  const previstaImagen5 = document.getElementById("pre-img5");
+  const myWidget5 = cloudinary.createUploadWidget(
+    {
+      cloudName: "dwsbnp0s2",
+      uploadPreset: "lcs0xelu",
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        previstaImagen5.src = result.info.url;
+        imagen5 = result.info.url;
+		button5.classList.add("hide-element");
+      }
+    }
+  );
+
+  button5.addEventListener(
+    "click",
+    function () {
+      myWidget5.open();
+    },
+    false
+  );
+};
 
 
 
