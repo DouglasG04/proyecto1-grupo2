@@ -916,6 +916,7 @@ input:focus {
 }
 
 
+
 .businessContent {
     background-color: #f9f9f9;
     padding: 20px;
@@ -924,4 +925,95 @@ input:focus {
     align-items: center;
     /* justify-content: space-between; */
     width: 100%;
+}
+
+.information-content {
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 50px;
+}
+.title-category {
+    padding: 9px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #8c8a8a;
+}
+.title-location {
+    padding: auto;
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}
+.business-name {
+    font-size: 30px;
+    color: #137547;
+}
+.title-location {
+    
+    color: black;
+    font-weight: 500;
+}
+
+.description{
+    font-size: 15px;
+    padding: 9px;
+}
+
+
+.direction{
+    font-size: 15px;
+    padding: 1px;
+}
+.price{
+    font-size: 15px;
+    padding: 8px;
+}
+.phonenumber{
+    font-size: 15px;
+    padding: 9px;
+}
+
+.images-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+
+
+.img-1-pre {
+    grid-area: 1 / 1 / 3 / 2;
+    height: 215px;
+    width: 350px;
+    border-radius: 10px;
+}
+
+.img-2-pre {
+    grid-area: 1 / 2 / 2 / 3;
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.img-3-pre {
+    grid-area: 2 / 2 / 3 / 3;
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.img-4-pre {
+    grid-area: 2 / 3 / 3 / 4;
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.img-5-pre{
+    grid-area: 1 / 3 / 2 / 4;
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
 }

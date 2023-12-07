@@ -345,11 +345,38 @@ window.onload = function () {
                                     }
 
                                     businessContent.innerHTML += `
-                                            <h2> Vista previa del negocio </h2>
-                                            <h3> ${data.business.name} </h3>
-                                            <p> ${data.business.generaldescription} </p>
-                                            <p> ${data.business.state}, ${data.business.province} </p>
-                                        `;
+                                    <div class="information-content">
+                                    <h2> Vista previa del negocio </h2>
+                                    <h3 class="business-name" > ${data.business.name} </h3>
+                                    <h4 class="title-category"> ${data.business.category} </h4>
+                                    <p class="description"> ${data.business.generaldescription} </p>
+                                    <p class="direction"> ${data.business.state}, ${data.business.province} </p>
+                                    <p class="direction"> ${data.business.direccion}, ${data.business.direccion2}, ${data.business.direccion3} </p>
+                                    <p class="price"> ${data.business.price}</p>
+                                    <p class="phonenumber"> ${data.business.phonenumber} </p>
+                              
+                                  
+
+                                    <div class= "images-container">
+                                   <div class="img-1-pre">
+                                    <img class="img-1-pre" src="${data.business.photos[0]}" alt="imagen negocio">
+                                   </div>
+                                     <div class="img-2-pre">
+                                   <img class="img-2-pre" src="${data.business.photos[1]}" alt="imagen negocio">
+                                   </div>
+                                   <div class="img-3-pre">
+                                   <img class="img-3-pre" src="${data.business.photos[2]}" alt="imagen negocio">
+                                   </div>
+                                   <div class="img-4-pre">
+                                   <img class="img-4-pre" src="${data.business.photos[3]}" alt="imagen negocio">
+                                   </div>
+                                   <div class="img-5-pre">
+                                   <img class="img-5-pre" src="${data.business.photos[4]}" alt="imagen negocio">
+                                   </div>
+                                   </div>
+                                     </div>
+                                    `;
+
                                 }
                             });
                     });
