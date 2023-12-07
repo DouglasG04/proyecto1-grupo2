@@ -5,12 +5,8 @@ function myFunction() {
 const currentPage = window.location.href.split('/').pop();
 
     
-const idSessionWithQuotes = localStorage.getItem('sessionToken');
-const idSession = idSessionWithQuotes.replaceAll('"', '');
-
-
-const idUserWithQuotes = localStorage.getItem('session');
-const idUser = idUserWithQuotes.replaceAll('"', '');
+const idSession = JSON.parse(localStorage.getItem('sessionToken'));
+const idUser = JSON.parse(localStorage.getItem('session'));
 
 
 fetch(`http://localhost:1234/api/user/${idUser}`, {
@@ -25,44 +21,6 @@ fetch(`http://localhost:1234/api/user/${idUser}`, {
     handleNavBarByRole(userType, currentPage);
 }).catch((error) => {
   handleNavBarByRole(null, currentPage);
-})
-
-
-  
-const formContact = document.getElementById('form');
-
-formContact.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const message = document.getElementById('message').value;
-
-  const data = {
-    username,
-    email,
-    phone,
-    message
-  };
-
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-
-  Toast.fire({
-    icon: 'success',
-    title: 'Correo enviado!'
-  })
 })
 
 
@@ -101,3 +59,45 @@ function handleLogoutClick(event) {
       }
     });
 }
+
+let formInp = document.getElementById("form");
+formInp.addEventListener("submit",(e)=>{
+  let userNameInp = document.getElementById("username");
+  let emailInp = document.getElementById("email");
+  let phoneInp = document.getElementById("phone");
+  let messageInp = document.getElementById("message");
+  e.preventDefault();
+
+  const userName = userNameInp.value;
+  const email = emailInp.value;
+  const phone = phoneInp.value;
+  const message = messageInp.value;
+
+  const formData = {
+    name: userName,
+    email: email,
+    phone: phone,
+    message: message,
+  };
+  fetch("http://localhost:1234/api/user/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData), 
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status === 200) {
+        Swal.fire({
+          title: "¡Comentario Enviado!",
+          text: "Le agradecemos su comentario.",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Error al enviar el comentario:", error);
+    });
+})

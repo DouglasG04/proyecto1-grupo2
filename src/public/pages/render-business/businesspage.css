@@ -257,9 +257,6 @@
     font-weight: 500;
 }
 
-.comment {
-    font-size: 14px;
-}
 
 .review-titles {
     display: flex;
@@ -272,19 +269,7 @@
     height: 20px;
 }
 
-.reviews-button {
-    padding: 10px;
-    background-color: black;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    color: white;
-    margin-top: 10px;
-}.max-width {
-    max-width: 1200px;
-    /* padding: 0 45px; */
-    margin: 0 auto;
-}
+
 
 /*Grid de ImÃƒÂ¡genes*/
 
@@ -483,7 +468,7 @@
 
 .button {
     padding: 12px 5px;
-    width: 100%;
+    width: 24%;
     background-color: #000;
     border: none;
     border-radius: 20px;
@@ -491,7 +476,7 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    /* margin-top: 28px; */
+    margin: 20px 0px;
 }
 
 .button:hover{
@@ -561,6 +546,7 @@
 
 .comment {
     font-size: 14px;
+    margin: 5px 0px 20px 0px;
 }
 
 .review-titles {
@@ -589,4 +575,8 @@
 .reviews-button:hover {
 background-color: var(--darkGrayKupaa);
     transition: 0.3s
+}
+
+#ratingText{
+    padding: 12px 15px;
 }

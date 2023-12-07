@@ -284,7 +284,7 @@ formLogin.addEventListener('submit', (event) => {
                         window.location.href = "http://127.0.0.1:5500/src/public/pages/index.html"
                     }
                 })
-            } else if (data.status === 404) {
+            } else if (data.status === 500 || data.status === 404 || data.status === 401) {
                 Swal.fire({
                     title: '¡Error!',
                     text: 'Ha ocurrido un error al iniciar sesión',

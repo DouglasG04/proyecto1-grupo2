@@ -177,7 +177,7 @@
                     <div class="review-titles">
                         <h1>Reseñas</h1>
                         <i class="fa-solid fa-star" style="color: #000000; font-size: 20px;"></i>
-                        <h1>5.0</h1>
+                        <!-- <h1>5.0</h1> -->
                     </div>
 
                     <!--Comentarios de Review-->
@@ -202,108 +202,69 @@
                                 </div>
                             </div>
 
-                            <div class="comment-total">
-                                <div class="comment-review">
-                                    <div class="photo-review">
-                                        <img class="photo-review" src="../../assets/img/p2.jpg" alt="">
-                                    </div>
-                                    <div class="person-comment"">
-                                    <h1>Marizel Rodriguez</h1>
-                                    <h3>CDMX, Mexico</h3>
+                            <div class="add-review">
+                                <div>
+                                    <h3>
+                                        Tu reseña
+                                    </h3>
+                                </div>
+                                <div>
+                                    <textarea id="ratingText" cols="30" rows="10"></textarea>
+                                </div>
+                                <div>
+                                    <button class="button" id="btnSendRating">Enviar</button>
                                 </div>
                             </div>
-                            <div class=" comment">
-                                        <p>
-                                            Esta casa de playa superó todas nuestras expectativas.
-                                            La ubicación es perfecta, justo en la playa, y la casa es
-                                            hermosa y cómoda. ¡Definitivamente volveremos!
-                                        </p>
-                                    </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!--Reserva Ahora-->
+
+                    <div class="card-reservation">
+                        <div class="reservation-container">
+                            <div class="reservation-info">
+                                <h1 class="price-business"></h1>
+                                <p>x dia</p>
+                            </div>
+                            <hr>
+                            <div class="reservation-details">
+                                <div class="icon-contact">
+                                    <i class="fa-solid fa-phone"
+                                        style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
+                                    <p class="phone-business"></p>
+                                </div>
+                                <div class="icon-contact">
+                                    <i class="fa-solid fa-envelope"
+                                        style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
+                                    <p class="email-business"></p>
                                 </div>
 
-                                <div class="comment-total">
-                                    <div class="comment-review">
-                                        <div class="photo-review">
-                                            <img class="photo-review" src="../../assets/img/p3.jpg" alt="">
-                                        </div>
-                                        <div class="person-comment"">
-                                    <h1>Jennifer Hernandez</h1>
-                                    <h3>Bogota, Colombia</h3>
+                                <div class="icon-contact">
+                                    <i class="fa-solid fa-credit-card"
+                                        style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
+                                    <p>SafePay</p>
                                 </div>
                             </div>
-                            <div class=" comment">
-                                            <p>
-                                                Esta casa de playa es el lugar perfecto para relajarse y
-                                                desconectar. El sonido de las olas y la brisa del mar
-                                                crean un ambiente tranquilo y relajante.
-                                            </p>
-                                        </div>
-                                    </div>
 
-                                    <div class="comment-total">
-                                        <div class="comment-review">
-                                            <div class="photo-review">
-                                                <img class="photo-review" src="../../assets/img/p1.jpg" alt="">
-                                            </div>
-                                            <div class="person-comment"">
-                                    <h1>Marisol Soto</h1>
-                                    <h3>Paris, France</h3>
+
+                            <div class="reservation-button">
+                                <button id="btnReserve" class="button">Reserve Ahora</button>
+                            </div>
+
+                            <div class="reservation-icons">
+                                <div class="icon-contact"
+                                    style="display: flex;justify-content: center;text-align: center;">
+                                    <i class="fa-solid fa-house"
+                                        style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
+                                    <p class="ubication2"></p>
                                 </div>
                             </div>
-                            <div class=" comment">
-                                                <p>Me encanto la casa, nuestra estadía fue muy agradable</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="reviews-button">Ver todos los comentarios</button>
-
-                                </div>
-
-                                <!--Reserva Ahora-->
-
-                                <div class="card-reservation">
-                                    <div class="reservation-container">
-                                        <div class="reservation-info">
-                                            <h1 class="price-business"></h1>
-                                            <p>x dia</p>
-                                        </div>
-                                        <hr>
-                                        <div class="reservation-details">
-                                            <div class="icon-contact">
-                                                <i class="fa-solid fa-phone"
-                                                    style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
-                                                <p class="phone-business"></p>
-                                            </div>
-                                            <div class="icon-contact">
-                                                <i class="fa-solid fa-envelope"
-                                                    style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
-                                                <p class="email-business"></p>
-                                            </div>
-
-                                            <div class="icon-contact">
-                                                <i class="fa-solid fa-credit-card"
-                                                    style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
-                                                <p>SafePay</p>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="reservation-button">
-                                            <button id="btnReserve" class="button">Reserve Ahora</button>
-                                        </div>
-
-                                        <div class="reservation-icons">
-                                            <div class="icon-contact"
-                                                style="display: flex;justify-content: center;text-align: center;">
-                                                <i class="fa-solid fa-house"
-                                                    style="padding: 0px;margin: 0px;color: #222222;font-size: 18px;"></i>
-                                                <p class="ubication2"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </section>
 

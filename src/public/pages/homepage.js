@@ -1,11 +1,8 @@
 const currentPage = window.location.href.split('/').pop();
 
-const idSessionWithQuotes = localStorage.getItem('sessionToken');
-const idSession = idSessionWithQuotes.replaceAll('"', '');
 
-
-const idUserWithQuotes = localStorage.getItem('session');
-const idUser = idUserWithQuotes.replaceAll('"', '');
+const idSession = JSON.parse(localStorage.getItem('sessionToken'));
+const idUser = JSON.parse(localStorage.getItem('session'));
 
 
 let businessdata = [];

@@ -116,12 +116,12 @@ app.post('/api/user/register', async (req, res) => {
 // Login user
 app.post('/api/user/login', async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email, password: req.body.password });
 
         if (!user) {
             const response = {
-                message: "User not found",
-                status: 404,
+                message: "Something went wrong",
+                status: 401,
             };
 
             return res.status(404).json(response);
@@ -137,7 +137,7 @@ app.post('/api/user/login', async (req, res) => {
 
         return res.status(200).json(response);
     } catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong', status: 500 });
     }
 });
 
@@ -199,7 +199,7 @@ app.post('/api/user/recover', async (req, res) => {
         </html>
         `;
 
-        const mailSent = await SendMail(email, "Recuperar contraseña", emailBody);
+        const mailSent = await sendMail(email, "Recuperar contraseña", emailBody);
 
         if (mailSent) {
             return res.status(200).json({ message: "Email enviado correctamente", status: 200 });
@@ -268,7 +268,7 @@ app.get('/api/user/:id', async (req, res) => {
 
 
     } catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong' });
     }
 })
 
@@ -324,7 +324,7 @@ app.delete('/api/user/:id', async (req, res) => {
         return;
 
     } catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong' });
     }
 })
 
@@ -425,7 +425,7 @@ app.get('/api/user/business/:id/:businessId', async (req, res) => {
         return res.status(200).json(response);
     }
     catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong' });
     }
 })
 
@@ -525,7 +525,7 @@ app.post('/api/user/paymentmethod/:id', async (req, res) => {
 
 
     } catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong' });
     }
 })
 
@@ -596,7 +596,39 @@ app.post('/api/user/reservation/:id', async (req, res) => {
 
 
     } catch (error) {
-        return res.status(500).json({ message: 'Error finding user' });
+        return res.status(500).json({ message: 'Something went wrong' });
+    }
+})
+
+// Add rating for business
+app.post('/api/user/business/rating/:id/:businessId', async (req, res) => {
+    try {
+        const { id, businessId } = req.params;
+
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found", status: 404 });
+        }
+
+        const business = user.business.find(business => business._id == businessId);
+
+        if (!business) {
+            return res.status(404).json({ message: "Business not found", status: 404 });
+        }
+
+        business.ratings.push(req.body);
+        await user.save();
+
+        const response = {
+            message: "Rating added successfully",
+            status: res.statusCode,
+        }
+
+        return res.status(200).json(response);
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
 })
 
@@ -612,6 +644,7 @@ app.put('/api/user/reservation/:id/:reservationId', async (req, res) => {
             return res.status(404).json({ message: "User not found", status: 404 });
         }
 
+        // Go trough all the reservations and find the one that matches the id of the params
         const reservation = user.reservations.find(reservation => reservation._id == reservationId);
 
         if (!reservation) {
@@ -635,7 +668,66 @@ app.put('/api/user/reservation/:id/:reservationId', async (req, res) => {
 
 
 
+// Delete reservation 
+app.delete('/api/user/reservation/:id/:reservationId', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const reservationId = req.params.reservationId;
 
+        const result = await User.findByIdAndUpdate(
+            userId,
+            { $pull: { reservations: { _id: reservationId } } },
+            { new: true }
+        );
+
+
+
+        if (!result) {
+            return res.status(404).json({ message: 'User or reservation not found' });
+        }
+
+        const response = {
+            message: "Reservation deleted successfully",
+            status: res.statusCode,
+        }
+
+        return res.status(200).json(response);
+
+    } catch (error) {
+        console.error('Error deleting reservation:', error);
+        return res.status(500).json({ message: 'Error deleting reservation' });
+    }
+});
+
+
+app.post('/api/user/contact', async (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body;
+
+        const subject = 'Nuevo comentario de usuario';
+        const htmlBody = `
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                </head>
+                <body>
+                    <h1>Nuevo Comentario</h1>
+                    <p><strong>Nombre:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Teléfono:</strong> ${phone}</p>
+                    <p><strong>Mensaje:</strong> ${message}</p>
+                </body>
+            </html>
+        `;
+        const mail = await sendMail("devsolutionscenfotec@gmail.com", subject, htmlBody);
+
+        return res.status(200).json({ message: "Comentario enviado con éxito", status: 200 });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
 
 
 // It have to be the last route requet

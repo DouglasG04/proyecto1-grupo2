@@ -344,13 +344,11 @@ p {
     display: block;
 }
 
-.dropdown-content2 label:hover {
-    background-color: #ddd;
-    color: #137547;
-}
+
 .dropdown-item2-active{
-    background-color: #ddd;
-    color: #137547;
+    background-color: var(--lightGreenKupaa);
+    font-weight: 600;
+    color: #000;
 }
 .categories-container-item{
     cursor: pointer;

@@ -228,6 +228,41 @@ window.onload = function () {
                     })
                 })
             }
+
+            if (cancelReservation) {
+                cancelReservation.forEach((button) => {
+                    button.addEventListener('click', (event) => {
+                        const row = event.target.closest('.data-row');
+                        const reservationId = row.dataset.reservationId;
+                        const userId = row.dataset.userId;
+
+
+                        fetch(`http://localhost:1234/api/user/reservation/${userId}/${reservationId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        })
+                            .then((response) => response.json())
+                            .then(data => {
+                                if (data.status === 200) {
+                                    Swal.fire({
+                                        title: '¡Reservación cancelada!',
+                                        text: 'Tu reservación ha sido cancelada exitosamente',
+                                        icon: 'success',
+                                        confirmButtonText: 'Aceptar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    })
+                                }
+                            })
+                    })
+                })
+            }
+
+
         })
 
 
