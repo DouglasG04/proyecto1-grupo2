@@ -4,7 +4,7 @@ Welcome to the repository for our university project, developed as part of our a
 
 ![Portfolio Preview](https://douglasg04.github.io/portfolio.app/assets/project3.jpg)
 
-📑 Información del Equipo
+## 📑 Team Information
 
 For more details about the team members and their roles in the project, please visit the [Landing Page](https://github.com/DouglasG04/proyecto1-landingpage) repository, where you’ll find complete information about the team and a visual presentation of our work. Here is a preview of the team’s landing page.
 
