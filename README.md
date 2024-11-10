@@ -27,9 +27,10 @@ proyecto1-grupo2/
 ├── src/                  
 │   ├── public/            # Frontend
 │   ├── server/            # Backend
-├── angular.json           # Angular configuration
-├── tailwind.config.js     # Tailwind CSS configuration
-└── package.json           # Dependencies and scripts
+│       ├── models
+│       ├── utils
+│       ├── server.js      # Server file (Restful APIs)
+│       ├── package.json
 ```
 
 ## 💻 Developing Locally
