@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reservationsSchema = new Schema({
-    cupon: Boolean,
     cuponAmount: Number,
     amount: Number,
     checkin: String,

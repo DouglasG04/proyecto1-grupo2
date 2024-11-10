@@ -701,7 +701,6 @@ window.onload = function () {
                             <td>${business.createdAt}</td>
                             <td>
                                 <button class="acceptRequest" id="acceptRequest">Aceptar</button>
-                                <button class="rejectRequest" id="rejectRequest">Rechazar</button>
                             </td>
                         </tr>`;
                     }
